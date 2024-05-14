@@ -6,34 +6,18 @@
 /*   By: asuc <asuc@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 03:20:11 by asuc              #+#    #+#             */
-/*   Updated: 2024/05/14 13:24:07 by asuc             ###   ########.fr       */
+/*   Updated: 2024/05/14 13:45:53 by asuc             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PhoneBook.hpp"
 
-PhoneBook::PhoneBook()
-{
-    Contact contact;
-    
-}
+PhoneBook::PhoneBook() { Contact contact; }
 
-PhoneBook::~PhoneBook()
-{
-    
-}
+PhoneBook::~PhoneBook() {}
 
-void PhoneBook::add()
-{
-    
-}
+void PhoneBook::add() {}
 
-void PhoneBook::search()
-{
-    
-}
+void PhoneBook::search() {}
 
-void PhoneBook::print()
-{
-    
-}
+void PhoneBook::print() {}
