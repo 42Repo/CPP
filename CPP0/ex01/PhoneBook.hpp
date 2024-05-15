@@ -6,7 +6,7 @@
 /*   By: asuc <asuc@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 22:17:21 by asuc              #+#    #+#             */
-/*   Updated: 2024/05/14 13:46:05 by asuc             ###   ########.fr       */
+/*   Updated: 2024/05/15 14:57:45 by asuc             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,16 @@
 #include "Contact.hpp"
 
 class PhoneBook : public Contact {
-public:
-  PhoneBook();
-  ~PhoneBook();
-  void add();
-  void search();
-  void print();
+  public:
+    PhoneBook();
+    ~PhoneBook();
+    void add();
+    void search();
+    void print();
 
-private:
-  Contact m_contacts[8];
-  int m_index;
+  private:
+    Contact m_contacts[8];
+    int     m_index;
 };
 
 #endif // __PHONEBOOK_H__
