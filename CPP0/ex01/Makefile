@@ -17,14 +17,16 @@ BCyan		=	$(shell printf "\033[1;36m")
 Green		=	$(shell printf "\033[0;32m")
 Blue 		=	$(shell printf "\033[0;34m")
 Bblue		=	$(shell printf "\033[1;34m")
-NAME		=	megaphone
+NAME		=	PhoneBook
 COMP		=	c++
 CPPFLAGS		=	-Wall -Werror -Wextra -std=c++98
 CACHE_DIR	:=	$(addprefix $(shell pwd)/, .cache)
 MAKE		=	make --no-print-directory
 AUTHORS		=	asuc
 DEBUG		=	0
-SRC			=	megaphone.cpp
+SRC			=	Contact.cpp \
+				PhoneBook.cpp \
+				main.cpp
 
 OBJ_DIR = $(CACHE_DIR)/$(NAME)/obj
 DEP_DIR = $(CACHE_DIR)/$(NAME)/dep
@@ -75,6 +77,5 @@ fclean : clean
 re : fclean all
 
 -include $(DEP)
-
 
 .PHONY: all fclean clean re banner

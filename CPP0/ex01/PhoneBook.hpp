@@ -6,7 +6,7 @@
 /*   By: asuc <asuc@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 22:17:21 by asuc              #+#    #+#             */
-/*   Updated: 2024/05/15 14:57:45 by asuc             ###   ########.fr       */
+/*   Updated: 2024/05/16 19:07:22 by asuc             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,7 @@ class PhoneBook : public Contact {
     PhoneBook();
     ~PhoneBook();
     void add();
-    void search();
-    void print();
+    void search() const;
 
   private:
     Contact m_contacts[8];
