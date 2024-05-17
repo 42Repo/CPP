@@ -51,6 +51,8 @@ Module.symvers
 Mkfile.old
 dkms.conf
 
+*c_cpp_properties*
+.cache
 megaphone
 PhoneBook
 logger
