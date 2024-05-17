@@ -6,14 +6,14 @@
 /*   By: asuc <asuc@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 19:50:31 by asuc              #+#    #+#             */
-/*   Updated: 2024/05/17 20:10:18 by asuc             ###   ########.fr       */
+/*   Updated: 2024/05/17 20:15:29 by asuc             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Account.hpp"
 #include <ctime>
+#include <iomanip>
 #include <iostream>
-#include <string>
 
 int Account::_nbAccounts = 0;
 int Account::_totalAmount = 0;
@@ -101,27 +101,10 @@ bool Account::makeWithdrawal(int withdrawal) {
 void Account::_displayTimestamp(void) {
     time_t now = time(0);
     tm    *ltm = localtime(&now);
-    std::cout << "[" << 1900 + ltm->tm_year;
-    if (1 + ltm->tm_mon < 10) {
-        std::cout << "0";
-    }
-    std::cout << 1 + ltm->tm_mon;
-    if (ltm->tm_mday < 10) {
-        std::cout << "0";
-    }
-    std::cout << ltm->tm_mday << "_";
-    if (ltm->tm_hour < 10) {
-        std::cout << "0";
-    }
-    std::cout << ltm->tm_hour;
-    if (ltm->tm_min < 10) {
-        std::cout << "0";
-    }
-    std::cout << ltm->tm_min;
-    if (ltm->tm_sec < 10) {
-        std::cout << "0";
-    }
-    std::cout << ltm->tm_sec << "]";
+    std::cout << "[" << 1900 + ltm->tm_year << std::setfill('0') << std::setw(2) << 1 + ltm->tm_mon
+              << std::setfill('0') << std::setw(2) << ltm->tm_mday << "_" << std::setfill('0')
+              << std::setw(2) << ltm->tm_hour << std::setfill('0') << std::setw(2) << ltm->tm_min
+              << std::setfill('0') << std::setw(2) << ltm->tm_sec << "]";
 }
 
 Account::Account(void) {
