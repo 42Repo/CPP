@@ -6,7 +6,7 @@
 /*   By: asuc <asuc@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 03:20:11 by asuc              #+#    #+#             */
-/*   Updated: 2024/05/16 19:48:53 by asuc             ###   ########.fr       */
+/*   Updated: 2024/05/17 18:33:33 by asuc             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,16 +23,16 @@ PhoneBook::~PhoneBook() {}
  * @return std::string La prochaine ligne
  */
 static std::string getNextLine(std::string line) {
-    std::string tmp;
+    std::string input;
 
     while (1) {
         std::cout << line;
-        if (!(std::getline(std::cin, tmp))) {
+        if (!(std::getline(std::cin, input))) {
             std::cout << "\033[31m\nExiting due to input error or EOF.\033[0m" << std::endl;
-            exit(1);
+            return "";
         }
-        if (tmp != "") {
-            return tmp;
+        if (!input.empty()) {
+            return input;
         }
     }
 }
@@ -73,13 +73,10 @@ static std::string shorten(std::string str) {
  * @return int 0 si la liste n'est pas vide, 1 sinon
  */
 static int is_all_empty(const Contact contacts[8]) {
-    int i = 0;
-
-    while (i < 8) {
+    for (int i = 0; i < 8; i++) {
         if (contacts[i].getFirstName() != "") {
             return 0;
         }
-        i++;
     }
     std::cout << "\033[31mThe list is empty\033[0m" << std::endl;
     return 1;
@@ -107,45 +104,49 @@ static int print(const Contact contacts[8], int index) {
     return 0;
 }
 
-/**
- * @brief Ajoute un contact à la liste
- *
- */
-void PhoneBook::add() {
+int PhoneBook::add() {
     std::string tmp;
 
     if (m_index == 8) {
         m_index = 0;
     }
-    tmp = getNextLine("Enter first name: ");
+    if ((tmp = getNextLine("Enter first name: ")).empty()) {
+        return 1;
+    }
     m_contacts[m_index].setFirstName(tmp);
-    tmp = getNextLine("Enter last name: ");
+    if ((tmp = getNextLine("Enter last name: ")).empty()) {
+        return 1;
+    }
     m_contacts[m_index].setLastName(tmp);
-    tmp = getNextLine("Enter nickname: ");
+    if ((tmp = getNextLine("Enter nickname: ")).empty()) {
+        return 1;
+    }
     m_contacts[m_index].setNickname(tmp);
-    tmp = getNextLine("Enter phone number: ");
+    if ((tmp = getNextLine("Enter phone number: ")).empty()) {
+        return 1;
+    }
     m_contacts[m_index].setPhoneNumber(tmp);
-    tmp = getNextLine("Enter darkest secret: ");
+    if ((tmp = getNextLine("Enter darkest secret: ")).empty()) {
+        return 1;
+    }
     m_contacts[m_index].setDarkestSecret(tmp);
     std::cout << "\033[32mContact added !\033[0m" << std::endl;
     std::cout << std::endl;
     m_index++;
+    return 0;
 }
 
-/**
- * @brief Affiche un resumer des contact et demande l'index du contact à afficher plus
- * précisément
- *
- */
-void PhoneBook::search() const {
+int PhoneBook::search() const {
     std::string tmp;
     int         index;
 
     if (print(m_contacts, m_index) == 1) {
-        return;
+        return 0;
     }
     while (1) {
-        tmp = getNextLine("Enter the index of the contact: ");
+        if ((tmp = getNextLine("Enter index: ")).empty()) {
+            return 1;
+        }
         if (tmp.length() == 1 && tmp[0] >= '1' && tmp[0] <= '8' &&
             !is_empty(m_contacts, tmp[0] - '0' - 1)) {
             index = tmp[0] - '0';
@@ -159,4 +160,5 @@ void PhoneBook::search() const {
     std::cout << "Phone number\t: " << m_contacts[index - 1].getPhoneNumber() << std::endl;
     std::cout << "Darkest secret\t: " << m_contacts[index - 1].getDarkestSecret() << std::endl;
     std::cout << std::endl;
+    return 0;
 }

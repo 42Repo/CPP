@@ -19,7 +19,7 @@ Blue 		=	$(shell printf "\033[0;34m")
 Bblue		=	$(shell printf "\033[1;34m")
 NAME		=	PhoneBook
 COMP		=	c++
-CPPFLAGS		=	-Wall -Werror -Wextra -std=c++98
+CPPFLAGS		=	-Wall -Werror -Wextra -std=c++98 -g
 CACHE_DIR	:=	$(addprefix $(shell pwd)/, .cache)
 MAKE		=	make --no-print-directory
 AUTHORS		=	asuc
