@@ -6,7 +6,7 @@
 /*   By: asuc <asuc@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 03:20:11 by asuc              #+#    #+#             */
-/*   Updated: 2024/05/17 19:37:58 by asuc             ###   ########.fr       */
+/*   Updated: 2024/05/17 21:05:02 by asuc             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ static std::string getNextLine(std::string line) {
     while (1) {
         std::cout << line;
         if (!(std::getline(std::cin, input))) {
-            std::cout << "\033[31m\nExiting due to input error or EOF.\033[0m" << std::endl;
             return "";
         }
         if (!input.empty()) {
@@ -104,48 +103,47 @@ static int print(const Contact contacts[8], int index) {
     return 0;
 }
 
-int PhoneBook::add() {
+void PhoneBook::add() {
     std::string tmp;
 
     if (m_index == 8) {
         m_index = 0;
     }
     if ((tmp = getNextLine("Enter first name: ")).empty()) {
-        return 1;
+        return throw std::exception();
     }
     m_contacts[m_index].setFirstName(tmp);
     if ((tmp = getNextLine("Enter last name: ")).empty()) {
-        return 1;
+        return throw std::exception();
     }
     m_contacts[m_index].setLastName(tmp);
     if ((tmp = getNextLine("Enter nickname: ")).empty()) {
-        return 1;
+        return throw std::exception();
     }
     m_contacts[m_index].setNickname(tmp);
     if ((tmp = getNextLine("Enter phone number: ")).empty()) {
-        return 1;
+        return throw std::exception();
     }
     m_contacts[m_index].setPhoneNumber(tmp);
     if ((tmp = getNextLine("Enter darkest secret: ")).empty()) {
-        return 1;
+        return throw std::exception();
     }
     m_contacts[m_index].setDarkestSecret(tmp);
     std::cout << "\033[32mContact added !\033[0m" << std::endl;
     std::cout << std::endl;
     m_index++;
-    return 0;
 }
 
-int PhoneBook::search() const {
+void PhoneBook::search() const {
     std::string tmp;
     int         index;
 
     if (print(m_contacts, m_index) == 1) {
-        return 0;
+        return;
     }
     while (1) {
         if ((tmp = getNextLine("Enter index: ")).empty()) {
-            return 1;
+            return throw std::exception();
         }
         if (tmp.length() == 1 && tmp[0] >= '1' && tmp[0] <= '8' &&
             !is_empty(m_contacts, tmp[0] - '0' - 1)) {
@@ -160,5 +158,4 @@ int PhoneBook::search() const {
     std::cout << "Phone number\t: " << m_contacts[index - 1].getPhoneNumber() << std::endl;
     std::cout << "Darkest secret\t: " << m_contacts[index - 1].getDarkestSecret() << std::endl;
     std::cout << std::endl;
-    return 0;
 }
