@@ -6,7 +6,10 @@
 /*   By: asuc <asuc@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 20:43:41 by asuc              #+#    #+#             */
-/*   Updated: 2024/05/17 20:43:47 by asuc             ###   ########.fr       */
+/*   Updated: 2024/05/18 16:45:07 by asuc             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "Zombie.h"
+
+void randomChump(std::string name) { Zombie(name).announce(); }

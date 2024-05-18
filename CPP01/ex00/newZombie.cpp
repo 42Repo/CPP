@@ -6,7 +6,10 @@
 /*   By: asuc <asuc@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 20:43:32 by asuc              #+#    #+#             */
-/*   Updated: 2024/05/17 20:43:32 by asuc             ###   ########.fr       */
+/*   Updated: 2024/05/18 16:45:00 by asuc             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "Zombie.h"
+
+Zombie *newZombie(std::string name) { return new Zombie(name); }
