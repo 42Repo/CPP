@@ -24,8 +24,10 @@ CACHE_DIR	:=	$(addprefix $(shell pwd)/, .cache)
 MAKE		=	make --no-print-directory
 AUTHORS		=	asuc
 DEBUG		=	0
-SRC			=	Account.cpp \
-				tests.cpp
+SRC			=	main.cpp \
+				HumanA.cpp \
+				HumanB.cpp \
+				Weapon.cpp
 
 OBJ_DIR = $(CACHE_DIR)/$(NAME)/obj
 DEP_DIR = $(CACHE_DIR)/$(NAME)/dep
