@@ -6,7 +6,7 @@
 /*   By: asuc <asuc@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 03:20:11 by asuc              #+#    #+#             */
-/*   Updated: 2024/05/17 21:05:02 by asuc             ###   ########.fr       */
+/*   Updated: 2024/05/20 16:30:39 by asuc             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,14 +86,16 @@ static int is_all_empty(const Contact contacts[8]) {
  *
  */
 static int print(const Contact contacts[8], int index) {
-
     if (is_all_empty(contacts) == 1) {
         return 1;
     }
     std::cout << "---------------------------------------------" << std::endl;
     std::cout << "|     Index|First name| Last name|  Nickname|" << std::endl;
     std::cout << "---------------------------------------------" << std::endl;
-    for (int i = 0; i < index; i++) {
+    for (int i = 0; i < 8; i++) {
+        if (is_empty(contacts, i) == 1) {
+            break;
+        }
         std::cout << "|" << std::setw(10) << i + 1 << "|";
         std::cout << std::setw(10) << shorten(contacts[i].getFirstName()) << "|";
         std::cout << std::setw(10) << shorten(contacts[i].getLastName()) << "|";
