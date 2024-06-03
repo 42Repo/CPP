@@ -17,7 +17,7 @@ BCyan		=	$(shell printf "\033[1;36m")
 Green		=	$(shell printf "\033[0;32m")
 Blue 		=	$(shell printf "\033[0;34m")
 Bblue		=	$(shell printf "\033[1;34m")
-NAME		=	Harl
+NAME		=	harlFilter
 COMP		=	c++
 CPPFLAGS		=	-Wall -Werror -Wextra -std=c++98
 CACHE_DIR	:=	$(addprefix $(shell pwd)/, .cache)

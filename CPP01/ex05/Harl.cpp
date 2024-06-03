@@ -6,7 +6,7 @@
 /*   By: asuc <asuc@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 20:51:52 by asuc              #+#    #+#             */
-/*   Updated: 2024/06/03 17:53:08 by asuc             ###   ########.fr       */
+/*   Updated: 2024/06/03 17:55:15 by asuc             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void Harl::complain(std::string level) {
             return;
         }
     }
-    std::cout << "Unknown level" << std::endl
+    std::cout << "Unknown level" << std::endl;
 }
 
 void Harl::debug(void) { std::cout << "Wow i like debugging so much" << std::endl; }
