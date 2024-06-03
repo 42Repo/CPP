@@ -6,7 +6,7 @@
 /*   By: asuc <asuc@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 20:51:15 by asuc              #+#    #+#             */
-/*   Updated: 2024/05/20 16:13:29 by asuc             ###   ########.fr       */
+/*   Updated: 2024/05/20 16:32:03 by asuc             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,5 @@ int main(int argc, char **argv) {
     }
     File file(argv[1]);
     file.replace(argv[2], argv[3]);
-
     return 0;
 }
