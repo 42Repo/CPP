@@ -6,7 +6,21 @@
 /*   By: asuc <asuc@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 20:51:46 by asuc              #+#    #+#             */
-/*   Updated: 2024/05/17 20:51:46 by asuc             ###   ########.fr       */
+/*   Updated: 2024/06/03 17:59:04 by asuc             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef __HARL_H__
+#define __HARL_H__
+
+#include <iostream>
+
+class Harl {
+  public:
+    Harl();
+    ~Harl();
+
+  private:
+};
+
+#endif // __HARL_H__
