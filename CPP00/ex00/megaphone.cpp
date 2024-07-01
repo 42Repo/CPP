@@ -6,11 +6,10 @@
 /*   By: asuc <asuc@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 00:18:46 by asuc              #+#    #+#             */
-/*   Updated: 2024/05/16 18:19:47 by asuc             ###   ########.fr       */
+/*   Updated: 2024/07/01 15:28:31 by asuc             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <chrono>
 #include <iostream>
 
 int main(int argc, char **argv) {
@@ -22,5 +21,5 @@ int main(int argc, char **argv) {
         std::cout << std::endl;
     } else
         std::cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *" << std::endl;
-    return 0;
+    return (0);
 }
