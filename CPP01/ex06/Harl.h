@@ -6,7 +6,7 @@
 /*   By: asuc <asuc@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 20:51:46 by asuc              #+#    #+#             */
-/*   Updated: 2024/06/03 17:59:04 by asuc             ###   ########.fr       */
+/*   Updated: 2024/07/05 16:59:29 by asuc             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,13 @@ class Harl {
   public:
     Harl();
     ~Harl();
+    void complain(std::string level);
 
   private:
+    void _debug(void) const;
+    void _info(void) const;
+    void _warning(void) const;
+    void _error(void) const;
 };
 
 #endif // __HARL_H__
