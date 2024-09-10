@@ -6,7 +6,7 @@
 /*   By: asuc <asuc@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/08 21:59:12 by asuc              #+#    #+#             */
-/*   Updated: 2024/09/09 21:35:32 by asuc             ###   ########.fr       */
+/*   Updated: 2024/09/10 22:46:24 by asuc             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int main(void) {
     Fixed const b(10);
     Fixed const c(42.42f);
     Fixed const d(b);
-    a = Fixed(1234.4321f);
+    a = Fixed(0);
 
     std::cout << "a is " << a << std::endl;
     std::cout << "b is " << b << std::endl;
@@ -27,6 +27,28 @@ int main(void) {
     std::cout << "b is " << b.toInt() << " as integer" << std::endl;
     std::cout << "c is " << c.toInt() << " as integer" << std::endl;
     std::cout << "d is " << d.toInt() << " as integer" << std::endl;
+    std::cout << "a is " << a.toFloat() << " as float" << std::endl;
+    std::cout << "b is " << b.toFloat() << " as float" << std::endl;
+    std::cout << "c is " << c.toFloat() << " as float" << std::endl;
+    std::cout << "d is " << d.toFloat() << " as float" << std::endl;
+    std::cout << "a + b = " << a + b << std::endl;
+    std::cout << "a - b = " << a - b << std::endl;
+    std::cout << "a * b = " << a * b << std::endl;
+    std::cout << "a / b = " << a / b << std::endl;
+    std::cout << "a > b = " << (a > b) << std::endl;
+    std::cout << "a < b = " << (a < b) << std::endl;
+    std::cout << "a >= b = " << (a >= b) << std::endl;
+    std::cout << "a <= b = " << (a <= b) << std::endl;
+    std::cout << "a == b = " << (a == b) << std::endl;
+    std::cout << "a != b = " << (a != b) << std::endl;
+    std::cout << "a++ = " << a++ << std::endl;
+    std::cout << "a = " << a << std::endl;
+    std::cout << "++a = " << ++a << std::endl;
+    std::cout << "a = " << a << std::endl;
+    std::cout << "--a = " << --a << std::endl;
+    std::cout << "a = " << a << std::endl;
+    std::cout << "a-- = " << a-- << std::endl;
+    std::cout << "a = " << a << std::endl;
 
     return 0;
 }

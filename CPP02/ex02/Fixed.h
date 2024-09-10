@@ -6,7 +6,7 @@
 /*   By: asuc <asuc@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 22:24:09 by asuc              #+#    #+#             */
-/*   Updated: 2024/09/09 21:35:33 by asuc             ###   ########.fr       */
+/*   Updated: 2024/09/10 22:43:32 by asuc             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,24 @@ class Fixed {
     Fixed(const int value);
     Fixed(const float value);
     ~Fixed();
-    int   getRawBits(void) const;
-    void  setRawBits(const int raw);
-    float toFloat(void) const;
-    int   toInt(void) const;
+    int    getRawBits(void) const;
+    void   setRawBits(const int raw);
+    float  toFloat(void) const;
+    int    toInt(void) const;
+    bool   operator>(Fixed const &f1);
+    bool   operator<(Fixed const &f1);
+    bool   operator>=(Fixed const &f1);
+    bool   operator<=(Fixed const &f1);
+    bool   operator==(Fixed const &f1);
+    bool   operator!=(Fixed const &f1);
+    Fixed  operator+(Fixed const &f1);
+    Fixed  operator-(Fixed const &f1);
+    Fixed  operator*(Fixed const &f1);
+    Fixed  operator/(Fixed const &f1);
+    Fixed &operator++(void);
+    Fixed  operator++(int);
+    Fixed &operator--(void);
+    Fixed  operator--(int);
 
   private:
     int              _value;
