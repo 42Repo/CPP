@@ -1,15 +1,3 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: asuc <asuc@student.42angouleme.fr>         +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/08/12 17:42:16 by asuc              #+#    #+#              #
-#    Updated: 2024/02/10 17:43:25 by asuc             ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
-
 BGreen		=	$(shell printf "\033[1;32m")
 RESET		=	$(shell printf "\033[0m")
 BRed		=	$(shell printf "\033[1;31m")
@@ -25,7 +13,8 @@ MAKE		=	make --no-print-directory
 AUTHORS		=	asuc
 DEBUG		=	0
 SRC			=	main.cpp \
-				Fixed.cpp
+				ClapTrap.cpp \
+				ScavTrap.cpp
 
 OBJ_DIR = $(CACHE_DIR)/$(NAME)/obj
 DEP_DIR = $(CACHE_DIR)/$(NAME)/dep
