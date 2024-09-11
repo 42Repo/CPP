@@ -25,7 +25,9 @@ MAKE		=	make --no-print-directory
 AUTHORS		=	asuc
 DEBUG		=	0
 SRC			=	main.cpp \
-				Fixed.cpp
+				FragTrap.cpp \
+				ScavTrap.cpp \
+				ClapTrap.cpp
 
 OBJ_DIR = $(CACHE_DIR)/$(NAME)/obj
 DEP_DIR = $(CACHE_DIR)/$(NAME)/dep
