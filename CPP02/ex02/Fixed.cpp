@@ -6,7 +6,7 @@
 /*   By: asuc <asuc@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 22:24:22 by asuc              #+#    #+#             */
-/*   Updated: 2024/09/10 22:51:05 by asuc             ###   ########.fr       */
+/*   Updated: 2024/09/11 18:06:40 by asuc             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ Fixed::Fixed(Fixed const &f) {
 Fixed::Fixed(const int value) {
     std::cout << "Int constructor called" << std::endl;
     _value = value << _fractionalBits;
-    std::cout << value << "  MA BITE " << _value << std::endl << std::endl;
 }
 
 Fixed::Fixed(const float value) {
@@ -121,4 +120,28 @@ Fixed Fixed::operator++(int) {
     Fixed temp = *this;
     ++_value;
     return temp;
+}
+
+const Fixed &Fixed::min(const Fixed &f1, const Fixed &f2) {
+    if (f1.toFloat() > f2.toFloat())
+        return f2;
+    return f1;
+}
+
+Fixed &Fixed::min(Fixed &f1, Fixed &f2) {
+    if (f1.toFloat() > f2.toFloat())
+        return f2;
+    return f1;
+}
+
+const Fixed &Fixed::max(const Fixed &f1, const Fixed &f2) {
+    if (f1.toFloat() < f2.toFloat())
+        return f2;
+    return f1;
+}
+
+Fixed &Fixed::max(Fixed &f1, Fixed &f2) {
+    if (f1.toFloat() < f2.toFloat())
+        return f2;
+    return f1;
 }

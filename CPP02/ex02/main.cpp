@@ -6,7 +6,7 @@
 /*   By: asuc <asuc@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/08 21:59:12 by asuc              #+#    #+#             */
-/*   Updated: 2024/09/10 22:46:24 by asuc             ###   ########.fr       */
+/*   Updated: 2024/09/11 18:03:32 by asuc             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,12 @@ int main(void) {
     std::cout << "a = " << a << std::endl;
     std::cout << "a-- = " << a-- << std::endl;
     std::cout << "a = " << a << std::endl;
+    std::cout << "min(a, b) = " << Fixed::min(a, b) << std::endl;
+    std::cout << "max(a, b) = " << Fixed::max(a, b) << std::endl;
+    Fixed e(0);
+    Fixed f(0);
+    std::cout << "min(e, f) = " << Fixed::min(e, f) << std::endl;
+    std::cout << "max(e, f) = " << Fixed::max(e, f) << std::endl;
 
     return 0;
 }
