@@ -1,15 +1,3 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: asuc <asuc@student.42angouleme.fr>         +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/08/12 17:42:16 by asuc              #+#    #+#              #
-#    Updated: 2024/02/10 17:43:25 by asuc             ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
-
 BGreen		=	$(shell printf "\033[1;32m")
 RESET		=	$(shell printf "\033[0m")
 BRed		=	$(shell printf "\033[1;31m")
@@ -17,15 +5,20 @@ BCyan		=	$(shell printf "\033[1;36m")
 Green		=	$(shell printf "\033[0;32m")
 Blue 		=	$(shell printf "\033[0;34m")
 Bblue		=	$(shell printf "\033[1;34m")
-NAME		=	ex03
+NAME		=	ex01
 COMP		=	c++
-CPPFLAGS		=	-Wall -Werror -Wextra -std=c++98 -pedantic -Wold-style-cast -Wcast-qual -Wcast-align -Wunused -Wconversion -Wsign-conversion -Wformat=2 -Woverloaded-virtual -Wredundant-decls  -Winit-self -Wswitch-default -Wfloat-equal
+CPP-OPTI+CHECK-FLAGS		=	-pedantic -Wold-style-cast -Wcast-qual -Wcast-align -Wunused -Wconversion -Wsign-conversion -Wformat=2 -Woverloaded-virtual -Wredundant-decls  -Winit-self -Wswitch-default -Wfloat-equal
+CPPFLAGS		= -Wall -Werror -Wextra -std=c++98
 CACHE_DIR	:=	$(addprefix $(shell pwd)/, .cache)
 MAKE		=	make --no-print-directory
 AUTHORS		=	asuc
-DEBUG		=	0
 SRC			=	main.cpp \
-				Fixed.cpp
+				Dog.cpp \
+				Cat.cpp \
+				Animal.cpp \
+				WrongAnimal.cpp \
+				WrongCat.cpp \
+				Brain.cpp
 
 OBJ_DIR = $(CACHE_DIR)/$(NAME)/obj
 DEP_DIR = $(CACHE_DIR)/$(NAME)/dep
@@ -47,14 +40,13 @@ $(OBJ_DIR)/%.o: %.cpp | $(OBJ_DIR) $(DEP_DIR)
 	@printf "\033[2K$(Green)[$(shell printf "% 3s" "$(_PERCENTAGE)")%%] $(shell printf "%*d/%d" $(_TOTAL_LEN) $(_CURR) $(_TOTAL)) Compiling $<\r"
 	@mkdir -p $(dir $@)
 	@mkdir -p $(dir $(DEP_DIR)/$*)
-	@$(COMP) $(CFLAGS) $(DEP_FLAGS) -o $@ -c $<
+	@$(COMP) $(CPPFLAGS) $(DEP_FLAGS) -o $@ -c $<
 	@mv -f $(DEP_DIR)/$*.Td $(DEP_DIR)/$*.d && touch $@
 
 
 all :  $(NAME)
 
-debug: CFLAGS += -gdwarf-4
-debug: DEBUG = 1
+debug: CPPFLAGS += -gdwarf-4 $(CPP-OPTI+CHECK-FLAGS)
 debug: re
 
 $(OBJ_DIR) $(DEP_DIR):
@@ -78,4 +70,4 @@ re : fclean all
 -include $(DEP)
 
 
-.PHONY: all fclean clean re banner
+.PHONY: all fclean clean re debug

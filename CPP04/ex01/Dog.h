@@ -2,6 +2,7 @@
 #define __DOG_H__
 
 #include "Animal.h"
+#include "Brain.h"
 
 class Dog : public Animal {
   public:
@@ -10,7 +11,11 @@ class Dog : public Animal {
     Dog(const Dog &a);
     Dog &operator=(const Dog &a);
     ~Dog(void);
-    void makeSound() const override;
+    void   makeSound() const;
+    Brain *getBrain() const;
+
+  private:
+    Brain *_brain;
 };
 
 #endif // __DOG_H__
