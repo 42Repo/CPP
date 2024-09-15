@@ -1,5 +1,5 @@
-#ifndef __DOG_H__
-#define __DOG_H__
+#ifndef DOG_H
+#define DOG_H
 
 #include "Animal.h"
 #include "Brain.h"
@@ -18,4 +18,4 @@ class Dog : public Animal {
     Brain *_brain;
 };
 
-#endif // __DOG_H__
+#endif // DOG_H

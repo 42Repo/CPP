@@ -21,6 +21,12 @@ Brain &Brain::operator=(const Brain &a) {
 
 Brain::~Brain(void) { std::cout << "Brain Destructor" << std::endl; }
 
-void Brain::setIdea(int i, std::string idea) { _ideas[i] = idea; }
+void Brain::setIdea(int i, std::string idea) {
+    if (i >= 0 && i < 100)
+        _ideas[i] = idea;
+}
 
-std::string Brain::getIdea(int i) const { return _ideas[i]; }
+std::string Brain::getIdea(int i) const {
+    if (i >= 0 && i < 100)
+        return _ideas[i];
+}

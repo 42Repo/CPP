@@ -1,5 +1,5 @@
-#ifndef __CAT_H__
-#define __CAT_H__
+#ifndef CAT_H
+#define CAT_H
 
 #include "Animal.h"
 #include "Brain.h"
@@ -17,4 +17,4 @@ class Cat : public Animal {
   private:
     Brain *_brain;
 };
-#endif // __CAT_H__
+#endif // CAT_H

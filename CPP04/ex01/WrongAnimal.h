@@ -1,5 +1,5 @@
-#ifndef __WRONGANIMAL_H__
-#define __WRONGANIMAL_H__
+#ifndef WRONGANIMAL_H
+#define WRONGANIMAL_H
 
 #include <iostream>
 
@@ -14,7 +14,7 @@ class WrongAnimal {
     std::string getType() const;
 
   protected:
-    std::string type;
+    std::string _type;
 };
 
-#endif // __WRONGANIMAL_H__
+#endif // WRONGANIMAL_H

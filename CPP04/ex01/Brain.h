@@ -1,5 +1,5 @@
-#ifndef __BRAIN_H__
-#define __BRAIN_H__
+#ifndef BRAIN_H
+#define BRAIN_H
 
 #include <iostream>
 
@@ -16,4 +16,4 @@ class Brain {
     std::string _ideas[100];
 };
 
-#endif // __BRAIN_H__
+#endif // BRAIN_H
