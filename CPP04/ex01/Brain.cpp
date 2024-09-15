@@ -29,4 +29,5 @@ void Brain::setIdea(int i, std::string idea) {
 std::string Brain::getIdea(int i) const {
     if (i >= 0 && i < 100)
         return _ideas[i];
+    return "Unknown";
 }
