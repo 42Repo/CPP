@@ -8,12 +8,12 @@ Blue    := $(shell printf "\033[0;34m")
 BBlue   := $(shell printf "\033[1;34m")
 
 # Project Settings
-NAME    := ex00
-COMPILER := c++
-CPPFLAGS := -Wall -Werror -Wextra -std=c++98
-CACHE_DIR := $(shell pwd)/.cache
-OBJ_DIR := $(CACHE_DIR)/$(NAME)/obj
-DEP_DIR := $(CACHE_DIR)/$(NAME)/dep
+NAME   		:= ex00
+COMPILER	:= c++
+CPPFLAGS	:= -Wall -Werror -Wextra -std=c++98
+CACHE_DIR	:= $(shell pwd)/.cache
+OBJ_DIR		:= $(CACHE_DIR)/$(NAME)/obj
+DEP_DIR		:= $(CACHE_DIR)/$(NAME)/dep
 
 # Source and Object Files
 SRC     := main.cpp Dog.cpp Cat.cpp Animal.cpp WrongAnimal.cpp WrongCat.cpp
@@ -24,29 +24,10 @@ DEP_FLAGS = -MT $@ -MMD -MP -MF $(DEP_DIR)/$*.Td
 
 all :  $(NAME)
 
-debug: CPPFLAGS += -gdwarf-4 \
-                    -pedantic \
-                    -Wold-style-cast \
-                    -Wcast-qual \
-                    -Wcast-align \
-                    -Wunused \
-                    -Wconversion \
-                    -Wsign-conversion \
-                    -Wformat=2 \
-                    -Woverloaded-virtual \
-                    -Wredundant-decls \
-                    -Winit-self \
-                    -Wswitch-default \
-                    -Wfloat-equal \
-                    -Wnon-virtual-dtor \
-					-Wshadow \
-                    -Wpointer-arith \
-                    -Wstrict-aliasing=2 \
-                    -Wmissing-include-dirs 
-
+debug: CPPFLAGS += -gdwarf-4 -Wunused -Wconversion -Wfloat-equal -Wnon-virtual-dtor -Wpointer-arith -Wstrict-aliasing=2 -Wunreachable-code -Wnull-dereference -Wnonnull -Wpedantic -Wcast-align -Wcast-qual -Wctor-dtor-privacy -Wdisabled-optimization -Wformat=2 -Winit-self -Wmissing-declarations -Wmissing-include-dirs -Wold-style-cast -Woverloaded-virtual -Wredundant-decls -Wshadow -Wsign-conversion -Wsign-promo -Wstrict-overflow=5 -Wswitch-default -Wundef
 debug: CPPFLAGS += $(shell if $(COMPILER) --version 2>&1 | grep -q 'clang'; \
                       then echo "-Weverything -Wno-suggest-destructor-override -Wno-suggest-override"; \
-                      else echo "-Wlogical-op"; fi)
+                      else echo "-Wlogical-op -Wnoexcept -Wstrict-null-sentinel"; fi)
 debug: re
 
 # Directory Creation
