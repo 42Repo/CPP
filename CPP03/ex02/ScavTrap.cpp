@@ -34,10 +34,10 @@ void ScavTrap::attack(const std::string &target) {
 }
 
 std::string ScavTrap::show(void) const {
-    std::string str = "ScavTrap " + _name + " has " + std::to_string(_hitPoints) + " hit points, " +
-                      std::to_string(_energyPoints) + " energy points and " +
-                      std::to_string(_attackDamage) + " attack damage";
-    return (str);
+    std::ostringstream oss;
+    oss << "ScavTrap " << _name << " has " << _hitPoints << " hit points, " << _energyPoints
+        << " energy points and " << _attackDamage << " attack damage";
+    return oss.str();
 }
 
 std::ostream &operator<<(std::ostream &out, ScavTrap const &f) {

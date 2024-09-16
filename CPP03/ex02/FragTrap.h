@@ -1,5 +1,5 @@
-#ifndef __FRAGTRAP_H__
-#define __FRAGTRAP_H__
+#ifndef FRAGTRAP_H
+#define FRAGTRAP_H
 
 #include "ClapTrap.h"
 
@@ -17,4 +17,4 @@ class FragTrap : public ClapTrap {
 
 std::ostream &operator<<(std::ostream &out, FragTrap const &f);
 
-#endif // __FRAGTRAP_H__
+#endif // FRAGTRAP_H
