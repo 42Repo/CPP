@@ -1,40 +1,41 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: asuc <asuc@student.42angouleme.fr>         +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/08/12 17:42:16 by asuc              #+#    #+#              #
-#    Updated: 2024/02/10 17:43:25 by asuc             ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
+# Color Definitions
+BGreen  := $(shell printf "\033[1;32m")
+RESET   := $(shell printf "\033[0m")
+BRed    := $(shell printf "\033[1;31m")
+BCyan   := $(shell printf "\033[1;36m")
+Green   := $(shell printf "\033[0;321m")
+Blue    := $(shell printf "\033[0;34m")
+BBlue   := $(shell printf "\033[1;34m")
 
-BGreen		=	$(shell printf "\033[1;32m")
-RESET		=	$(shell printf "\033[0m")
-BRed		=	$(shell printf "\033[1;31m")
-BCyan		=	$(shell printf "\033[1;36m")
-Green		=	$(shell printf "\033[0;32m")
-Blue 		=	$(shell printf "\033[0;34m")
-Bblue		=	$(shell printf "\033[1;34m")
-NAME		=	ex03
-COMP		=	c++
-CPPFLAGS		=	-Wall -Werror -Wextra -std=c++98 -pedantic -Wold-style-cast -Wcast-qual -Wcast-align -Wunused -Wconversion -Wsign-conversion -Wformat=2 -Woverloaded-virtual -Wredundant-decls  -Winit-self -Wswitch-default -Wfloat-equal
-CACHE_DIR	:=	$(addprefix $(shell pwd)/, .cache)
-MAKE		=	make --no-print-directory
-AUTHORS		=	asuc
-DEBUG		=	0
-SRC			=	main.cpp \
-				Fixed.cpp
+# Project Settings
+NAME   		:= ex01
+COMPILER	:= c++
+CPPFLAGS	:= -Wall -Werror -Wextra -std=c++98
+CACHE_DIR	:= $(shell pwd)/.cache
+OBJ_DIR		:= $(CACHE_DIR)/$(NAME)/obj
+DEP_DIR		:= $(CACHE_DIR)/$(NAME)/dep
 
-OBJ_DIR = $(CACHE_DIR)/$(NAME)/obj
-DEP_DIR = $(CACHE_DIR)/$(NAME)/dep
-
-OBJ = $(addprefix $(OBJ_DIR)/,$(SRC:.cpp=.o))
-DEP = $(addprefix $(DEP_DIR)/,$(SRC:.cpp=.d))
+# Source and Object Files
+SRC     := main.cpp ClapTrap.cpp ScavTrap.cpp FragTrap.cpp DiamondTrap.cpp
+OBJ     := $(addprefix $(OBJ_DIR)/,$(SRC:.cpp=.o))
+DEP     := $(addprefix $(DEP_DIR)/,$(SRC:.cpp=.d))
 
 DEP_FLAGS = -MT $@ -MMD -MP -MF $(DEP_DIR)/$*.Td
 
+all : $(NAME)
+
+debug: CPPFLAGS += -gdwarf-4 -Wunused -Wconversion -Wfloat-equal -Wnon-virtual-dtor -Wpointer-arith -Wstrict-aliasing=2 -Wunreachable-code -Wnull-dereference -Wnonnull -Wpedantic -Wcast-align -Wcast-qual -Wctor-dtor-privacy -Wdisabled-optimization -Wformat=2 -Winit-self -Wmissing-declarations -Wmissing-include-dirs -Wold-style-cast -Woverloaded-virtual -Wredundant-decls -Wshadow -Wsign-conversion -Wsign-promo -Wstrict-overflow=5 -Wswitch-default -Wundef
+debug: CPPFLAGS += $(shell if $(COMPILER) --version 2>&1 | grep -q 'clang'; \
+                      then echo "-Weverything -Wno-suggest-destructor-override -Wno-suggest-override"; \
+                      else echo "-Wlogical-op -Wnoexcept -Wstrict-null-sentinel"; fi)
+debug: re
+
+# Directory Creation
+$(OBJ_DIR) $(DEP_DIR):
+	@mkdir -p $(OBJ_DIR) $(DEP_DIR)
+
+
+# Object File Compilation
 _CURR = 0
 _TOTAL = $(words $(OBJ))
 _TOTAL_LEN = $(shell echo $(_TOTAL) | wc -c)
@@ -47,24 +48,16 @@ $(OBJ_DIR)/%.o: %.cpp | $(OBJ_DIR) $(DEP_DIR)
 	@printf "\033[2K$(Green)[$(shell printf "% 3s" "$(_PERCENTAGE)")%%] $(shell printf "%*d/%d" $(_TOTAL_LEN) $(_CURR) $(_TOTAL)) Compiling $<\r"
 	@mkdir -p $(dir $@)
 	@mkdir -p $(dir $(DEP_DIR)/$*)
-	@$(COMP) $(CFLAGS) $(DEP_FLAGS) -o $@ -c $<
+	@$(COMPILER) $(CPPFLAGS) $(DEP_FLAGS) -o $@ -c $<
 	@mv -f $(DEP_DIR)/$*.Td $(DEP_DIR)/$*.d && touch $@
 
-
-all :  $(NAME)
-
-debug: CFLAGS += -gdwarf-4
-debug: DEBUG = 1
-debug: re
-
-$(OBJ_DIR) $(DEP_DIR):
-	@mkdir -p $(OBJ_DIR) $(DEP_DIR)
-
+# Linking
 $(NAME) : $(OBJ)
 	@printf "$(Green)\033[2K[100%%] Linking $(NAME)\n"
-	@$(COMP) $(CFLAGS) -o $(NAME) $(OBJ)
+	@$(COMPILER) $(CFLAGS) -o $(NAME) $(OBJ)
 	@printf "$(BGreen)Compilation Final $(NAME)$(RESET)\n"
 
+# Clean Targets
 clean :
 	@rm -rf $(OBJ_DIR) $(DEP_DIR)
 	@printf "$(BRed)Erase all obj and deb files$(RESET)\n"
@@ -77,5 +70,4 @@ re : fclean all
 
 -include $(DEP)
 
-
-.PHONY: all fclean clean re banner
+.PHONY: all fclean clean re debug

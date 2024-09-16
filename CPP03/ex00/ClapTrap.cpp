@@ -1,18 +1,26 @@
 #include "ClapTrap.h"
 
-ClapTrap::ClapTrap(void) : _name("Default Name") {
+ClapTrap::ClapTrap(void)
+    : _name("Default Name"),
+      _hitPoints(10),
+      _energyPoints(10),
+      _attackDamage(0) {
     std::cout << "ClapTrap Default constructor" << std::endl;
 }
 
-ClapTrap::ClapTrap(std::string name) : _name(name) {
+ClapTrap::ClapTrap(std::string name)
+    : _name(name),
+      _hitPoints(10),
+      _energyPoints(10),
+      _attackDamage(0) {
     std::cout << "ClapTrap Parameter constructor" << std::endl;
 }
 
 ClapTrap::ClapTrap(const ClapTrap &a)
     : _name(a._name),
-      _attackDamage(a._attackDamage),
+      _hitPoints(a._hitPoints),
       _energyPoints(a._energyPoints),
-      _hitPoints(a._hitPoints) {
+      _attackDamage(a._attackDamage) {
     std::cout << "ClapTrap Copy constructor" << std::endl;
 }
 
@@ -20,9 +28,9 @@ ClapTrap &ClapTrap::operator=(const ClapTrap &a) {
     std::cout << "Copy assignment operator called" << std::endl;
     if (this != &a) {
         _name = a._name;
-        _attackDamage = a._attackDamage;
-        _energyPoints = a._energyPoints;
         _hitPoints = a._hitPoints;
+        _energyPoints = a._energyPoints;
+        _attackDamage = a._attackDamage;
     }
     return *this;
 }
@@ -60,10 +68,10 @@ void ClapTrap::beRepaired(unsigned int amount) {
 }
 
 std::string ClapTrap::show(void) const {
-    std::string str = "ClapTrap " + _name + " has " + std::to_string(_hitPoints) + " hit points, " +
-                      std::to_string(_energyPoints) + " energy points and " +
-                      std::to_string(_attackDamage) + " attack damage";
-    return (str);
+    std::ostringstream oss;
+    oss << "ClapTrap " << _name << " has " << _hitPoints << " hit points, " << _energyPoints
+        << " energy points and " << _attackDamage << " attack damage";
+    return oss.str();
 }
 
 std::ostream &operator<<(std::ostream &out, ClapTrap const &f) {

@@ -1,7 +1,8 @@
-#ifndef __CLAPTRAP_H__
-#define __CLAPTRAP_H__
+#ifndef CLAPTRAP_H
+#define CLAPTRAP_H
 
 #include <iostream>
+#include <sstream>
 #include <string>
 
 class ClapTrap {
@@ -18,11 +19,11 @@ class ClapTrap {
 
   private:
     std::string  _name;
-    unsigned int _hitPoints = 10;
-    unsigned int _energyPoints = 10;
-    unsigned int _attackDamage = 0;
+    unsigned int _hitPoints;
+    unsigned int _energyPoints;
+    unsigned int _attackDamage;
 };
 
 std::ostream &operator<<(std::ostream &out, ClapTrap const &f);
 
-#endif // __CLAPTRAP_H__
+#endif // CLAPTRAP_H
