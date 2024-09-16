@@ -1,7 +1,8 @@
-#ifndef __CLAPTRAP_H__
-#define __CLAPTRAP_H__
+#ifndef CLAPTRAP_H
+#define CLAPTRAP_H
 
 #include <iostream>
+#include <sstream>
 #include <string>
 
 class ClapTrap {
@@ -27,4 +28,4 @@ class ClapTrap {
 
 std::ostream &operator<<(std::ostream &out, ClapTrap const &f);
 
-#endif // __CLAPTRAP_H__
+#endif // CLAPTRAP_H

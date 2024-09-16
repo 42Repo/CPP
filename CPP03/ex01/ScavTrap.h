@@ -1,5 +1,5 @@
-#ifndef __SCAVTRAP_H__
-#define __SCAVTRAP_H__
+#ifndef SCAVTRAP_H
+#define SCAVTRAP_H
 
 #include "ClapTrap.h"
 
@@ -17,4 +17,4 @@ class ScavTrap : public ClapTrap {
 
 std::ostream &operator<<(std::ostream &out, ScavTrap const &f);
 
-#endif // __SCAVTRAP_H__
+#endif // SCAVTRAP_H
