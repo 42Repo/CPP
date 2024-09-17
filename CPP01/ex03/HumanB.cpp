@@ -1,21 +1,8 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   HumanB.cpp                                         :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: asuc <asuc@student.42.fr>                  +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/17 20:49:03 by asuc              #+#    #+#             */
-/*   Updated: 2024/05/18 20:27:16 by asuc             ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "HumanB.h"
-#include <iostream>
 
 HumanB::HumanB(std::string name) {
     _name = name;
-    _weapon = nullptr;
+    _weapon = NULL;
     std::cout << _name << " is born without a weapon" << std::endl;
 }
 
@@ -25,7 +12,7 @@ void HumanB::setWeapon(Weapon &weapon) {
 }
 
 void HumanB::attack() {
-    if (_weapon == nullptr) {
+    if (_weapon == NULL) {
         std::cout << _name << " has no weapon" << std::endl;
         return;
     }
