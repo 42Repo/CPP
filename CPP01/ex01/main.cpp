@@ -1,25 +1,24 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: asuc <asuc@student.42.fr>                  +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/17 20:46:59 by asuc              #+#    #+#             */
-/*   Updated: 2024/05/18 17:42:09 by asuc             ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "Zombie.h"
 
 int main(void) {
     const int N = 5;
 
-    Zombie *zombie = new Zombie[N];
+    Zombie *zombies = zombieHorde(N, "Zombie");
     for (int i = 0; i < N; i++) {
-        zombie[i].setName("Zombie" + std::to_string(i));
-        zombie[i].announce();
+        zombies[i].announce();
     }
-    delete[] zombie;
+
+    zombies[0].setName("Zombie0");
+    zombies[0].announce();
+    zombies[1].setName("Zombie1");
+    zombies[1].announce();
+    zombies[2].setName("Zombie2");
+    zombies[2].announce();
+    zombies[3].setName("Zombie3");
+    zombies[3].announce();
+    zombies[4].setName("Zombie4");
+    zombies[4].announce();
+
+    delete[] zombies;
     return 0;
 }
