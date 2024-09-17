@@ -1,17 +1,5 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   Fixed.h                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: asuc <asuc@student.42.fr>                  +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/05 22:24:09 by asuc              #+#    #+#             */
-/*   Updated: 2024/09/11 18:06:40 by asuc             ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-#ifndef __Fixed_H__
-#define __Fixed_H__
+#ifndef Fixed_H
+#define Fixed_H
 
 #include <cmath>
 #include <iostream>
@@ -52,6 +40,8 @@ class Fixed {
     static const int _fractionalBits = 8;
 };
 
+const float EPSILON = 1e-6f;
+
 std::ostream &operator<<(std::ostream &out, Fixed const &f);
 
-#endif // __Fixed_H__
+#endif // Fixed_H
