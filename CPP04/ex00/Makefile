@@ -27,7 +27,7 @@ all :  $(NAME)
 debug: CPPFLAGS += -gdwarf-4 -Wunused -Wconversion -Wfloat-equal -Wnon-virtual-dtor -Wpointer-arith -Wstrict-aliasing=2 -Wunreachable-code -Wnull-dereference -Wnonnull -Wpedantic -Wcast-align -Wcast-qual -Wctor-dtor-privacy -Wdisabled-optimization -Wformat=2 -Winit-self -Wmissing-declarations -Wmissing-include-dirs -Wold-style-cast -Woverloaded-virtual -Wredundant-decls -Wshadow -Wsign-conversion -Wsign-promo -Wstrict-overflow=5 -Wswitch-default -Wundef
 debug: CPPFLAGS += $(shell if $(COMPILER) --version 2>&1 | grep -q 'clang'; \
                       then echo "-Weverything -Wno-suggest-destructor-override -Wno-suggest-override"; \
-                      else echo "-Wlogical-op -Wnoexcept -Wstrict-null-sentinel"; fi)
+                      else echo "-Wlogical-op -Wstrict-null-sentinel"; fi)
 debug: re
 
 # Directory Creation
