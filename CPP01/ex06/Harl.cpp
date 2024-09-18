@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   Harl.cpp                                           :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: asuc <asuc@student.42.fr>                  +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/17 20:51:52 by asuc              #+#    #+#             */
-/*   Updated: 2024/07/05 18:05:20 by asuc             ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "Harl.h"
 
 Harl::Harl() {}
@@ -27,10 +15,13 @@ void Harl::complain(std::string level) {
     switch (i) {
     case 0:
         _debug();
+        // fall through
     case 1:
         _info();
+        // fall through
     case 2:
         _warning();
+        // fall through
     case 3:
         _error();
         break;
