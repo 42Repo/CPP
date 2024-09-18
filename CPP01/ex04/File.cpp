@@ -1,76 +1,46 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   File.cpp                                           :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: asuc <asuc@student.42.fr>                  +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/19 21:38:52 by asuc              #+#    #+#             */
-/*   Updated: 2024/05/20 16:02:24 by asuc             ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "File.h"
-#include <cstddef>
-#include <fstream>
 
-File::File(std::string const &filename) {
-    _filename = filename;
-    open(_filename);
-    if (!is_open()) {
-        std::cerr << "Error: " << _filename << " could not be opened." << std::endl;
+File::File(const std::string &filename) : _filename(filename) {
+    if (!openFiles()) {
+        std::cerr << "Error: could not open file " << _filename << std::endl;
         exit(1);
     }
 }
 
 File::~File() {
-    if (is_open())
-        close();
+    if (_inputFile.is_open()) {
+        _inputFile.close();
+    }
+    if (_outputFile.is_open()) {
+        _outputFile.close();
+    }
 }
 
-std::string File::getFilename() const { return _filename; }
+bool File::isValid() const { return _inputFile.is_open() && _outputFile.is_open(); }
 
-int File::setFilename(std::string const &filename) {
-    _filename = filename;
-    open(_filename);
-    if (!is_open()) {
-        std::cerr << "Error: " << _filename << " could not be opened." << std::endl;
-        return 1;
+bool File::openFiles() {
+    _inputFile.open(_filename.c_str());
+    _outputFile.open((_filename + ".replace").c_str());
+
+    if (!_inputFile.is_open() || !_outputFile.is_open()) {
+        return false;
     }
-    return 0;
+    return true;
 }
 
-static int checkOpen(std::ifstream &file, std::string const &filename) {
-    if (!file.is_open()) {
-        std::cerr << "Error: " << filename << " could not be opened." << std::endl;
-        return 1;
+bool File::replace(const std::string &s1, const std::string &s2) {
+    if (!_inputFile.is_open() || !_outputFile.is_open()) {
+        std::cerr << "Error: file streams are not open." << std::endl;
+        return false;
     }
-    return 0;
-}
-
-int File::replace(std::string const &s1, std::string const &s2) {
-    std::string   line;
-    std::string   line2;
-    std::ofstream outputfile(_filename + ".replace");
-    std::ifstream inputFile(_filename);
-    size_t        pos;
-
-    if (checkOpen(inputFile, _filename))
-        return 1;
-    if (checkOpen(inputFile, _filename + ".replace")) {
-        inputFile.close();
-        return 1;
-    }
-    while (std::getline(inputFile, line)) {
-        pos = 0;
+    std::string line;
+    while (std::getline(_inputFile, line)) {
+        size_t pos = 0;
         while ((pos = line.find(s1, pos)) != std::string::npos) {
-            line2 = line.substr(0, pos) + s2 + line.substr(pos + s1.length());
-            line = line2;
+            line.replace(pos, s1.length(), s2);
             pos += s2.length();
         }
-        outputfile << line << std::endl;
+        _outputFile << line << std::endl;
     }
-    outputfile.close();
-    inputFile.close();
-    return 0;
+    return true;
 }

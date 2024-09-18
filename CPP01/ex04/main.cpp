@@ -1,23 +1,22 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: asuc <asuc@student.42.fr>                  +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/17 20:51:15 by asuc              #+#    #+#             */
-/*   Updated: 2024/05/20 16:32:03 by asuc             ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "File.h"
 
 int main(int argc, char **argv) {
     if (argc != 4) {
-        std::cerr << "Error: wrong number of arguments." << std::endl;
+        std::cerr << "Usage: " << argv[0] << " <filename> <s1> <s2>" << std::endl;
         return 1;
     }
+
     File file(argv[1]);
-    file.replace(argv[2], argv[3]);
+
+    if (!file.isValid()) {
+        std::cerr << "Error: file " << argv[1] << " could not be processed." << std::endl;
+        return 1;
+    }
+
+    if (!file.replace(argv[2], argv[3])) {
+        std::cerr << "Error: replacement failed." << std::endl;
+        return 1;
+    }
+
     return 0;
 }

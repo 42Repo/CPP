@@ -1,32 +1,23 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   File.h                                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: asuc <asuc@student.42.fr>                  +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/19 21:38:38 by asuc              #+#    #+#             */
-/*   Updated: 2024/05/20 16:01:03 by asuc             ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
+#ifndef FILE_H
+#define FILE_H
 
-#ifndef __FILE_H__
-#define __FILE_H__
-
+#include <cstdlib>
 #include <fstream>
 #include <iostream>
 #include <string>
 
-class File : public std::ifstream {
+class File {
   public:
-    File(std::string const &filename);
+    File(const std::string &filename);
     ~File();
-    int         setFilename(std::string const &filename);
-    std::string getFilename() const;
-    int         replace(std::string const &s1, std::string const &s2);
+    bool replace(const std::string &s1, const std::string &s2);
+    bool isValid() const;
 
   private:
-    std::string _filename;
+    std::string   _filename;
+    std::ifstream _inputFile;
+    std::ofstream _outputFile;
+    bool          openFiles();
 };
 
-#endif // __FILE_H__
+#endif // FILE_H
