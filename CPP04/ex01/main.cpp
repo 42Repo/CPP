@@ -5,6 +5,13 @@
 // MAIN CPP04 EX01
 
 int main() {
+
+    const Animal* one = new Dog();
+    const Animal* two = new Cat();
+
+    delete one; //should not create a leak
+    delete two;
+
     const Animal      *meta = new Animal();
     const Animal      *j = new Dog();
     const Animal      *i = new Cat();
@@ -28,7 +35,7 @@ int main() {
 
     const Cat *cat = new Cat();
     const Cat *cat2 = new Cat();
-    cat->getBrain()->setIdea(0, "NEGRO");
+    cat->getBrain()->setIdea(0, "Idea 1");
     cat->getBrain()->setIdea(1, "Idea 2");
 
     cat2->getBrain()->setIdea(0, "Idea 3");
