@@ -16,7 +16,7 @@ OBJ_DIR		:= $(CACHE_DIR)/$(NAME)/obj
 DEP_DIR		:= $(CACHE_DIR)/$(NAME)/dep
 
 # Source and Object Files
-SRC     := main.cpp Dog.cpp Cat.cpp Animal.cpp WrongAnimal.cpp WrongCat.cpp Brain.cpp
+SRC     := main.cpp Dog.cpp Cat.cpp AAnimal.cpp WrongAnimal.cpp WrongCat.cpp Brain.cpp
 OBJ     := $(addprefix $(OBJ_DIR)/,$(SRC:.cpp=.o))
 DEP     := $(addprefix $(DEP_DIR)/,$(SRC:.cpp=.d))
 
