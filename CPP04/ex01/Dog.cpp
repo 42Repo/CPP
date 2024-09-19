@@ -1,18 +1,15 @@
 #include "Dog.h"
 
-Dog::Dog(void) : Animal("Dog") {
+Dog::Dog(void) : Animal("Dog"), _brain(new Brain()) {
     std::cout << "Dog Default constructor" << std::endl;
-    _brain = new Brain();
 }
 
-Dog::Dog(std::string type) : Animal(type) {
+Dog::Dog(std::string type) : Animal(type), _brain(new Brain()) {
     std::cout << "Dog Parameter constructor" << std::endl;
-    _brain = new Brain();
 }
 
-Dog::Dog(const Dog &a) : Animal(a) {
+Dog::Dog(const Dog &a) : Animal(a), _brain(new Brain(*a._brain)) {
     std::cout << "Dog Copy constructor" << std::endl;
-    _brain = new Brain(*a._brain);
 }
 
 Dog &Dog::operator=(const Dog &a) {

@@ -1,18 +1,15 @@
 #include "Cat.h"
 
-Cat::Cat(void) : Animal("Cat") {
+Cat::Cat(void) : Animal("Cat"), _brain(new Brain()) {
     std::cout << "Cat Default constructor" << std::endl;
-    _brain = new Brain();
 }
 
-Cat::Cat(std::string type) : Animal(type) {
+Cat::Cat(std::string type) : Animal(type), _brain(new Brain()) {
     std::cout << "Cat Parameter constructor" << std::endl;
-    _brain = new Brain();
 }
 
-Cat::Cat(const Cat &a) : Animal(a) {
+Cat::Cat(const Cat &a) : Animal(a) , _brain(new Brain(*a._brain)) {
     std::cout << "Cat Copy constructor" << std::endl;
-    _brain = new Brain(*a._brain);
 }
 
 Cat &Cat::operator=(const Cat &a) {
