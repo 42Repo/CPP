@@ -4,15 +4,15 @@
 
 int main() {
 
-    const AAnimal* one = new Dog();
-    const AAnimal* two = new Cat();
+    const AAnimal *one = new Dog();
+    const AAnimal *two = new Cat();
 
-    delete one; //should not create a leak
+    delete one; // should not create a leak
     delete two;
 
     // const AAnimal      *meta = new AAnimal();        This dosn't work now
-    const AAnimal      *Doggo = new Dog();
-    const AAnimal      *Catos = new Cat();
+    const AAnimal     *Doggo = new Dog();
+    const AAnimal     *Catos = new Cat();
     const WrongAnimal *wrong = new WrongCat();
 
     // std::cout << std::endl;
@@ -51,7 +51,7 @@ int main() {
     // Main test
 
     const int size = 10;
-    AAnimal *AAnimals[size];
+    AAnimal  *AAnimals[size];
 
     for (int i = 0; i < size; i++) {
         if (i % 2 == 0) {

@@ -8,7 +8,7 @@ Cat::Cat(std::string type) : AAnimal(type), _brain(new Brain()) {
     std::cout << "Cat Parameter constructor" << std::endl;
 }
 
-Cat::Cat(const Cat &a) : AAnimal(a) , _brain(new Brain(*a._brain)) {
+Cat::Cat(const Cat &a) : AAnimal(a), _brain(new Brain(*a._brain)) {
     std::cout << "Cat Copy constructor" << std::endl;
 }
 

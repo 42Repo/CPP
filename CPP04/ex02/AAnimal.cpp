@@ -1,6 +1,8 @@
 #include "AAnimal.h"
 
-AAnimal::AAnimal(void) : _type("Unknown") { std::cout << "AAnimal Default constructor" << std::endl; }
+AAnimal::AAnimal(void) : _type("Unknown") {
+    std::cout << "AAnimal Default constructor" << std::endl;
+}
 
 AAnimal::AAnimal(std::string type) : _type(type) {
     std::cout << "AAnimal Parameter constructor" << std::endl;
