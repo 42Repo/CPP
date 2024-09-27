@@ -13,7 +13,7 @@ FG_CYAN     := $(shell printf "\033[36m")
 FG_WHITE    := $(shell printf "\033[37m")
 
 # Project Settings
-TARGET       := ex03
+TARGET       := ex00
 CXX          := c++
 CXXFLAGS     := -Wall -Werror -Wextra -std=c++98
 BUILD_DIR    := .build
