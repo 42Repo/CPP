@@ -24,7 +24,7 @@ int main() {
     } catch (std::exception &e) {
         std::cerr << e.what() << std::endl;
     }
-    
+
     // Should throw exception "Grade too high"
     try {
         a.incrementGrade();
@@ -48,7 +48,7 @@ int main() {
     }
     std::cout << "grade a: " << a.getGrade() << std::endl;
 
-
+    // Should throw exception "Grade too high"
     try {
         Bureaucrat *f = new Bureaucrat("f", 0);
         delete f;

@@ -1,12 +1,12 @@
 #include "Bureaucrat.h"
 
-Bureaucrat::Bureaucrat() : _name("default"), _grade(150) {}
+Bureaucrat::Bureaucrat() : _name("default"), _grade(75) {}
 
 Bureaucrat::Bureaucrat(std::string name, int16_t grade) : _name(name) {
-    if (grade < 1)
-        throw GradeTooLowException();
-    else if (grade > 150)
+    if (grade < MAX_GRADE)
         throw GradeTooHighException();
+    else if (grade > MIN_GRADE)
+        throw GradeTooLowException();
     _grade = grade;
 }
 
@@ -19,13 +19,13 @@ std::string Bureaucrat::getName() const { return _name; }
 int16_t Bureaucrat::getGrade() const { return _grade; }
 
 void Bureaucrat::incrementGrade() {
-    if (_grade == 1)
+    if (_grade == MAX_GRADE)
         throw GradeTooHighException();
     _grade--;
 }
 
 void Bureaucrat::decrementGrade() {
-    if (_grade == 150)
+    if (_grade == MIN_GRADE)
         throw GradeTooLowException();
     _grade++;
 }

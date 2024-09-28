@@ -3,6 +3,9 @@
 #include <iostream>
 #include <stdint.h>
 
+const int16_t MAX_GRADE = 1;
+const int16_t MIN_GRADE = 150;
+
 class Bureaucrat {
   private:
     const std::string _name;
@@ -15,8 +18,8 @@ class Bureaucrat {
     ~Bureaucrat();
     std::string getName() const;
     int16_t     getGrade() const;
-    void       incrementGrade();
-    void       decrementGrade();
+    void        incrementGrade();
+    void        decrementGrade();
 
     class GradeTooHighException : public std::exception {
       public:

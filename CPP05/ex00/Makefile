@@ -14,7 +14,7 @@ FG_WHITE    := $(shell printf "\033[37m")
 
 # Project Settings
 TARGET       := ex00
-CXX          := clang++
+CXX          := c++
 CXXFLAGS     := -Wall -Werror -Wextra -std=c++98
 BUILD_DIR    := .build
 OBJ_DIR      := $(BUILD_DIR)/obj
