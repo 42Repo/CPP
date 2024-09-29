@@ -13,6 +13,7 @@ class AForm {
     AForm(const std::string &name = "DefaultAForm", int16_t gradeToSign = 50,
           int16_t gradeToExecute = 100);
     AForm(const AForm &a);
+    AForm &operator=(const AForm &a);
     virtual ~AForm();
     std::string getName() const;
     bool        getIsSigned() const;

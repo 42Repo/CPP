@@ -17,6 +17,14 @@ AForm::AForm(const AForm &a)
       _gradeToSign(a._gradeToSign),
       _gradeToExecute(a._gradeToExecute) {}
 
+AForm &AForm::operator=(const AForm &a) {
+    if (this != &a) {
+        _name = a._name;
+        _isSigned = a._isSigned;
+    }
+    return *this;
+}
+
 AForm::~AForm() {}
 
 std::string AForm::getName() const { return _name; }
