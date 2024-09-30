@@ -10,38 +10,41 @@ ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &a)
     *this = a;
 }
 ShrubberyCreationForm &ShrubberyCreationForm::operator=(const ShrubberyCreationForm &a) {
-	if (this != &a)
-	{
-		AForm::operator=(a);
-		_target = a._target;
-	}
-	return *this;
+    if (this != &a) {
+        AForm::operator=(a);
+        _target = a._target;
+    }
+    return *this;
 }
 
 ShrubberyCreationForm::~ShrubberyCreationForm() {}
 
-void ShrubberyCreationForm::execute(const Bureaucrat &executor) const {}
-
-void ShrubberyCreationForm::printAsciiTree() const {
-    std::cout << "                     ; ; ;\n";
-    std::cout << "                   ;        ;  ;     ;;    ;\n";
-    std::cout << "                ;                 ;         ;  ;\n";
-    std::cout << "                                ;\n";
-    std::cout << "                               ;                ;;\n";
-    std::cout << "               ;          ;            ;              ;\n";
-    std::cout << "               ;            ';,        ;               ;\n";
-    std::cout << "               ;              'b      *\n";
-    std::cout << "                ;              '$    ;;                ;;\n";
-    std::cout << "               ;    ;           $:   ;:               ;\n";
-    std::cout << "             ;;      ;  ;;      *;  @):        ;   ; ;\n";
-    std::cout << "                          ;     :@,@):   ,;**:'   ;\n";
-    std::cout << "              ;      ;,         :@@*: ;;**'      ;   ;\n";
-    std::cout << "                       ';o;    ;:(@';@*\"'  ;\n";
-    std::cout << "               ;  ;       'bq,;;:,@@*'   ,*      ;  ;\n";
-    std::cout << "                          ,p$q8,:@)'  ;p*'      ;\n";
-    std::cout << "                   ;     '  ; '@@Pp@@*'    ;  ;\n";
-    std::cout << "                    ;  ; ;;    Y7'.'     ;  ;\n";
-    std::cout << "                              :@):.\n";
-    std::cout << "                             .:@:'.\n";
-    std::cout << "                           .::(@:.\n";
+void ShrubberyCreationForm::beExecuted() const {
+    std::ofstream outfile((_target + "_shrubbery").c_str());
+    if (outfile.is_open()) {
+        outfile << "                     ; ; ;\n";
+        outfile << "                   ;        ;  ;     ;;    ;\n";
+        outfile << "                ;                 ;         ;  ;\n";
+        outfile << "                                ;\n";
+        outfile << "                               ;                ;;\n";
+        outfile << "               ;          ;            ;              ;\n";
+        outfile << "               ;            ';,        ;               ;\n";
+        outfile << "               ;              'b      *\n";
+        outfile << "                ;              '$    ;;                ;;\n";
+        outfile << "               ;    ;           $:   ;:               ;\n";
+        outfile << "             ;;      ;  ;;      *;  @):        ;   ; ;\n";
+        outfile << "                          ;     :@,@):   ,;**:'   ;\n";
+        outfile << "              ;      ;,         :@@*: ;;**'      ;   ;\n";
+        outfile << "                       ';o;    ;:(@';@*\"'  ;\n";
+        outfile << "               ;  ;       'bq,;;:,@@*'   ,*      ;  ;\n";
+        outfile << "                          ,p$q8,:@)'  ;p*'      ;\n";
+        outfile << "                   ;     '  ; '@@Pp@@*'    ;  ;\n";
+        outfile << "                    ;  ; ;;    Y7'.'     ;  ;\n";
+        outfile << "                              :@):.\n";
+        outfile << "                             .:@:'.\n";
+        outfile << "                           .::(@:.\n";
+        outfile.close();
+    } else {
+        std::cerr << "Erreur lors de la création du fichier." << std::endl;
+    }
 }
