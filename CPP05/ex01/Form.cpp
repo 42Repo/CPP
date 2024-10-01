@@ -17,6 +17,14 @@ Form::Form(const Form &a)
       _gradeToSign(a._gradeToSign),
       _gradeToExecute(a._gradeToExecute) {}
 
+Form &Form::operator=(const Form &a) {
+    if (this != &a) {
+        _name = a._name;
+        _isSigned = a._isSigned;
+    }
+    return *this;
+}
+
 Form::~Form() {}
 
 std::string Form::getName() const { return _name; }

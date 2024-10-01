@@ -13,6 +13,7 @@ class Form {
     Form(const std::string &name = "DefaultForm", int16_t gradeToSign = 50,
          int16_t gradeToExecute = 100);
     Form(const Form &a);
+    Form &operator=(const Form &a);
     ~Form();
     std::string getName() const;
     bool        getIsSigned() const;

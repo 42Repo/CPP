@@ -1,6 +1,8 @@
 #pragma once
 
 #include "AForm.h"
+#include <stdlib.h>
+#include <time.h>
 
 class RobotomyRequestForm : public AForm {
   private:

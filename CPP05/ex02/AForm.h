@@ -19,7 +19,7 @@ class AForm {
     bool         getIsSigned() const;
     int16_t      getGradeToSign() const;
     int16_t      getGradeToExecute() const;
-    void         beSigned(const Bureaucrat &a);
+    void         beSigned(const Bureaucrat &bureaucrat);
     void         execute(const Bureaucrat &executor) const;
     virtual void beExecuted() const = 0;
 
@@ -34,6 +34,11 @@ class AForm {
     };
 
     class FormNotSignedException : public std::exception {
+      public:
+        virtual const char *what() const throw();
+    };
+
+    class FormAlreadySignedException : public std::exception {
       public:
         virtual const char *what() const throw();
     };

@@ -18,4 +18,14 @@ RobotomyRequestForm &RobotomyRequestForm::operator=(const RobotomyRequestForm &a
     return *this;
 }
 
+void RobotomyRequestForm::beExecuted() const {
+    std::cout << "Bzzzzz Bzzzzz Bzzzzz" << std::endl;
+    std::srand(static_cast<unsigned int>(time(0)));
+    if (std::rand() % 2 == 0) {
+        std::cout << _target << " has been robotomized successfully." << std::endl;
+    } else {
+        std::cout << "Robotomization of " << _target << " has failed." << std::endl;
+    }
+}
+
 RobotomyRequestForm::~RobotomyRequestForm() {}

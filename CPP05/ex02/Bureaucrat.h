@@ -16,6 +16,7 @@ class Bureaucrat {
   public:
     Bureaucrat(std::string name = "DefaultBureaucrat", int16_t grade = 75);
     Bureaucrat(const Bureaucrat &a);
+    Bureaucrat &operator=(const Bureaucrat &a);
     ~Bureaucrat();
     std::string getName() const;
     int16_t     getGrade() const;
