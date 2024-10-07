@@ -1,6 +1,7 @@
 #include "PresidentialPardonForm.h"
 #include "RobotomyRequestForm.h"
 #include "ShrubberyCreationForm.h"
+#include "Intern.h"
 
 int main() {
     ShrubberyCreationForm  s("Shrubbery");
@@ -90,6 +91,34 @@ int main() {
         b.executeForm(s);
         b.executeForm(r);
         b.executeForm(p);
+    } catch (std::exception &e) {
+        std::cerr << e.what() << std::endl;
+    }
+
+    // Intern Test
+    try {
+        Intern intern;
+        AForm *form;
+
+        form = intern.makeForm("robotomy request", "Bender");
+        form->beSigned(Bureaucrat("Bureaucrat", 1));
+        form->execute(Bureaucrat("Bureaucrat", 1));
+        delete form;
+
+        form = intern.makeForm("presidential pardon", "Nixon");
+        form->beSigned(Bureaucrat("Bureaucrat", 1));
+        form->execute(Bureaucrat("Bureaucrat", 1));
+        delete form;
+
+        form = intern.makeForm("shrubbery creation", "Home");
+        form->beSigned(Bureaucrat("Bureaucrat", 1));
+        form->execute(Bureaucrat("Bureaucrat", 1));
+        delete form;
+
+        form = intern.makeForm("unknown form", "Unknown");
+        form->beSigned(Bureaucrat("Bureaucrat", 1));
+        form->execute(Bureaucrat("Bureaucrat", 1));
+        delete form;
     } catch (std::exception &e) {
         std::cerr << e.what() << std::endl;
     }
