@@ -57,11 +57,11 @@ const char *AForm::GradeTooHighException::what() const throw() { return "Grade t
 const char *AForm::GradeTooLowException::what() const throw() { return "Grade too low"; }
 
 const char *AForm::FormNotSignedException::what() const throw() {
-    return "Form as not been signed";
+    return "Form has not been signed";
 }
 
 const char *AForm::FormAlreadySignedException::what() const throw() {
-    return "Form as already been signed";
+    return "Form has already been signed";
 }
 
 std::ostream &operator<<(std::ostream &out, const AForm &a) {
