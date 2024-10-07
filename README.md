@@ -44,7 +44,7 @@
 **Score:** N/A
 
 ### CPP06
-- [ ] Exercise 00
+- [x] Exercise 00
 - [ ] Exercise 01
 - [ ] Exercise 02
 
