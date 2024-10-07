@@ -1,12 +1,29 @@
 #include "Fixed.h"
-#include <iostream>
+
+
+static void testDefaultMain() {
+    std::cout << "=== Testing Default Main ===" << std::endl;
+    Fixed a;
+    Fixed const b( 10 );
+    Fixed const c( 42.42f );
+    Fixed const d( b );
+    a = Fixed( 1234.4321f );
+    std::cout << "a is " << a << std::endl;
+    std::cout << "b is " << b << std::endl;
+    std::cout << "c is " << c << std::endl;
+    std::cout << "d is " << d << std::endl;
+    std::cout << "a is " << a.toInt() << " as integer" << std::endl;
+    std::cout << "b is " << b.toInt() << " as integer" << std::endl;
+    std::cout << "c is " << c.toInt() << " as integer" << std::endl;
+    std::cout << "d is " << d.toInt() << " as integer" << std::endl;
+}
 
 static void testConstructors() {
-    std::cout << "=== Testing Constructors ===" << std::endl;
-    Fixed a;                          // Default constructor
-    Fixed b(10);                      // Int constructor
-    Fixed c(42.42f);                  // Float constructor
-    Fixed d(b);                       // Copy constructor
+    std::cout << std::endl << "=== Testing Constructors ===" << std::endl;
+    Fixed a;                                  // Default constructor
+    Fixed b(10);                       // Int constructor
+    Fixed c(42.42f);                   // Float constructor
+    Fixed d(b);                              // Copy constructor
     Fixed e = Fixed(123.4321f);        // Assignment operator
 
     std::cout << "a = " << a << std::endl;
@@ -18,7 +35,7 @@ static void testConstructors() {
 }
 
 static void testAssignment() {
-    std::cout << "=== Testing Assignment Operator ===" << std::endl;
+    std::cout << std::endl << "=== Testing Assignment Operator ===" << std::endl;
     Fixed a;
     Fixed b(10);
     a = b;
@@ -27,7 +44,7 @@ static void testAssignment() {
 }
 
 static void testArithmeticOperators() {
-    std::cout << "=== Testing Arithmetic Operators ===" << std::endl;
+    std::cout << std::endl << "=== Testing Arithmetic Operators ===" << std::endl;
     Fixed a(5.5f);
     Fixed b(2);
     Fixed c;
@@ -44,15 +61,14 @@ static void testArithmeticOperators() {
     c = a / b;
     std::cout << a << " / " << b << " = " << c << std::endl;
 
-    // Testing division by zero
     Fixed zero(0);
-    c = a / zero; // Should handle division by zero
+    c = a / zero;
 
     std::cout << std::endl;
 }
 
 static void testComparisonOperators() {
-    std::cout << "=== Testing Comparison Operators ===" << std::endl;
+    std::cout << std::endl << "=== Testing Comparison Operators ===" << std::endl;
     Fixed a(10);
     Fixed b(20);
     Fixed c(10);
@@ -67,7 +83,7 @@ static void testComparisonOperators() {
 }
 
 static void testIncrementDecrementOperators() {
-    std::cout << "=== Testing Increment/Decrement Operators ===" << std::endl;
+    std::cout << std::endl << "=== Testing Increment/Decrement Operators ===" << std::endl;
     Fixed a;
 
     std::cout << "Initial value: " << a << std::endl;
@@ -84,7 +100,7 @@ static void testIncrementDecrementOperators() {
 }
 
 static void testMinMaxFunctions() {
-    std::cout << "=== Testing min/max Functions ===" << std::endl;
+    std::cout << std::endl << "=== Testing min/max Functions ===" << std::endl;
     Fixed a(1.5f);
     Fixed b(2.5f);
     const Fixed c(3.5f);
@@ -100,7 +116,7 @@ static void testMinMaxFunctions() {
 }
 
 static void testMemberFunctions() {
-    std::cout << "=== Testing Member Functions ===" << std::endl;
+    std::cout << std::endl << "=== Testing Member Functions ===" << std::endl;
     Fixed a(123.456f);
 
     std::cout << "a = " << a << std::endl;
@@ -117,6 +133,7 @@ static void testMemberFunctions() {
 }
 
 int main(void) {
+    testDefaultMain();
     testConstructors();
     testAssignment();
     testArithmeticOperators();
