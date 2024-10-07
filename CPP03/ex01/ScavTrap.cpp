@@ -1,15 +1,15 @@
 #include "ScavTrap.h"
 
-ScavTrap::ScavTrap() : ClapTrap("", 100, 50, 20) {
-    std::cout << "ScavTrap Default constructor" << std::endl;
+ScavTrap::ScavTrap() : ClapTrap("DefaultScav", 100, 50, 20) {
+    std::cout << "ScavTrap Default constructor called" << std::endl;
 }
 
 ScavTrap::ScavTrap(std::string name) : ClapTrap(name, 100, 50, 20) {
-    std::cout << "ScavTrap Parameter constructor" << std::endl;
+    std::cout << "ScavTrap Parameter constructor called" << std::endl;
 }
 
 ScavTrap::ScavTrap(const ScavTrap &a) : ClapTrap(a) {
-    std::cout << "ScavTrap Copy constructor" << std::endl;
+    std::cout << "ScavTrap Copy constructor called" << std::endl;
 }
 
 ScavTrap &ScavTrap::operator=(const ScavTrap &a) {

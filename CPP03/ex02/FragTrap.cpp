@@ -1,15 +1,15 @@
 #include "FragTrap.h"
 
-FragTrap::FragTrap() : ClapTrap("", 100, 100, 30) {
-    std::cout << "FragTrap Default constructor" << std::endl;
+FragTrap::FragTrap() : ClapTrap("DefaultFrag", 100, 100, 30) {
+    std::cout << "FragTrap Default constructor called" << std::endl;
 }
 
 FragTrap::FragTrap(std::string name) : ClapTrap(name, 100, 100, 30) {
-    std::cout << "FragTrap Parameter constructor" << std::endl;
+    std::cout << "FragTrap Parameter constructor called" << std::endl;
 }
 
 FragTrap::FragTrap(const FragTrap &a) : ClapTrap(a) {
-    std::cout << "FragTrap Copy constructor" << std::endl;
+    std::cout << "FragTrap Copy constructor called" << std::endl;
 }
 
 FragTrap &FragTrap::operator=(const FragTrap &a) {
