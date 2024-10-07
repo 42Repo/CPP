@@ -9,7 +9,7 @@ void ScalarConverter::convert(std::string const &input) {
             throw std::invalid_argument("Non-displayable or impossible char");
         }
     } catch (...) {
-        std::cerr << "Non-displayable or impossible char" << std::endl;
+        std::cerr << "char: Non-displayable or impossible char" << std::endl;
     }
 
     try {
@@ -28,7 +28,7 @@ void ScalarConverter::convert(std::string const &input) {
     try {
         char *end;
         float f = std::strtof(input.c_str(), &end);
-        if (*end == 'f' && *(end + 1) == '\0') {
+        if (*end == '\0') {
             if (f == std::numeric_limits<float>::infinity()) {
                 std::cout << "float: +inff" << std::endl;
             } else if (f == -std::numeric_limits<float>::infinity()) {
