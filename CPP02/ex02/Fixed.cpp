@@ -1,8 +1,6 @@
 #include "Fixed.h"
 
-Fixed::Fixed() : _value(0) {
-    std::cout << "Default constructor called" << std::endl;
-}
+Fixed::Fixed() : _value(0) { std::cout << "Default constructor called" << std::endl; }
 
 Fixed::Fixed(Fixed const &f) {
     std::cout << "Copy constructor called" << std::endl;
@@ -25,51 +23,28 @@ Fixed::Fixed(const float value) {
     _value = static_cast<int>(roundf(value * (1 << _fractionalBits)));
 }
 
+Fixed::~Fixed() { std::cout << "Destructor called" << std::endl; }
 
-Fixed::~Fixed() {
-    std::cout << "Destructor called" << std::endl;
-}
+int Fixed::getRawBits() const { return _value; }
 
-int Fixed::getRawBits() const {
-    return _value;
-}
+void Fixed::setRawBits(int const raw) { _value = raw; }
 
-void Fixed::setRawBits(int const raw) {
-    _value = raw;
-}
+float Fixed::toFloat() const { return static_cast<float>(_value) / (1 << _fractionalBits); }
 
-float Fixed::toFloat() const {
-    return static_cast<float>(_value) / (1 << _fractionalBits);
-}
-
-int Fixed::toInt() const {
-    return _value >> _fractionalBits;
-}
+int Fixed::toInt() const { return _value >> _fractionalBits; }
 
 // Operator Overloads
-bool Fixed::operator>(Fixed const &f1) const {
-    return _value > f1._value;
-}
+bool Fixed::operator>(Fixed const &f1) const { return _value > f1._value; }
 
-bool Fixed::operator<(Fixed const &f1) const {
-    return _value < f1._value;
-}
+bool Fixed::operator<(Fixed const &f1) const { return _value < f1._value; }
 
-bool Fixed::operator>=(Fixed const &f1) const {
-    return _value >= f1._value;
-}
+bool Fixed::operator>=(Fixed const &f1) const { return _value >= f1._value; }
 
-bool Fixed::operator<=(Fixed const &f1) const {
-    return _value <= f1._value;
-}
+bool Fixed::operator<=(Fixed const &f1) const { return _value <= f1._value; }
 
-bool Fixed::operator==(Fixed const &f1) const {
-    return _value == f1._value;
-}
+bool Fixed::operator==(Fixed const &f1) const { return _value == f1._value; }
 
-bool Fixed::operator!=(Fixed const &f1) const {
-    return _value != f1._value;
-}
+bool Fixed::operator!=(Fixed const &f1) const { return _value != f1._value; }
 
 Fixed Fixed::operator+(Fixed const &f1) const {
     Fixed result;
@@ -85,7 +60,7 @@ Fixed Fixed::operator-(Fixed const &f1) const {
 
 Fixed Fixed::operator*(Fixed const &f1) const {
     Fixed result;
-    long temp = static_cast<long>(this->_value) * static_cast<long>(f1._value);
+    long  temp = static_cast<long>(this->_value) * static_cast<long>(f1._value);
     result._value = static_cast<int>(temp >> _fractionalBits);
     return result;
 }
@@ -126,9 +101,9 @@ Fixed Fixed::operator--(int) {
 
 // Min/Max Functions
 Fixed &Fixed::min(Fixed &f1, Fixed &f2) {
-    if (f1 < f2) 
+    if (f1 < f2)
         return f1;
-     return f2;
+    return f2;
 }
 
 const Fixed &Fixed::min(const Fixed &f1, const Fixed &f2) {

@@ -1,13 +1,12 @@
 #include "Fixed.h"
 
-
 static void testDefaultMain() {
     std::cout << "=== Testing Default Main ===" << std::endl;
-    Fixed a;
-    Fixed const b( 10 );
-    Fixed const c( 42.42f );
-    Fixed const d( b );
-    a = Fixed( 1234.4321f );
+    Fixed       a;
+    Fixed const b(10);
+    Fixed const c(42.42f);
+    Fixed const d(b);
+    a = Fixed(1234.4321f);
     std::cout << "a is " << a << std::endl;
     std::cout << "b is " << b << std::endl;
     std::cout << "c is " << c << std::endl;
@@ -20,11 +19,11 @@ static void testDefaultMain() {
 
 static void testConstructors() {
     std::cout << std::endl << "=== Testing Constructors ===" << std::endl;
-    Fixed a;                                  // Default constructor
-    Fixed b(10);                       // Int constructor
-    Fixed c(42.42f);                   // Float constructor
-    Fixed d(b);                              // Copy constructor
-    Fixed e = Fixed(123.4321f);        // Assignment operator
+    Fixed a;                    // Default constructor
+    Fixed b(10);                // Int constructor
+    Fixed c(42.42f);            // Float constructor
+    Fixed d(b);                 // Copy constructor
+    Fixed e = Fixed(123.4321f); // Assignment operator
 
     std::cout << "a = " << a << std::endl;
     std::cout << "b = " << b << std::endl;
@@ -101,8 +100,8 @@ static void testIncrementDecrementOperators() {
 
 static void testMinMaxFunctions() {
     std::cout << std::endl << "=== Testing min/max Functions ===" << std::endl;
-    Fixed a(1.5f);
-    Fixed b(2.5f);
+    Fixed       a(1.5f);
+    Fixed       b(2.5f);
     const Fixed c(3.5f);
     const Fixed d(4.5f);
 

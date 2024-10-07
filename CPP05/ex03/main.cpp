@@ -1,7 +1,7 @@
+#include "Intern.h"
 #include "PresidentialPardonForm.h"
 #include "RobotomyRequestForm.h"
 #include "ShrubberyCreationForm.h"
-#include "Intern.h"
 
 int main() {
     ShrubberyCreationForm  s("Shrubbery");

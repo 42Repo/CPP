@@ -25,13 +25,9 @@ Fixed &Fixed::operator=(Fixed const &f) {
 
 Fixed::~Fixed() { std::cout << "Destructor called" << std::endl; }
 
-int Fixed::getRawBits(void) const {
-    return _value;
-}
+int Fixed::getRawBits(void) const { return _value; }
 
-void Fixed::setRawBits(int const raw) {
-    _value = raw;
-}
+void Fixed::setRawBits(int const raw) { _value = raw; }
 
 float Fixed::toFloat(void) const { return static_cast<float>(_value) / (1 << _fractionalBits); }
 

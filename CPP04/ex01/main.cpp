@@ -4,10 +4,10 @@
 
 int main() {
 
-    const Animal* one = new Dog();
-    const Animal* two = new Cat();
+    const Animal *one = new Dog();
+    const Animal *two = new Cat();
 
-    delete one; //should not create a leak
+    delete one; // should not create a leak
     delete two;
 
     const Animal      *meta = new Animal();
@@ -51,7 +51,7 @@ int main() {
     // Main test
 
     const int size = 10;
-    Animal *animals[size];
+    Animal   *animals[size];
 
     for (int i = 0; i < size; i++) {
         if (i % 2 == 0) {
