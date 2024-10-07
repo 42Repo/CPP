@@ -95,7 +95,6 @@ int main() {
         std::cerr << e.what() << std::endl;
     }
 
-    // Intern Test
     try {
         Intern intern;
         AForm *form;
