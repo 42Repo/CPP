@@ -15,6 +15,7 @@ Cat::Cat(const Cat &a) : AAnimal(a), _brain(new Brain(*a._brain)) {
 Cat &Cat::operator=(const Cat &a) {
     if (this != &a) {
         AAnimal::operator=(a);
+        delete _brain;
         _brain = new Brain(*a._brain);
     }
     std::cout << "Cat Copy assignment operator called" << std::endl;

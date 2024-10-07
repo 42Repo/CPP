@@ -3,36 +3,31 @@
 #include "WrongCat.h"
 
 int main() {
-
     const AAnimal *one = new Dog();
     const AAnimal *two = new Cat();
 
-    delete one; // should not create a leak
+    std::cout << "Deleting one and two:" << std::endl;
+    delete one;
     delete two;
 
-    // const AAnimal      *meta = new AAnimal();        This dosn't work now
-    const AAnimal     *Doggo = new Dog();
-    const AAnimal     *Catos = new Cat();
+    std::cout << std::endl;
+    const AAnimal *Doggo = new Dog();
+    const AAnimal *Catos = new Cat();
     const WrongAnimal *wrong = new WrongCat();
 
-    // std::cout << std::endl;
-    // std::cout << "Meta:" << std::endl;
-    // meta->makeSound();
-    std::cout << std::endl;
-    std::cout << "Dog:" << std::endl;
+    std::cout << "Dog sound:" << std::endl;
     Doggo->makeSound();
-    std::cout << std::endl;
-    std::cout << "Cat:" << std::endl;
+
+    std::cout << "Cat sound:" << std::endl;
     Catos->makeSound();
-    std::cout << std::endl;
-    std::cout << "WrongCat:" << std::endl;
+
+    std::cout << "WrongCat sound:" << std::endl;
     wrong->makeSound();
+    
     std::cout << std::endl;
-
-    // idea test
-
     const Cat *cat = new Cat();
     const Cat *cat2 = new Cat();
+    
     cat->getBrain()->setIdea(0, "Idea 1");
     cat->getBrain()->setIdea(1, "Idea 2");
 
@@ -42,16 +37,39 @@ int main() {
     std::cout << "Cat 1 Brain:" << std::endl;
     std::cout << cat->getBrain()->getIdea(0) << std::endl;
     std::cout << cat->getBrain()->getIdea(1) << std::endl;
-    std::cout << std::endl;
 
     std::cout << "Cat 2 Brain:" << std::endl;
     std::cout << cat2->getBrain()->getIdea(0) << std::endl;
     std::cout << cat2->getBrain()->getIdea(1) << std::endl;
 
-    // Main test
+    std::cout << std::endl << "Testing copy constructor for Cat:" << std::endl;
+    Cat catCopy(*cat);
+
+    std::cout << "CatCopy Brain after copy:" << std::endl;
+    std::cout << catCopy.getBrain()->getIdea(0) << std::endl;
+    std::cout << catCopy.getBrain()->getIdea(1) << std::endl;
+
+    cat->getBrain()->setIdea(0, "Modified Idea");
+
+    std::cout << "After modifying Cat 1's brain, CatCopy Brain should not change:" << std::endl;
+    std::cout << "CatCopy Brain:" << std::endl;
+    std::cout << catCopy.getBrain()->getIdea(0) << std::endl;
+    std::cout << catCopy.getBrain()->getIdea(1) << std::endl;
+
+    std::cout << "Cat 1 Brain:" << std::endl;
+    std::cout << cat->getBrain()->getIdea(0) << std::endl;
+    std::cout << cat->getBrain()->getIdea(1) << std::endl;
+
+    std::cout << std::endl << "Testing assignment operator for Cat:" << std::endl;
+    Cat assignedCat;
+    assignedCat = *cat2;
+
+    std::cout << "Assigned Cat Brain:" << std::endl;
+    std::cout << assignedCat.getBrain()->getIdea(0) << std::endl;
+    std::cout << assignedCat.getBrain()->getIdea(1) << std::endl;
 
     const int size = 10;
-    AAnimal  *AAnimals[size];
+    AAnimal *AAnimals[size];
 
     for (int i = 0; i < size; i++) {
         if (i % 2 == 0) {
@@ -70,6 +88,6 @@ int main() {
     delete wrong;
     delete Catos;
     delete Doggo;
-    // delete meta;
+
     return 0;
 }
