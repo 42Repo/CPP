@@ -1,22 +1,46 @@
 #include "ScalarConverter.h"
 
+static bool isOnlyFCharacter(const std::string &input) {
+    bool foundF = false;
+    for (size_t i = 0; i < input.length(); ++i) {
+        if (std::isalpha(input[i])) {
+            if (input[i] == 'f' && i == input.length() - 1) {
+                foundF = true;
+            } else {
+                return false;
+            }
+        }
+    }
+    return true;
+}
+
 void ScalarConverter::convert(std::string const &input) {
     try {
-        if (input.length() == 1 && !isdigit(input[0])) {
-            char c = input[0];
+        if (!isOnlyFCharacter(input)) {
+            throw std::invalid_argument("Invalid float format: multiple letters found");
+        }
+
+        double d = strtod(input.c_str(), NULL);
+        if (d >= 0 && d <= 127 && std::isprint(static_cast<char>(d)) && std::floor(d) == d) {
+            char c = static_cast<char>(d);
             std::cout << "char: '" << c << "'" << std::endl;
         } else {
             throw std::invalid_argument("Non-displayable or impossible char");
         }
     } catch (...) {
-        std::cerr << "char: Non-displayable or impossible char" << std::endl;
+        std::cerr << "char: impossible" << std::endl;
     }
 
     try {
-        char *end;
-        long  i = std::strtol(input.c_str(), &end, 10);
-        if (*end == '\0' && i >= std::numeric_limits<int>::min() &&
-            i <= std::numeric_limits<int>::max()) {
+        if (!isOnlyFCharacter(input)) {
+            throw std::invalid_argument("Invalid float format: multiple letters found");
+        }
+
+        char  *end;
+        double i = std::strtod(input.c_str(), &end);
+        if (i >= std::numeric_limits<int>::min() && i <= std::numeric_limits<int>::max() &&
+                std::floor(i) == i && ((*end == 'f' && *(end + 1) == '\0') ||
+            *end == '\0')) {
             std::cout << "int: " << static_cast<int>(i) << std::endl;
         } else {
             throw std::invalid_argument("Impossible conversion");
@@ -26,9 +50,14 @@ void ScalarConverter::convert(std::string const &input) {
     }
 
     try {
-        char *end;
-        float f = std::strtof(input.c_str(), &end);
-        if (*end == '\0') {
+        if (!isOnlyFCharacter(input)) {
+            throw std::invalid_argument("Invalid float format: multiple letters found");
+        }
+
+        char  *end;
+        double f = std::strtod(input.c_str(), &end);
+
+        if ((*end == 'f' && *(end + 1) == '\0') || *end == '\0') {
             if (f == std::numeric_limits<float>::infinity()) {
                 std::cout << "float: +inff" << std::endl;
             } else if (f == -std::numeric_limits<float>::infinity()) {
@@ -46,9 +75,13 @@ void ScalarConverter::convert(std::string const &input) {
     }
 
     try {
+        if (!isOnlyFCharacter(input)) {
+            throw std::invalid_argument("Invalid float format: multiple letters found");
+        }
+
         char  *end;
         double d = std::strtod(input.c_str(), &end);
-        if (*end == '\0') {
+        if ((*end == 'f' && *(end + 1) == '\0') || *end == '\0') {
             if (d == std::numeric_limits<double>::infinity()) {
                 std::cout << "double: +inf" << std::endl;
             } else if (d == -std::numeric_limits<double>::infinity()) {
