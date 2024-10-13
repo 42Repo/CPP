@@ -1,27 +1,29 @@
 #include "ScalarConverter.h"
 
-static bool nearlyEqual(double a, double b, double epsilon = 1e-9) {
-    return std::fabs(a - b) < epsilon;
-}
+bool nearlyEqual(double a, double b, double epsilon = 1e-9) { return std::fabs(a - b) < epsilon; }
 
 void ScalarConverter::convert(std::string const &input) {
     try {
         double d = strtod(input.c_str(), NULL);
-        if (d >= 0 && d <= 127 && std::isprint(static_cast<char>(d)) && nearlyEqual(std::floor(d), d)) {
+        if (d >= 0 && d <= 127 && std::isprint(static_cast<char>(d)) &&
+            nearlyEqual(std::floor(d), d)) {
             char c = static_cast<char>(d);
             std::cout << "char: '" << c << "'" << std::endl;
+        } else if (d >= 0 && d <= 127) {
+            std::cout << "char: Non displayable" << std::endl;
         } else {
-            throw std::invalid_argument("Non-displayable or impossible char");
+            throw std::invalid_argument("Impossible char");
         }
     } catch (...) {
-        std::cerr << "char: impossible" << std::endl;
+        std::cout << "char: impossible" << std::endl;
     }
 
     try {
-        char *end;
+        char  *end;
         double i = std::strtod(input.c_str(), &end);
         if (i >= std::numeric_limits<int>::min() && i <= std::numeric_limits<int>::max() &&
-            nearlyEqual(std::floor(i), i) && ((*end == 'f' && *(end + 1) == '\0') || *end == '\0')) {
+            nearlyEqual(std::floor(i), i) &&
+            ((*end == 'f' && *(end + 1) == '\0') || *end == '\0')) {
             std::cout << "int: " << static_cast<int>(i) << std::endl;
         } else {
             throw std::invalid_argument("Impossible conversion");
@@ -31,7 +33,7 @@ void ScalarConverter::convert(std::string const &input) {
     }
 
     try {
-        char *end;
+        char  *end;
         double f = std::strtod(input.c_str(), &end);
 
         if ((*end == 'f' && *(end + 1) == '\0') || *end == '\0') {
@@ -42,6 +44,7 @@ void ScalarConverter::convert(std::string const &input) {
             } else if (std::isnan(f)) {
                 std::cout << "float: nanf" << std::endl;
             } else {
+                std::cout << std::fixed << std::setprecision(1); // Fixation du format
                 std::cout << "float: " << static_cast<float>(f) << "f" << std::endl;
             }
         } else {
@@ -52,7 +55,7 @@ void ScalarConverter::convert(std::string const &input) {
     }
 
     try {
-        char *end;
+        char  *end;
         double d = std::strtod(input.c_str(), &end);
         if ((*end == 'f' && *(end + 1) == '\0') || *end == '\0') {
             if (std::isinf(d) && d > 0) {
@@ -62,6 +65,7 @@ void ScalarConverter::convert(std::string const &input) {
             } else if (std::isnan(d)) {
                 std::cout << "double: nan" << std::endl;
             } else {
+                std::cout << std::fixed << std::setprecision(1); // Fixation du format
                 std::cout << "double: " << d << std::endl;
             }
         } else {
