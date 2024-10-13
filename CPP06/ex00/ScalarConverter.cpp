@@ -15,7 +15,7 @@ static bool isOnlyFCharacter(const std::string &input) {
                 return false;
             }
             foundDot = true;
-        } else if (!(*it >= '0' && *it <= '9') && *it != '.') {
+        } else if (!(*it >= '0' && *it <= '9')) {
             return false;
         }
     }
