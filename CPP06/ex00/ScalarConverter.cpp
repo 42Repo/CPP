@@ -2,13 +2,21 @@
 
 static bool isOnlyFCharacter(const std::string &input) {
     bool foundF = false;
-    for (size_t i = 0; i < input.length(); ++i) {
-        if (std::isalpha(input[i])) {
-            if (input[i] == 'f' && i == input.length() - 1) {
-                foundF = true;
-            } else {
+    bool foundDot = false;
+
+    for (std::string::const_iterator it = input.begin(); it != input.end(); ++it) {
+        if (*it == 'f') {
+            if (foundF) {
                 return false;
             }
+            foundF = true;
+        } else if (*it == '.') {
+            if (foundDot) {
+                return false;
+            }
+            foundDot = true;
+        } else if (!(*it >= '0' && *it <= '9') && *it != '.') {
+            return false;
         }
     }
     return true;
@@ -39,8 +47,7 @@ void ScalarConverter::convert(std::string const &input) {
         char  *end;
         double i = std::strtod(input.c_str(), &end);
         if (i >= std::numeric_limits<int>::min() && i <= std::numeric_limits<int>::max() &&
-                std::floor(i) == i && ((*end == 'f' && *(end + 1) == '\0') ||
-            *end == '\0')) {
+            std::floor(i) == i && ((*end == 'f' && *(end + 1) == '\0') || *end == '\0')) {
             std::cout << "int: " << static_cast<int>(i) << std::endl;
         } else {
             throw std::invalid_argument("Impossible conversion");
