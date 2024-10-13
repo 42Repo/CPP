@@ -1,32 +1,33 @@
 #include "ScalarConverter.h"
 
-static bool isOnlyFCharacter(const std::string &input) {
-    bool foundF = false;
-    bool foundDot = false;
+// Not working with +inf, -inf, nan
+// static bool isOnlyFCharacter(const std::string &input) {
+//     bool foundF = false;
+//     bool foundDot = false;
 
-    for (std::string::const_iterator it = input.begin(); it != input.end(); ++it) {
-        if (*it == 'f') {
-            if (foundF) {
-                return false;
-            }
-            foundF = true;
-        } else if (*it == '.') {
-            if (foundDot) {
-                return false;
-            }
-            foundDot = true;
-        } else if (!(*it >= '0' && *it <= '9')) {
-            return false;
-        }
-    }
-    return true;
-}
+//     for (std::string::const_iterator it = input.begin(); it != input.end(); ++it) {
+//         if (*it == 'f') {
+//             if (foundF) {
+//                 return false;
+//             }
+//             foundF = true;
+//         } else if (*it == '.') {
+//             if (foundDot) {
+//                 return false;
+//             }
+//             foundDot = true;
+//         } else if (!(*it >= '0' && *it <= '9')) {
+//             return false;
+//         }
+//     }
+//     return true;
+// }
 
 void ScalarConverter::convert(std::string const &input) {
     try {
-        if (!isOnlyFCharacter(input)) {
-            throw std::invalid_argument("Invalid float format: multiple letters found");
-        }
+        // if (!isOnlyFCharacter(input)) {
+        //     throw std::invalid_argument("Invalid float format: multiple letters found");
+        // }
 
         double d = strtod(input.c_str(), NULL);
         if (d >= 0 && d <= 127 && std::isprint(static_cast<char>(d)) && std::floor(d) == d) {
@@ -40,9 +41,9 @@ void ScalarConverter::convert(std::string const &input) {
     }
 
     try {
-        if (!isOnlyFCharacter(input)) {
-            throw std::invalid_argument("Invalid float format: multiple letters found");
-        }
+        // if (!isOnlyFCharacter(input)) {
+        //     throw std::invalid_argument("Invalid float format: multiple letters found");
+        // }
 
         char  *end;
         double i = std::strtod(input.c_str(), &end);
@@ -57,9 +58,9 @@ void ScalarConverter::convert(std::string const &input) {
     }
 
     try {
-        if (!isOnlyFCharacter(input)) {
-            throw std::invalid_argument("Invalid float format: multiple letters found");
-        }
+        // if (!isOnlyFCharacter(input)) {
+        //     throw std::invalid_argument("Invalid float format: multiple letters found");
+        // }
 
         char  *end;
         double f = std::strtod(input.c_str(), &end);
@@ -82,9 +83,9 @@ void ScalarConverter::convert(std::string const &input) {
     }
 
     try {
-        if (!isOnlyFCharacter(input)) {
-            throw std::invalid_argument("Invalid float format: multiple letters found");
-        }
+        // if (!isOnlyFCharacter(input)) {
+        //     throw std::invalid_argument("Invalid float format: multiple letters found");
+        // }
 
         char  *end;
         double d = std::strtod(input.c_str(), &end);
