@@ -59,3 +59,4 @@ logger
 CPP*/ex*/ex[0-9][0-9]
 .vscode/launch.json
 .vscode/settings.json
+compile_commands.json

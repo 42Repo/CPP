@@ -1,4 +1,5 @@
 #include "easyfind.h"
+#include <iostream>
 #include <list>
 #include <vector>
 
@@ -36,8 +37,8 @@ int main() {
     for (int i = 0; i < 10; i++)
         l.push_back(i);
     std::cout << "List: ";
-	for (std::list<int>::iterator it = l.begin(); it != l.end(); it++)
-		std::cout << *it << " ";
+    for (std::list<int>::iterator it = l.begin(); it != l.end(); it++)
+        std::cout << *it << " ";
     std::cout << std::endl;
     std::cout << "easyfind(l, 5): " << easyfind(l, 5) << std::endl;
     std::cout << "easyfind(l, 0): " << easyfind(l, 0) << std::endl;
