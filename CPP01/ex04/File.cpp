@@ -3,7 +3,6 @@
 File::File(const std::string &filename) : _filename(filename) {
     if (!openFiles()) {
         std::cerr << "Error: could not open file " << _filename << std::endl;
-        exit(1);
     }
 }
 
@@ -20,9 +19,11 @@ bool File::isValid() const { return _inputFile.is_open() && _outputFile.is_open(
 
 bool File::openFiles() {
     _inputFile.open(_filename.c_str());
+    if (!_inputFile.is_open()) {
+        return false;
+    }
     _outputFile.open((_filename + ".replace").c_str());
-
-    if (!_inputFile.is_open() || !_outputFile.is_open()) {
+    if (!_outputFile.is_open()) {
         return false;
     }
     return true;
