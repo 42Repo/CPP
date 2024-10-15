@@ -59,9 +59,8 @@
 ### CPP07
 
 - [x] Exercise 00
-- [ ] Exercise 01
-- [ ] Exercise 02
-- [ ] Exercise 03
+- [x] Exercise 01
+- [x] Exercise 02
 
 **Score:** N/A
 
