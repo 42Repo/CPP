@@ -3,7 +3,7 @@
 
 #include "Weapon.h"
 
-class HumanB : public Weapon {
+class HumanB {
   public:
     HumanB(std::string name);
     void setWeapon(Weapon &weapon);
