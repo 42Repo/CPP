@@ -27,7 +27,7 @@
 - [x] Exercise 00
 - [x] Exercise 01
 - [x] Exercise 02
-- [x] Exercise 03 (in progress)
+- [x] Exercise 03
 
 **Score:** N/A
 
