@@ -10,7 +10,7 @@
 
 **Score:** 100/100 ✅
 
-### CPP02
+### CPP01
 
 - [x] Exercise 00
 - [x] Exercise 01
@@ -18,6 +18,15 @@
 - [x] Exercise 03
 - [x] Exercise 04
 - [x] Exercise 05
+- [x] Exercise 06
+
+
+### CPP02
+
+- [x] Exercise 00
+- [x] Exercise 01
+- [x] Exercise 02
+- [x] Exercise 03 (in progress)
 
 **Score:** N/A
 
