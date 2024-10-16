@@ -1,15 +1,23 @@
 #include "ScavTrap.h"
 
-ScavTrap::ScavTrap() : ClapTrap("DefaultScav", 100, 50, 20) {
+ScavTrap::ScavTrap() : ClapTrap() {
+    _name = "DefaultScav";
+    _hitPoints = 100;
+    _energyPoints = 50;
+    _attackDamage = 20;
     std::cout << "ScavTrap Default constructor called" << std::endl;
 }
 
-ScavTrap::ScavTrap(std::string name) : ClapTrap(name, 100, 50, 20) {
+ScavTrap::ScavTrap(std::string name) : ClapTrap(name) {
+    _hitPoints = 100;
+    _energyPoints = 50;
+    _attackDamage = 20;
     std::cout << "ScavTrap Parameter constructor called" << std::endl;
 }
 
 ScavTrap::ScavTrap(const ScavTrap &a) : ClapTrap(a) {
     std::cout << "ScavTrap Copy constructor called" << std::endl;
+    *this = a;
 }
 
 ScavTrap &ScavTrap::operator=(const ScavTrap &a) {
@@ -26,11 +34,12 @@ void ScavTrap::guardGate() { std::cout << "ScavTrap is now in Gate keeper mode."
 
 void ScavTrap::attack(const std::string &target) {
     if (_energyPoints <= 0) {
-        std::cout << "Not enough energy point" << std::endl;
+        std::cout << "Not enough energy points" << std::endl;
         return;
     }
     _energyPoints--;
-    std::cout << "ScavTrap " << target << " take " << _hitPoints << " damage !" << std::endl;
+    std::cout << "ScavTrap " << _name << " attacks " << target << ", causing " << _attackDamage
+              << " points of damage!" << std::endl;
 }
 
 std::string ScavTrap::show(void) const {
