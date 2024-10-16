@@ -36,6 +36,7 @@ $(OBJ_DIR) $(DEP_DIR):
 
 
 # Object File Compilation
+
 _CURR = 0
 _TOTAL = $(words $(OBJ))
 _TOTAL_LEN = $(shell echo $(_TOTAL) | wc -c)
