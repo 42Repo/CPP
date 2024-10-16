@@ -46,7 +46,7 @@ class Fixed {
 
   private:
     int              _value;
-    static const int _fractionalBits = 8;
+    static const int _fractionalBits = 16;
 };
 
 std::ostream &operator<<(std::ostream &out, Fixed const &f);
