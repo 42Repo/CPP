@@ -36,12 +36,21 @@ bool File::replace(const std::string &s1, const std::string &s2) {
     }
     std::string line;
     while (std::getline(_inputFile, line)) {
-        size_t pos = 0;
-        while ((pos = line.find(s1, pos)) != std::string::npos) {
-            line.replace(pos, s1.length(), s2);
-            pos += s2.length();
+        std::string newLine;
+        size_t      pos = 0;
+
+        while (pos < line.length()) {
+            size_t foundPos = line.find(s1, pos);
+            if (foundPos != std::string::npos) {
+                newLine.append(line, pos, foundPos - pos);
+                newLine.append(s2);
+                pos = foundPos + s1.length();
+            } else {
+                newLine.append(line, pos, line.length() - pos);
+                break;
+            }
         }
-        _outputFile << line << std::endl;
+        _outputFile << newLine << std::endl;
     }
     return true;
 }

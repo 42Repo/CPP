@@ -8,7 +8,7 @@ Blue    := $(shell printf "\033[0;34m")
 BBlue   := $(shell printf "\033[1;34m")
 
 # Project Settings
-NAME   		:= ex01
+NAME   		:= ex03
 COMPILER	:= c++
 CPPFLAGS	:= -Wall -Werror -Wextra -std=c++98
 CACHE_DIR	:= $(shell pwd)/.cache
