@@ -19,7 +19,7 @@ TEST(FixedTest, FloatConstructor) {
 // Test toFloat and toInt
 TEST(FixedTest, ToFloatToInt) {
     Fixed a(123.456f);
-    EXPECT_FLOAT_EQ(a.toFloat(), 123.4560546875f);
+    EXPECT_FLOAT_EQ(a.toFloat(), 123.45703125f);
     EXPECT_EQ(a.toInt(), 123);
 }
 
