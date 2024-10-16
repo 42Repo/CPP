@@ -10,13 +10,13 @@ BBlue   := $(shell printf "\033[1;34m")
 # Project Settings
 NAME   		:= ex00
 COMPILER	:= c++
-CPPFLAGS	:= -Wall -Werror -Wextra -std=c++98
+CPPFLAGS	:= -Wall -Werror -Wextra
 CACHE_DIR	:= $(shell pwd)/.cache
 OBJ_DIR		:= $(CACHE_DIR)/$(NAME)/obj
 DEP_DIR		:= $(CACHE_DIR)/$(NAME)/dep
 
 # Source and Object Files
-SRC     := main.cpp Fixed.cpp
+SRC     := test.cpp Fixed.cpp
 OBJ     := $(addprefix $(OBJ_DIR)/,$(SRC:.cpp=.o))
 DEP     := $(addprefix $(DEP_DIR)/,$(SRC:.cpp=.d))
 
@@ -48,13 +48,13 @@ $(OBJ_DIR)/%.o: %.cpp | $(OBJ_DIR) $(DEP_DIR)
 	@printf "\033[2K$(Green)[$(shell printf "% 3s" "$(_PERCENTAGE)")%%] $(shell printf "%*d/%d" $(_TOTAL_LEN) $(_CURR) $(_TOTAL)) Compiling $<\r"
 	@mkdir -p $(dir $@)
 	@mkdir -p $(dir $(DEP_DIR)/$*)
-	@$(COMPILER) $(CPPFLAGS) $(DEP_FLAGS) -o $@ -c $<
+	@$(COMPILER) $(CPPFLAGS)  $(DEP_FLAGS) -o $@ -c $< 
 	@mv -f $(DEP_DIR)/$*.Td $(DEP_DIR)/$*.d && touch $@
 
 # Linking
 $(NAME) : $(OBJ)
 	@printf "$(Green)\033[2K[100%%] Linking $(NAME)\n"
-	@$(COMPILER) $(CFLAGS) -o $(NAME) $(OBJ)
+	@$(COMPILER)  -lgtest -lgtest_main -lpthread $(CFLAGS) -o $(NAME) $(OBJ)
 	@printf "$(BGreen)Compilation Final $(NAME)$(RESET)\n"
 
 # Clean Targets
