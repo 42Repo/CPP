@@ -12,10 +12,10 @@ Fixed &Fixed::operator=(Fixed const &f) {
 Fixed::Fixed(const int value) { _value = value << _fractionalBits; }
 
 Fixed::Fixed(const float value) {
-    if (std::abs(value) < (1.0f / (1 << _fractionalBits))) {
+    if (std::fabs(value) < (1.0f / (1 << _fractionalBits))) {
         _value = 0;
     } else {
-        _value = static_cast<int>(std::roundf(value * (1 << _fractionalBits)));
+        _value = static_cast<int>(roundf(value * (1 << _fractionalBits)));
     }
 }
 

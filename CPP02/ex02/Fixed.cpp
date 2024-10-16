@@ -20,7 +20,7 @@ Fixed::Fixed(const int value) {
 
 Fixed::Fixed(const float value) {
     std::cout << "Float constructor called" << std::endl;
-    _value = static_cast<int>(std::roundf(value * (1 << _fractionalBits)));
+    _value = static_cast<int>(roundf(value * (1 << _fractionalBits)));
 }
 
 Fixed::~Fixed() { std::cout << "Destructor called" << std::endl; }

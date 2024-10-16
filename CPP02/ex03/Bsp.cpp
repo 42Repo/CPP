@@ -1,7 +1,7 @@
 #include "Point.h"
 
 static Fixed area(Point const a, Point const b, Point const c) {
-    return Fixed(std::abs((a.getX().toFloat() * (b.getY().toFloat() - c.getY().toFloat())) +
+    return Fixed(std::fabs((a.getX().toFloat() * (b.getY().toFloat() - c.getY().toFloat())) +
                           (b.getX().toFloat() * (c.getY().toFloat() - a.getY().toFloat())) +
                           (c.getX().toFloat() * (a.getY().toFloat() - b.getY().toFloat()))) /
                  2.0f);
@@ -20,5 +20,5 @@ bool bsp(Point const a, Point const b, Point const c, Point const point) {
     }
 
     Fixed sumOfAreas = area1 + area2 + area3;
-    return (std::abs((sumOfAreas - totalArea).toFloat()) <= epsilon.toFloat());
+    return (std::fabs((sumOfAreas - totalArea).toFloat()) <= epsilon.toFloat());
 }
