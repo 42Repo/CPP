@@ -20,7 +20,7 @@
 - [x] Exercise 05
 - [x] Exercise 06
 
-**Score:** N/A
+**Score:** 100/100 ✅
 
 ### CPP02
 
