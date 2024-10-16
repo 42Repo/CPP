@@ -10,7 +10,6 @@ FragTrap::FragTrap(std::string name) : ClapTrap(name, 100, 100, 30) {
 
 FragTrap::FragTrap(const FragTrap &a) : ClapTrap(a) {
     std::cout << "FragTrap Copy constructor called" << std::endl;
-    *this = a;
 }
 
 FragTrap &FragTrap::operator=(const FragTrap &a) {

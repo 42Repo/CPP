@@ -41,9 +41,7 @@ DiamondTrap &DiamondTrap::operator=(const DiamondTrap &other) {
 
 DiamondTrap::~DiamondTrap() { std::cout << "DiamondTrap Destructor called" << std::endl; }
 
-void DiamondTrap::attack(const std::string &target) {
-    ScavTrap::attack(target);
-}
+void DiamondTrap::attack(const std::string &target) { ScavTrap::attack(target); }
 
 void DiamondTrap::whoAmI() {
     std::cout << "DiamondTrap name is " << _name << ", ClapTrap name is " << ClapTrap::_name
