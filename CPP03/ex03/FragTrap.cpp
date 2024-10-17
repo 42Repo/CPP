@@ -1,7 +1,7 @@
 #include "FragTrap.h"
 
 FragTrap::FragTrap() : ClapTrap() {
-    c_name = "DefaultFrag";
+    _name = "DefaultFrag";
     _hitPoints = 100;
     _energyPoints = 100;
     _attackDamage = 30;
@@ -9,7 +9,7 @@ FragTrap::FragTrap() : ClapTrap() {
 }
 
 FragTrap::FragTrap(std::string name) : ClapTrap(name) {
-    c_name = name;
+    _name = name;
     _hitPoints = 100;
     _energyPoints = 100;
     _attackDamage = 30;
@@ -31,7 +31,7 @@ FragTrap &FragTrap::operator=(const FragTrap &a) {
 FragTrap::~FragTrap() { std::cout << "FragTrap Destructor" << std::endl; }
 
 void FragTrap::highFivesGuys(void) {
-    std::cout << "FragTrap " << c_name << " high fives guys !" << std::endl;
+    std::cout << "FragTrap " << _name << " high fives guys !" << std::endl;
 }
 
 void FragTrap::attack(const std::string &target) {
@@ -40,13 +40,13 @@ void FragTrap::attack(const std::string &target) {
         return;
     }
     _energyPoints--;
-    std::cout << "FragTrap " << c_name << " attacks " << target << ", causing " << _attackDamage
+    std::cout << "FragTrap " << _name << " attacks " << target << ", causing " << _attackDamage
               << " points of damage!" << std::endl;
 }
 
 std::string FragTrap::show(void) const {
     std::ostringstream oss;
-    oss << "FragTrap " << c_name << " has " << _hitPoints << " hit points, " << _energyPoints
+    oss << "FragTrap " << _name << " has " << _hitPoints << " hit points, " << _energyPoints
         << " energy points and " << _attackDamage << " attack damage";
     return oss.str();
 }
