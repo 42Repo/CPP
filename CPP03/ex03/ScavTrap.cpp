@@ -1,7 +1,6 @@
 #include "ScavTrap.h"
 
 ScavTrap::ScavTrap() : ClapTrap() {
-    _name = "DefaultScav";
     _hitPoints = 100;
     _energyPoints = 50;
     _attackDamage = 20;
@@ -37,7 +36,7 @@ void ScavTrap::attack(const std::string &target) {
         return;
     }
     _energyPoints--;
-    std::cout << "ScavTrap " << _name << " attacks " << target << ", causing " << _attackDamage
+    std::cout << "ScavTrap " << getName() << " attacks " << target << ", causing " << _attackDamage
               << " points of damage!" << std::endl;
 }
 

@@ -14,10 +14,11 @@ class ClapTrap {
     ClapTrap(const ClapTrap &a);
     ClapTrap &operator=(const ClapTrap &a);
     ~ClapTrap(void);
-    void        attack(const std::string &target);
-    void        takeDamage(unsigned int amount);
-    void        beRepaired(unsigned int amount);
-    std::string show(void) const;
+    void                attack(const std::string &target);
+    void                takeDamage(unsigned int amount);
+    void                beRepaired(unsigned int amount);
+    virtual std::string getName() const;
+    std::string         show(void) const;
 
   protected:
     std::string  _name;

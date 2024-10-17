@@ -1,7 +1,6 @@
 #include "FragTrap.h"
 
 FragTrap::FragTrap() : ClapTrap() {
-    _name = "DefaultFrag";
     _hitPoints = 100;
     _energyPoints = 100;
     _attackDamage = 30;

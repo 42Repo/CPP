@@ -1,24 +1,24 @@
 #include "DiamondTrap.h"
 
 DiamondTrap::DiamondTrap()
-    : ClapTrap("Default_clap_name"),
-      ScavTrap("Default_scav_name"),
-      FragTrap("Default_frag_name"),
-      _name("Default") {
-    _hitPoints = 100;   // From FragTrap
-    _energyPoints = 50; // From ScavTrap
-    _attackDamage = 30; // From FragTrap
+    : ClapTrap("default_clap_name"),
+      ScavTrap(),
+      FragTrap(),
+      _name("default") {
+    _hitPoints = FragTrap::_hitPoints;       // From FragTrap
+    _energyPoints = ScavTrap::_energyPoints; // From ScavTrap
+    _attackDamage = FragTrap::_attackDamage; // From FragTrap
     std::cout << "DiamondTrap Default constructor called" << std::endl;
 }
 
 DiamondTrap::DiamondTrap(const std::string &name)
     : ClapTrap(name + "_clap_name"),
-      ScavTrap(name),
-      FragTrap(name),
+      ScavTrap(),
+      FragTrap(),
       _name(name) {
-    _hitPoints = 100;   // From FragTrap
-    _energyPoints = 50; // From ScavTrap
-    _attackDamage = 30; // From FragTrap
+    _hitPoints = FragTrap::_hitPoints;       // From FragTrap
+    _energyPoints = ScavTrap::_energyPoints; // From ScavTrap
+    _attackDamage = FragTrap::_attackDamage; // From FragTrap
     std::cout << "DiamondTrap Parameter constructor called" << std::endl;
 }
 
@@ -47,6 +47,8 @@ void DiamondTrap::whoAmI() {
     std::cout << "DiamondTrap name is " << _name << ", ClapTrap name is " << ClapTrap::_name
               << std::endl;
 }
+
+std::string DiamondTrap::getName() const { return _name; }
 
 std::string DiamondTrap::show(void) const {
     std::ostringstream oss;
