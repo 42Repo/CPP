@@ -13,12 +13,12 @@ class ClapTrap {
              unsigned int attackDamage);
     ClapTrap(const ClapTrap &a);
     ClapTrap &operator=(const ClapTrap &a);
-    ~ClapTrap(void);
-    void                attack(const std::string &target);
+    virtual ~ClapTrap(void);
     void                takeDamage(unsigned int amount);
     void                beRepaired(unsigned int amount);
+    virtual void        attack(const std::string &target);
     virtual std::string getName() const;
-    std::string         show(void) const;
+    virtual std::string show(void) const;
 
   protected:
     std::string  _name;

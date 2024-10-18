@@ -1,73 +1,82 @@
 # Color Definitions
-BGreen  := $(shell printf "\033[1;32m")
-RESET   := $(shell printf "\033[0m")
-BRed    := $(shell printf "\033[1;31m")
-BCyan   := $(shell printf "\033[1;36m")
-Green   := $(shell printf "\033[0;321m")
-Blue    := $(shell printf "\033[0;34m")
-BBlue   := $(shell printf "\033[1;34m")
+RESET       := $(shell printf "\033[0m")
+BOLD        := $(shell printf "\033[1m")
+DIM         := $(shell printf "\033[2m")
+
+FG_BLACK    := $(shell printf "\033[30m")
+FG_RED      := $(shell printf "\033[31m")
+FG_GREEN    := $(shell printf "\033[32m")
+FG_YELLOW   := $(shell printf "\033[33m")
+FG_BLUE     := $(shell printf "\033[34m")
+FG_MAGENTA  := $(shell printf "\033[35m")
+FG_CYAN     := $(shell printf "\033[36m")
+FG_WHITE    := $(shell printf "\033[37m")
 
 # Project Settings
-NAME   		:= ex03
-COMPILER	:= c++
-CPPFLAGS	:= -Wall -Werror -Wextra -std=c++98
-CACHE_DIR	:= $(shell pwd)/.cache
-OBJ_DIR		:= $(CACHE_DIR)/$(NAME)/obj
-DEP_DIR		:= $(CACHE_DIR)/$(NAME)/dep
+TARGET       := ex03
+CXX          := c++
+CXXFLAGS     := -Wall -Werror -Wextra -std=c++98
+BUILD_DIR    := .build
+OBJ_DIR      := $(BUILD_DIR)/obj
+DEP_DIR      := $(BUILD_DIR)/dep
 
 # Source and Object Files
-SRC     := main.cpp ClapTrap.cpp ScavTrap.cpp FragTrap.cpp DiamondTrap.cpp
-OBJ     := $(addprefix $(OBJ_DIR)/,$(SRC:.cpp=.o))
-DEP     := $(addprefix $(DEP_DIR)/,$(SRC:.cpp=.d))
+SRCS         := main.cpp DiamondTrap.cpp ScavTrap.cpp ClapTrap.cpp FragTrap.cpp
+OBJS         := $(addprefix $(OBJ_DIR)/,$(SRCS:.cpp=.o))
+DEPS         := $(addprefix $(DEP_DIR)/,$(SRCS:.cpp=.d))
 
-DEP_FLAGS = -MT $@ -MMD -MP -MF $(DEP_DIR)/$*.Td
+# Default Target
+all: $(TARGET)
 
-all : $(NAME)
-
-debug: CPPFLAGS += -gdwarf-4 -Wunused -Wconversion -Wfloat-equal -Wnon-virtual-dtor -Wpointer-arith -Wstrict-aliasing=2 -Wunreachable-code -Wnull-dereference -Wnonnull -Wpedantic -Wcast-align -Wcast-qual -Wctor-dtor-privacy -Wdisabled-optimization -Wformat=2 -Winit-self -Wmissing-declarations -Wmissing-include-dirs -Wold-style-cast -Woverloaded-virtual -Wredundant-decls -Wshadow -Wsign-conversion -Wsign-promo -Wstrict-overflow=5 -Wswitch-default -Wundef
-debug: CPPFLAGS += $(shell if $(COMPILER) --version 2>&1 | grep -q 'clang'; \
-                      then echo "-Weverything -Wno-suggest-destructor-override -Wno-suggest-override -Wno-padded"; \
-                      else echo "-Wlogical-op -Wnoexcept -Wstrict-null-sentinel"; fi)
+# Debug Target
+debug: CXXFLAGS += -gdwarf-4 -Wunused -Wconversion -Wfloat-equal -Wnon-virtual-dtor \
+                   -Wpointer-arith -Wstrict-aliasing=2 -Wunreachable-code -Wnull-dereference \
+                   -Wnonnull -Wpedantic -Wcast-align -Wcast-qual -Wctor-dtor-privacy \
+                   -Wdisabled-optimization -Wformat=2 -Winit-self -Wmissing-declarations \
+                   -Wmissing-include-dirs -Wold-style-cast -Woverloaded-virtual \
+                   -Wredundant-decls -Wshadow -Wsign-conversion -Wsign-promo \
+                   -Wstrict-overflow=5 -Wswitch-default -Wundef
+debug: CXXFLAGS += $(shell if $(CXX) --version 2>&1 | grep -q 'clang'; \
+                          then echo "-Weverything -Wno-suggest-destructor-override -Wno-suggest-override -Wno-padded -Wno-shadow-field"; \
+                          else echo "-Wlogical-op -Wstrict-null-sentinel"; fi)
 debug: re
 
-# Directory Creation
+# Build Directories
 $(OBJ_DIR) $(DEP_DIR):
-	@mkdir -p $(OBJ_DIR) $(DEP_DIR)
-
+	@mkdir -p $@
 
 # Object File Compilation
-_CURR = 0
-_TOTAL = $(words $(OBJ))
-_TOTAL_LEN = $(shell echo $(_TOTAL) | wc -c)
+CURR       = 0
+TOTAL      = $(words $(OBJS))
+TOTAL_LEN  = $(shell echo $(TOTAL) | wc -c)
 $(OBJ_DIR)/%.o: %.cpp | $(OBJ_DIR) $(DEP_DIR)
-	@if [ $(_CURR) -eq 1 ]; then \
-		printf "$(Bblue)Compilation object files for $(NAME)$(RESET)\n"; \
+	@if [ $(CURR) -eq 0 ]; then \
+		printf "$(BOLD)$(FG_CYAN)Compiling object files for $(TARGET)...$(RESET)\n"; \
 	fi
-	$(eval _CURR=$(shell echo $$(($(_CURR)+1))))
-	$(eval _PERCENTAGE=$(shell echo $$(($(_CURR)*100/$(_TOTAL)))))
-	@printf "\033[2K$(Green)[$(shell printf "% 3s" "$(_PERCENTAGE)")%%] $(shell printf "%*d/%d" $(_TOTAL_LEN) $(_CURR) $(_TOTAL)) Compiling $<\r"
+	$(eval CURR=$(shell echo $$(($(CURR)+1))))
+	$(eval PERCENTAGE=$(shell echo $$(($(CURR)*100/$(TOTAL)))))
+	@printf "$(FG_GREEN)\033[2K[$(shell printf "% 3s" "$(PERCENTAGE)")%%] $(shell printf "%*d/%d" $(TOTAL_LEN) $(CURR) $(TOTAL)) Compiling $<\r$(RESET)"
 	@mkdir -p $(dir $@)
-	@mkdir -p $(dir $(DEP_DIR)/$*)
-	@$(COMPILER) $(CPPFLAGS) $(DEP_FLAGS) -o $@ -c $<
-	@mv -f $(DEP_DIR)/$*.Td $(DEP_DIR)/$*.d && touch $@
+	@$(CXX) $(CXXFLAGS) -MMD -MP -MF $(DEP_DIR)/$*.d -c $< -o $@
 
 # Linking
-$(NAME) : $(OBJ)
-	@printf "$(Green)\033[2K[100%%] Linking $(NAME)\n"
-	@$(COMPILER) $(CFLAGS) -o $(NAME) $(OBJ)
-	@printf "$(BGreen)Compilation Final $(NAME)$(RESET)\n"
+$(TARGET): $(OBJS)
+	@printf "$(FG_GREEN)\033[2K[100%%] Linking $(FG_CYAN)$(TARGET)$(RESET)\n"
+	@$(CXX) $(CXXFLAGS) -o $@ $^
+	@printf "$(BOLD)$(FG_GREEN)Compilation of $(FG_CYAN)$(TARGET)$(FG_GREEN) completed.$(RESET)\n"
+
+# Include Dependencies
+-include $(DEPS)
 
 # Clean Targets
-clean :
-	@rm -rf $(OBJ_DIR) $(DEP_DIR)
-	@printf "$(BRed)Erase all obj and deb files$(RESET)\n"
+clean:
+	@rm -rf $(BUILD_DIR)
+	@printf "$(FG_RED)Cleaned object and dependency files.$(RESET)\n"
 
-fclean : clean
-	@rm -rf $(NAME) $(CACHE_DIR)
-	@printf "$(BRed)Erase $(NAME)$(RESET)\n"
+fclean: clean
+	@rm -f $(TARGET)
+	@printf "$(FG_RED)Removed executable $(FG_CYAN)$(TARGET)$(RESET)\n"
 
-re : fclean all
+re: fclean all
 
--include $(DEP)
-
-.PHONY: all fclean clean re debug
+.PHONY: all clean fclean re debug
