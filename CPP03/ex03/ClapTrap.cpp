@@ -85,6 +85,8 @@ void ClapTrap::beRepaired(unsigned int amount) {
     std::cout << _name << " is repaired by " << amount << " hit points!" << std::endl;
 }
 
+std::string ClapTrap::getName() const { return _name; }
+
 std::string ClapTrap::show(void) const {
     std::ostringstream oss;
     oss << "ClapTrap " << _name << " has " << _hitPoints << " hit points, " << _energyPoints
