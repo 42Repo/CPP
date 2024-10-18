@@ -15,13 +15,13 @@ FG_WHITE    := $(shell printf "\033[37m")
 # Project Settings
 TARGET       := ex03
 CXX          := c++
-CXXFLAGS     := -Wall -Werror -Wextra -std=c++98
+CXXFLAGS     := -Wall -Werror -Wextra 
 BUILD_DIR    := .build
 OBJ_DIR      := $(BUILD_DIR)/obj
 DEP_DIR      := $(BUILD_DIR)/dep
 
 # Source and Object Files
-SRCS         := main.cpp DiamondTrap.cpp ScavTrap.cpp ClapTrap.cpp FragTrap.cpp
+SRCS         := testMain.cpp DiamondTrap.cpp ScavTrap.cpp ClapTrap.cpp FragTrap.cpp
 OBJS         := $(addprefix $(OBJ_DIR)/,$(SRCS:.cpp=.o))
 DEPS         := $(addprefix $(DEP_DIR)/,$(SRCS:.cpp=.d))
 
@@ -37,7 +37,7 @@ debug: CXXFLAGS += -gdwarf-4 -Wunused -Wconversion -Wfloat-equal -Wnon-virtual-d
                    -Wredundant-decls -Wshadow -Wsign-conversion -Wsign-promo \
                    -Wstrict-overflow=5 -Wswitch-default -Wundef
 debug: CXXFLAGS += $(shell if $(CXX) --version 2>&1 | grep -q 'clang'; \
-                          then echo "-Weverything -Wno-suggest-destructor-override -Wno-suggest-override -Wno-padded -Wno-shadow-field"; \
+                          then echo "-Weverything -Wno-suggest-destructor-override -Wno-suggest-override -Wno-padded -Wno-shadow-field -Wno-global-constructors -Wno-c++98-compat-pedantic -Wno-c++98-compat"; \
                           else echo "-Wlogical-op -Wstrict-null-sentinel"; fi)
 debug: re
 
@@ -62,7 +62,7 @@ $(OBJ_DIR)/%.o: %.cpp | $(OBJ_DIR) $(DEP_DIR)
 # Linking
 $(TARGET): $(OBJS)
 	@printf "$(FG_GREEN)\033[2K[100%%] Linking $(FG_CYAN)$(TARGET)$(RESET)\n"
-	@$(CXX) $(CXXFLAGS) -o $@ $^
+	@$(CXX) $(CXXFLAGS) -lgtest -lgtest_main -lpthread -o $@ $^
 	@printf "$(BOLD)$(FG_GREEN)Compilation of $(FG_CYAN)$(TARGET)$(FG_GREEN) completed.$(RESET)\n"
 
 # Include Dependencies
