@@ -1,12 +1,13 @@
 #include "DiamondTrap.h"
+#include <iostream>
 
 int main() {
-    DiamondTrap dt("Diamondy");
+    DiamondTrap dts("Diamondy");
 
-    std::cout << dt << std::endl;
+    std::cout << dts << std::endl;
 
-    dt.attack("Enemy");
-    dt.whoAmI();
+    dts.attack("Enemy");
+    dts.whoAmI();
 
     return 0;
 }

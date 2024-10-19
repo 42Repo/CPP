@@ -1,24 +1,21 @@
 #include "DiamondTrap.h"
+#include <iostream>
+#include <sstream>
 
-DiamondTrap::DiamondTrap()
-    : ClapTrap("Default_clap_name"),
-      ScavTrap(),
-      FragTrap(),
-      _name("Default") {
-    _hitPoints = 100;
-    _energyPoints = 50;
-    _attackDamage = 30;
+DiamondTrap::DiamondTrap() : ClapTrap("Default_clap_name"), FragTrap(0), _name("Default") {
+    _hitPoints = FragTrap::_hitPoints;       // From FragTrap
+    _energyPoints = ScavTrap::_energyPoints; // From ScavTrap
+    _attackDamage = FragTrap::_attackDamage; // From FragTrap
     std::cout << "DiamondTrap Default constructor called" << std::endl;
 }
 
 DiamondTrap::DiamondTrap(const std::string &name)
     : ClapTrap(name + "_clap_name"),
-      ScavTrap(),
-      FragTrap(),
+      FragTrap(0),
       _name(name) {
-    _hitPoints = 100;
-    _energyPoints = 50;
-    _attackDamage = 30;
+    _hitPoints = FragTrap::_hitPoints;       // From FragTrap
+    _energyPoints = ScavTrap::_energyPoints; // From ScavTrap
+    _attackDamage = FragTrap::_attackDamage; // From FragTrap
     std::cout << "DiamondTrap Parameter constructor called" << std::endl;
 }
 
@@ -43,7 +40,7 @@ DiamondTrap::~DiamondTrap() { std::cout << "DiamondTrap Destructor called" << st
 
 void DiamondTrap::attack(const std::string &target) { ScavTrap::attack(target); }
 
-void DiamondTrap::whoAmI() {
+void DiamondTrap::whoAmI() const {
     std::cout << "DiamondTrap name is " << _name << ", ClapTrap name is " << ClapTrap::_name
               << std::endl;
 }
@@ -57,7 +54,7 @@ std::string DiamondTrap::show(void) const {
     return oss.str();
 }
 
-std::ostream &operator<<(std::ostream &out, DiamondTrap const &f) {
-    out << f.show();
+std::ostream &operator<<(std::ostream &out, DiamondTrap const &diamondtrap) {
+    out << diamondtrap.show();
     return out;
 }

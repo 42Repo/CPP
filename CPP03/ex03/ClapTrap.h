@@ -1,24 +1,26 @@
 #ifndef CLAPTRAP_H
 #define CLAPTRAP_H
 
-#include <iostream>
-#include <sstream>
 #include <string>
+
+const int DEFAULT_CLAPTRAP_HIT_POINTS = 10;
+const int DEFAULT_CLAPTRAP_ENERGY_POINTS = 10;
+const int DEFAULT_CLAPTRAP_ATTACK_DAMAGE = 0;
 
 class ClapTrap {
   public:
-    ClapTrap(void);
-    ClapTrap(std::string name);
-    ClapTrap(std::string name, unsigned int hitPoints, unsigned int energyPoints,
+    ClapTrap();
+    ClapTrap(const std::string &name);
+    ClapTrap(const std::string &name, unsigned int hitPoints, unsigned int energyPoints,
              unsigned int attackDamage);
-    ClapTrap(const ClapTrap &a);
-    ClapTrap &operator=(const ClapTrap &a);
-    virtual ~ClapTrap(void);
+    ClapTrap(const ClapTrap &other);
+    ClapTrap &operator=(const ClapTrap &other);
+    virtual ~ClapTrap();
     void                takeDamage(unsigned int amount);
     void                beRepaired(unsigned int amount);
     virtual void        attack(const std::string &target);
     virtual std::string getName() const;
-    virtual std::string show(void) const;
+    virtual std::string show() const;
 
   protected:
     std::string  _name;
@@ -27,6 +29,6 @@ class ClapTrap {
     unsigned int _attackDamage;
 };
 
-std::ostream &operator<<(std::ostream &out, ClapTrap const &f);
+std::ostream &operator<<(std::ostream &out, ClapTrap const &claptrap);
 
 #endif // CLAPTRAP_H
