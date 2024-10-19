@@ -1,5 +1,6 @@
 #include "ClapTrap.h"
 #include <iostream>
+#include <sstream>
 
 ClapTrap::ClapTrap()
     : _name("DefaultClap"),

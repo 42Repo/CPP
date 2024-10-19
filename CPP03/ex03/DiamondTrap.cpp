@@ -1,5 +1,6 @@
 #include "DiamondTrap.h"
 #include <iostream>
+#include <sstream>
 
 DiamondTrap::DiamondTrap()
     : ClapTrap("Default_clap_name"),
@@ -40,7 +41,7 @@ DiamondTrap::~DiamondTrap() { std::cout << "DiamondTrap Destructor called" << st
 
 void DiamondTrap::attack(const std::string &target) { ScavTrap::attack(target); }
 
-void DiamondTrap::whoAmI() {
+void DiamondTrap::whoAmI() const {
     std::cout << "DiamondTrap name is " << _name << ", ClapTrap name is " << ClapTrap::_name
               << std::endl;
 }

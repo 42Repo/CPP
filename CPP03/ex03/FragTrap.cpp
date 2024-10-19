@@ -1,7 +1,8 @@
 #include "FragTrap.h"
 #include <iostream>
+#include <sstream>
 
-FragTrap::FragTrap() : ClapTrap() {
+FragTrap::FragTrap() {
     _hitPoints = DEFAULT_FRAGTRAP_HIT_POINTS;
     _energyPoints = DEFAULT_FRAGTRAP_ENERGY_POINTS;
     _attackDamage = DEFAULT_FRAGTRAP_ATTACK_DAMAGE;

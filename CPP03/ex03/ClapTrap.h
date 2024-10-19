@@ -1,7 +1,6 @@
 #ifndef CLAPTRAP_H
 #define CLAPTRAP_H
 
-#include <sstream>
 #include <string>
 
 const int DEFAULT_CLAPTRAP_HIT_POINTS = 10;

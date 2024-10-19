@@ -1,7 +1,8 @@
 #include "ScavTrap.h"
 #include <iostream>
+#include <sstream>
 
-ScavTrap::ScavTrap() : ClapTrap() {
+ScavTrap::ScavTrap() {
     _hitPoints = DEFAULT_SCAVTRAP_HIT_POINTS;
     _energyPoints = DEFAULT_SCAVTRAP_ENERGY_POINTS;
     _attackDamage = DEFAULT_SCAVTRAP_ATTACK_DAMAGE;
@@ -29,7 +30,9 @@ ScavTrap &ScavTrap::operator=(const ScavTrap &other) {
 
 ScavTrap::~ScavTrap() { std::cout << "ScavTrap Destructor" << std::endl; }
 
-void ScavTrap::guardGate() { std::cout << "ScavTrap is now in Gate keeper mode." << std::endl; }
+void ScavTrap::guardGate() const {
+    std::cout << "ScavTrap " << _name << " is now in Gate keeper mode." << std::endl;
+}
 
 void ScavTrap::attack(const std::string &target) {
     if (_energyPoints <= 0) {
@@ -48,7 +51,7 @@ std::string ScavTrap::show() const {
     return oss.str();
 }
 
-std::ostream &operator<<(std::ostream &out, ScavTrap const &fragtrap) {
-    out << fragtrap.show();
+std::ostream &operator<<(std::ostream &out, ScavTrap const &scavtrap) {
+    out << scavtrap.show();
     return out;
 }
