@@ -4,6 +4,10 @@
 #include <sstream>
 #include <string>
 
+const int DEFAULT_CLAPTRAP_HIT_POINTS = 10;
+const int DEFAULT_CLAPTRAP_ENERGY_POINTS = 10;
+const int DEFAULT_CLAPTRAP_ATTACK_DAMAGE = 0;
+
 class ClapTrap {
   public:
     ClapTrap();

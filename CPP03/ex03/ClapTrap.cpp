@@ -1,15 +1,19 @@
 #include "ClapTrap.h"
 #include <iostream>
 
-ClapTrap::ClapTrap() : _name("DefaultClap"), _hitPoints(10), _energyPoints(10), _attackDamage(0) {
+ClapTrap::ClapTrap()
+    : _name("DefaultClap"),
+      _hitPoints(DEFAULT_CLAPTRAP_HIT_POINTS),
+      _energyPoints(DEFAULT_CLAPTRAP_ENERGY_POINTS),
+      _attackDamage(DEFAULT_CLAPTRAP_ATTACK_DAMAGE) {
     std::cout << "ClapTrap Default constructor called" << std::endl;
 }
 
 ClapTrap::ClapTrap(const std::string &name)
     : _name(name),
-      _hitPoints(10),
-      _energyPoints(10),
-      _attackDamage(0) {
+      _hitPoints(DEFAULT_CLAPTRAP_HIT_POINTS),
+      _energyPoints(DEFAULT_CLAPTRAP_ENERGY_POINTS),
+      _attackDamage(DEFAULT_CLAPTRAP_ATTACK_DAMAGE) {
     std::cout << "ClapTrap Parameter constructor called" << std::endl;
 }
 
