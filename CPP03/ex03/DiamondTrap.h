@@ -21,6 +21,6 @@ class DiamondTrap : public ScavTrap, public FragTrap {
     std::string _name; // Same as in ClapTrap
 };
 
-std::ostream &operator<<(std::ostream &out, DiamondTrap const &f);
+std::ostream &operator<<(std::ostream &out, DiamondTrap const &diamondtrap);
 
 #endif // DIAMONDTRAP_H

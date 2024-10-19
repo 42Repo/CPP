@@ -1,0 +1,2 @@
+Checks: 'clang-analyzer-*,cppcoreguidelines-*,performance-*,readability-*,bugprone-*,hicpp-*, -hicpp-use-override, -cppcoreguidelines-explicit-virtual-functions, -cppcoreguidelines-special-member-functions, -hicpp-explicit-conversions, -hicpp-special-member-functions'
+HeaderFilterRegex: '.*'

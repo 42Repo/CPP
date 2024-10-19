@@ -1,35 +1,36 @@
 #include "FragTrap.h"
+#include <iostream>
 
 FragTrap::FragTrap() : ClapTrap() {
-    _hitPoints = 100;
-    _energyPoints = 100;
-    _attackDamage = 30;
+    _hitPoints = DEFAULT_FRAGTRAP_HIT_POINTS;
+    _energyPoints = DEFAULT_FRAGTRAP_ENERGY_POINTS;
+    _attackDamage = DEFAULT_FRAGTRAP_ATTACK_DAMAGE;
     std::cout << "FragTrap Default constructor called" << std::endl;
 }
 
-FragTrap::FragTrap(std::string name) : ClapTrap(name) {
+FragTrap::FragTrap(const std::string &name) : ClapTrap(name) {
     _name = name;
-    _hitPoints = 100;
-    _energyPoints = 100;
-    _attackDamage = 30;
+    _hitPoints = DEFAULT_FRAGTRAP_HIT_POINTS;
+    _energyPoints = DEFAULT_FRAGTRAP_ENERGY_POINTS;
+    _attackDamage = DEFAULT_FRAGTRAP_ATTACK_DAMAGE;
     std::cout << "FragTrap Parameter constructor called" << std::endl;
 }
 
-FragTrap::FragTrap(const FragTrap &a) : ClapTrap(a) {
+FragTrap::FragTrap(const FragTrap &other) : ClapTrap(other) {
     std::cout << "FragTrap Copy constructor called" << std::endl;
 }
 
-FragTrap &FragTrap::operator=(const FragTrap &a) {
+FragTrap &FragTrap::operator=(const FragTrap &other) {
     std::cout << "FragTrap Copy assignment operator called" << std::endl;
-    if (this != &a) {
-        ClapTrap::operator=(a);
+    if (this != &other) {
+        ClapTrap::operator=(other);
     }
     return *this;
 }
 
 FragTrap::~FragTrap() { std::cout << "FragTrap Destructor" << std::endl; }
 
-void FragTrap::highFivesGuys(void) {
+void FragTrap::highFivesGuys() const {
     std::cout << "FragTrap " << _name << " high fives guys !" << std::endl;
 }
 
@@ -43,14 +44,14 @@ void FragTrap::attack(const std::string &target) {
               << " points of damage!" << std::endl;
 }
 
-std::string FragTrap::show(void) const {
+std::string FragTrap::show() const {
     std::ostringstream oss;
     oss << "FragTrap " << _name << " has " << _hitPoints << " hit points, " << _energyPoints
         << " energy points and " << _attackDamage << " attack damage";
     return oss.str();
 }
 
-std::ostream &operator<<(std::ostream &out, FragTrap const &f) {
-    out << f.show();
+std::ostream &operator<<(std::ostream &out, FragTrap const &fragtrap) {
+    out << fragtrap.show();
     return out;
 }
