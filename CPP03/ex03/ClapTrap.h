@@ -10,7 +10,7 @@ const int DEFAULT_CLAPTRAP_ATTACK_DAMAGE = 0;
 class ClapTrap {
   public:
     ClapTrap();
-    ClapTrap(const std::string &name);
+    explicit ClapTrap(const std::string &name);
     ClapTrap(const std::string &name, unsigned int hitPoints, unsigned int energyPoints,
              unsigned int attackDamage);
     ClapTrap(const ClapTrap &other);
