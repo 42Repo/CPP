@@ -10,6 +10,7 @@ const int DEFAULT_FRAGTRAP_ATTACK_DAMAGE = 30;
 class FragTrap : virtual public ClapTrap {
   public:
     FragTrap();
+    FragTrap(int diamondConstructor);
     FragTrap(const std::string &name);
     FragTrap(const FragTrap &other);
     FragTrap &operator=(const FragTrap &other);

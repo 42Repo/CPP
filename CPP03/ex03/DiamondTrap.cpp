@@ -2,9 +2,7 @@
 #include <iostream>
 #include <sstream>
 
-DiamondTrap::DiamondTrap()
-    : ClapTrap("Default_clap_name"),
-      _name("Default") {
+DiamondTrap::DiamondTrap() : ClapTrap("Default_clap_name"), FragTrap(0), _name("Default") {
     _hitPoints = FragTrap::_hitPoints;       // From FragTrap
     _energyPoints = ScavTrap::_energyPoints; // From ScavTrap
     _attackDamage = FragTrap::_attackDamage; // From FragTrap
@@ -13,6 +11,7 @@ DiamondTrap::DiamondTrap()
 
 DiamondTrap::DiamondTrap(const std::string &name)
     : ClapTrap(name + "_clap_name"),
+      FragTrap(0),
       _name(name) {
     _hitPoints = FragTrap::_hitPoints;       // From FragTrap
     _energyPoints = ScavTrap::_energyPoints; // From ScavTrap

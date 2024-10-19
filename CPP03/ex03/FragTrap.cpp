@@ -21,6 +21,13 @@ FragTrap::FragTrap(const FragTrap &other) : ClapTrap(other) {
     std::cout << "FragTrap Copy constructor called" << std::endl;
 }
 
+FragTrap::FragTrap(const int diamondConstructor) {
+    (void)diamondConstructor;
+    _hitPoints = DEFAULT_FRAGTRAP_HIT_POINTS;
+    _attackDamage = DEFAULT_FRAGTRAP_ATTACK_DAMAGE;
+    std::cout << "FragTrap Default constructor called" << std::endl;
+}
+
 FragTrap &FragTrap::operator=(const FragTrap &other) {
     std::cout << "FragTrap Copy assignment operator called" << std::endl;
     if (this != &other) {
