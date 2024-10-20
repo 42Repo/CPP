@@ -38,7 +38,7 @@
 - [x] Exercise 02
 - [x] Exercise 03
 
-**Score:** N/A
+**Score:** 100/100 ✅
 
 ### CPP04
 
