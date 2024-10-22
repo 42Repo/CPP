@@ -1,28 +1,29 @@
 // test_ex02.cpp
-#include <gtest/gtest.h>
 #include "AAnimal.h"
 #include "Cat.h"
 #include "Dog.h"
+#include <gtest/gtest.h>
 
-// Test que AAnimal est abstraite et ne peut pas être instanciée
-TEST(AbstractClassTest, CannotInstantiateAAnimal) {
-    // Ceci devrait échouer à la compilation si AAnimal est abstraite
-    // AAnimal animal; // Décommenter cette ligne devrait provoquer une erreur de compilation
-    SUCCEED(); // Si le code compile, le test réussit
+// Fonction d'aide pour capturer la sortie standard
+std::string capture_stdout(std::function<void()> func) {
+    testing::internal::CaptureStdout();
+    func();
+    return testing::internal::GetCapturedStdout();
 }
 
+// Test que AAnimal est une classe abstraite
+// Cette ligne ne devrait pas compiler si AAnimal est abstraite
+// TEST(Ex02_AbstractClassTest, CannotInstantiateAAnimal) {
+//     AAnimal animal; // Doit provoquer une erreur de compilation
+// }
+
 // Test que les classes dérivées implémentent makeSound()
-TEST(DerivedClassesTest, MakeSoundImplementation) {
+TEST(Ex02_DerivedClassesTest, MakeSoundImplementation) {
     AAnimal *dog = new Dog();
     AAnimal *cat = new Cat();
 
-    testing::internal::CaptureStdout();
-    dog->makeSound();
-    std::string outputDog = testing::internal::GetCapturedStdout();
-
-    testing::internal::CaptureStdout();
-    cat->makeSound();
-    std::string outputCat = testing::internal::GetCapturedStdout();
+    std::string outputDog = capture_stdout([&]() { dog->makeSound(); });
+    std::string outputCat = capture_stdout([&]() { cat->makeSound(); });
 
     EXPECT_EQ(outputDog, "Woula jsuis un chien !\n");
     EXPECT_EQ(outputCat, "Miaou le chat !\n");
@@ -31,22 +32,49 @@ TEST(DerivedClassesTest, MakeSoundImplementation) {
     delete cat;
 }
 
+// Test des constructeurs et destructeurs avec AAnimal
+TEST(Ex02_AAnimalTest, ConstructorsDestructors) {
+    testing::internal::CaptureStdout();
+    { Cat cat("Simba"); }
+    std::string output = testing::internal::GetCapturedStdout();
+    EXPECT_EQ(
+        output,
+        "AAnimal Parameter constructor\nBrain Default constructor\nCat Parameter constructor\n"
+        "Cat Destructor\nBrain Destructor\nAAnimal Destructor\n");
+}
+
+TEST(Ex02_AAnimalTest, Polymorphism) {
+    AAnimal *animals[2];
+    animals[0] = new Dog("Buddy");
+    animals[1] = new Cat("Whiskers");
+
+    EXPECT_EQ(animals[0]->getType(), "Buddy");
+    EXPECT_EQ(animals[1]->getType(), "Whiskers");
+
+    std::string outputDog = capture_stdout([&]() { animals[0]->makeSound(); });
+    std::string outputCat = capture_stdout([&]() { animals[1]->makeSound(); });
+
+    EXPECT_EQ(outputDog, "Woula jsuis un chien !\n");
+    EXPECT_EQ(outputCat, "Miaou le chat !\n");
+
+    for (int i = 0; i < 2; i++) {
+        delete animals[i];
+    }
+}
+
 // Test du destructeur virtuel
-TEST(VirtualDestructorTest, ProperDestruction) {
+TEST(Ex02_VirtualDestructorTest, ProperDestruction) {
     testing::internal::CaptureStdout();
     AAnimal *animal = new Dog();
     delete animal;
     std::string output = testing::internal::GetCapturedStdout();
-
-    // Vérifier que le destructeur de Dog est appelé
-    EXPECT_NE(output.find("Dog Destructor"), std::string::npos);
-    EXPECT_NE(output.find("AAnimal Destructor"), std::string::npos);
+    EXPECT_EQ(output, "AAnimal Parameter constructor\nBrain Default constructor\nDog Default "
+                      "constructor\nDog Destructor\nBrain Destructor\nAAnimal Destructor\n");
 }
 
 // Test de la pure virtual function
-TEST(PureVirtualFunctionTest, MakeSoundIsPureVirtual) {
-    // Ceci devrait échouer à la compilation si makeSound() n'est pas pure virtuelle
-    // AAnimal animal; // Décommenter cette ligne devrait provoquer une erreur de compilation
-    SUCCEED(); // Si le code compile, le test réussit
-}
-
+// Ce test n'est pas exécutable car il doit échouer à la compilation
+// Il est commenté pour ne pas empêcher la compilation des autres tests
+// TEST(Ex02_PureVirtualFunctionTest, MakeSoundIsPureVirtual) {
+//     AAnimal animal; // Doit provoquer une erreur de compilation
+// }

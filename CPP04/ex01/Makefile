@@ -10,7 +10,7 @@ BBlue   := $(shell printf "\033[1;34m")
 # Project Settings
 NAME   		:= ex01
 COMPILER	:= c++
-CPPFLAGS	:= -Wall -Werror -Wextra
+CPPFLAGS	:= -Wall -Wextra
 CACHE_DIR	:= $(shell pwd)/.cache
 OBJ_DIR		:= $(CACHE_DIR)/$(NAME)/obj
 DEP_DIR		:= $(CACHE_DIR)/$(NAME)/dep

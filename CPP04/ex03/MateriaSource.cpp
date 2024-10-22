@@ -40,7 +40,7 @@ MateriaSource::~MateriaSource() {
 void MateriaSource::learnMateria(AMateria *m) {
     for (int i = 0; i < 4; i++) {
         if (!_materias[i]) {
-            _materias[i] = m->clone();
+            _materias[i] = m;
             break;
         }
     }
