@@ -15,13 +15,13 @@ FG_WHITE    := $(shell printf "\033[37m")
 # Project Settings
 TARGET       := ex02
 CXX          := c++
-CXXFLAGS     := -Wall -Werror -Wextra -std=c++98
+CXXFLAGS     := -Wall -Werror -Wextra
 BUILD_DIR    := .build
 OBJ_DIR      := $(BUILD_DIR)/obj
 DEP_DIR      := $(BUILD_DIR)/dep
 
 # Source and Object Files
-SRCS         := main.cpp AAnimal.cpp Dog.cpp Cat.cpp WrongAnimal.cpp WrongCat.cpp Brain.cpp
+SRCS         := testMain.cpp AAnimal.cpp Dog.cpp Cat.cpp WrongAnimal.cpp WrongCat.cpp Brain.cpp
 OBJS         := $(addprefix $(OBJ_DIR)/,$(SRCS:.cpp=.o))
 DEPS         := $(addprefix $(DEP_DIR)/,$(SRCS:.cpp=.d))
 
@@ -62,7 +62,7 @@ $(OBJ_DIR)/%.o: %.cpp | $(OBJ_DIR) $(DEP_DIR)
 # Linking
 $(TARGET): $(OBJS)
 	@printf "$(FG_GREEN)\033[2K[100%%] Linking $(FG_CYAN)$(TARGET)$(RESET)\n"
-	@$(CXX) $(CXXFLAGS) -o $@ $^
+	@$(CXX) -lgtest -lgtest_main -lpthread $(CXXFLAGS) -o $@ $^
 	@printf "$(BOLD)$(FG_GREEN)Compilation of $(FG_CYAN)$(TARGET)$(FG_GREEN) completed.$(RESET)\n"
 
 # Include Dependencies
