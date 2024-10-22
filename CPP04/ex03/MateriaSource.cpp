@@ -6,16 +6,26 @@ MateriaSource::MateriaSource() : _materias() {
     }
 }
 
-MateriaSource::MateriaSource(const MateriaSource &other) : _materias() {
+MateriaSource::MateriaSource(const MateriaSource &other) {
     for (int i = 0; i < 4; i++) {
-        _materias[i] = other._materias[i];
+        if (other._materias[i])
+            _materias[i] = other._materias[i]->clone();
+        else
+            _materias[i] = NULL;
     }
 }
 
 MateriaSource &MateriaSource::operator=(const MateriaSource &other) {
     if (this != &other) {
         for (int i = 0; i < 4; i++) {
-            _materias[i] = other._materias[i];
+            delete _materias[i];
+            _materias[i] = NULL;
+        }
+        for (int i = 0; i < 4; i++) {
+            if (other._materias[i])
+                _materias[i] = other._materias[i]->clone();
+            else
+                _materias[i] = NULL;
         }
     }
     return *this;
@@ -30,7 +40,7 @@ MateriaSource::~MateriaSource() {
 void MateriaSource::learnMateria(AMateria *m) {
     for (int i = 0; i < 4; i++) {
         if (!_materias[i]) {
-            _materias[i] = m;
+            _materias[i] = m->clone();
             break;
         }
     }

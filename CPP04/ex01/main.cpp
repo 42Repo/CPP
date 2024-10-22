@@ -61,6 +61,21 @@ int main() {
         }
     }
 
+    Dog basic;
+    basic.getBrain()->setIdea(0, "Original Idea");
+
+    {
+        Dog tmp = basic;
+        tmp.getBrain()->setIdea(0, "Modified Idea");
+        // Verify that basic's brain idea is unchanged
+        std::cout << "Basic Dog Brain Idea: " << basic.getBrain()->getIdea(0) << std::endl;
+        std::cout << "Tmp Dog Brain Idea: " << tmp.getBrain()->getIdea(0) << std::endl;
+    }
+
+    // After tmp is destroyed, basic's brain should still be intact
+    std::cout << "After tmp is destroyed:" << std::endl;
+    std::cout << "Basic Dog Brain Idea: " << basic.getBrain()->getIdea(0) << std::endl;
+
     for (int i = 0; i < size; i++) {
         delete animals[i];
     }

@@ -2,7 +2,6 @@
 #include "Cure.h"
 #include "Ice.h"
 #include "MateriaSource.h"
-#include <iostream>
 
 int main() {
     IMateriaSource *src = new MateriaSource();
