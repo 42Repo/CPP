@@ -35,8 +35,8 @@ void ScavTrap::guardGate() const {
 }
 
 void ScavTrap::attack(const std::string &target) {
-    if (_energyPoints <= 0) {
-        std::cout << "Not enough energy points" << std::endl;
+    if (_energyPoints <= 0 || _hitPoints <= 0) {
+        std::cout << getName() << " has no energy or is already dead and can't attack!" << std::endl;
         return;
     }
     _energyPoints--;

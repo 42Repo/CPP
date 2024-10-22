@@ -10,7 +10,7 @@ const int DEFAULT_SCAVTRAP_ATTACK_DAMAGE = 20;
 class ScavTrap : virtual public ClapTrap {
   public:
     ScavTrap();
-    ScavTrap(const std::string &name);
+    explicit ScavTrap(const std::string &name);
     ScavTrap(const ScavTrap &other);
     ScavTrap &operator=(const ScavTrap &other);
     ~ScavTrap();

@@ -29,16 +29,16 @@
 - [x] Exercise 02
 - [x] Exercise 03
 
-**Score:** N/A
+**Score:** 100/100 ✅
 
 ### CPP03
 
 - [x] Exercise 00
 - [x] Exercise 01
 - [x] Exercise 02
-- [ ] Exercise 03
+- [x] Exercise 03
 
-**Score:** N/A
+**Score:** 100/100 ✅
 
 ### CPP04
 

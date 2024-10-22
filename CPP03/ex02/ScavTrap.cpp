@@ -25,12 +25,13 @@ ScavTrap::~ScavTrap() { std::cout << "ScavTrap Destructor" << std::endl; }
 void ScavTrap::guardGate() { std::cout << "ScavTrap is now in Gate keeper mode." << std::endl; }
 
 void ScavTrap::attack(const std::string &target) {
-    if (_energyPoints <= 0) {
-        std::cout << "Not enough energy point" << std::endl;
+    if (_energyPoints <= 0 || _hitPoints <= 0) {
+        std::cout << _name << " has no energy or is already dead and can't attack!" << std::endl;
         return;
     }
     _energyPoints--;
-    std::cout << "ScavTrap " << target << " take " << _hitPoints << " damage !" << std::endl;
+    std::cout << "ScavTrap " << _name << " attacks " << target << ", causing " << _attackDamage
+              << " points of damage!" << std::endl;
 }
 
 std::string ScavTrap::show(void) const {

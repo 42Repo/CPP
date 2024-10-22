@@ -79,6 +79,9 @@ int main() {
         }
     }
 
+    // This don't work because AAnimal is an abstract class
+    // AAnimal *wrongAnimal = new AAnimal();
+
     for (int i = 0; i < size; i++) {
         delete AAnimals[i];
     }
