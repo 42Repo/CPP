@@ -35,6 +35,7 @@ int main() {
     me->equip(src->createMateria("ice"));
     me->equip(src->createMateria("cure"));
     me->equip(src->createMateria("ice"));
+    me->equip(src->createMateria("cure"));
 
     std::cout << "\n=== Using All Equipped Materias ===" << std::endl;
     for (int i = 0; i < 4; i++) {
