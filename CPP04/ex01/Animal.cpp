@@ -11,7 +11,7 @@ Animal::Animal(const Animal &a) : _type(a._type) {
 }
 
 Animal &Animal::operator=(const Animal &a) {
-    std::cout << "Animal Copy assignment operator constructor" << std::endl;
+    std::cout << "Animal Copy assignment operator called" << std::endl;
     if (this != &a) {
         _type = a._type;
     }
