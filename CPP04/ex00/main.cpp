@@ -1,53 +1,70 @@
+#include "Animal.h"
 #include "Cat.h"
 #include "Dog.h"
+#include "WrongAnimal.h"
 #include "WrongCat.h"
 
 int main() {
-    // Test des constructeurs par défaut
-    const Animal *meta = new Animal();
-    const Animal *j = new Dog();
-    const Animal *i = new Cat();
 
-    std::cout << j->getType() << " " << std::endl;
-    std::cout << i->getType() << " " << std::endl;
-    i->makeSound();
-    j->makeSound();
-    meta->makeSound();
+    std::cout << "=== Testing Default Constructors ===" << std::endl;
+    const Animal *animal = new Animal();
+    const Animal *dog = new Dog();
+    const Animal *cat = new Cat();
 
-    // Test du constructeur par copie
-    Animal copyMeta(*meta);
-    Animal copyDog(*j);
-    Animal copyCat(*i);
+    std::cout << "\n=== Testing getType() Method ===" << std::endl;
+    std::cout << "Animal type: " << animal->getType() << std::endl;
+    std::cout << "Dog type: " << dog->getType() << std::endl;
+    std::cout << "Cat type: " << cat->getType() << std::endl;
 
-    // Test de l'opérateur d'assignation
-    Animal assignMeta = copyMeta;
-    Animal assignDog = copyDog;
-    Animal assignCat = copyCat;
+    std::cout << "\n=== Testing makeSound() Method ===" << std::endl;
+    animal->makeSound();
+    dog->makeSound();
+    cat->makeSound();
 
-    // Nettoyage
-    delete meta;
-    delete j;
-    delete i;
+    std::cout << "\n=== Testing Copy Constructors ===" << std::endl;
+    Animal animalCopy(*animal);
+    Dog    dogCopy(*dynamic_cast<const Dog *>(dog));
+    Cat    catCopy(*dynamic_cast<const Cat *>(cat));
 
-    std::cout << "=====================" << std::endl;
+    std::cout << "\n=== Testing Assignment Operators ===" << std::endl;
+    Animal animalAssign;
+    animalAssign = animalCopy;
+    Dog dogAssign;
+    dogAssign = dogCopy;
+    Cat catAssign;
+    catAssign = catCopy;
 
-    // Test avec WrongAnimal et WrongCat
-    const WrongAnimal *meta2 = new WrongAnimal();
-    const WrongAnimal *i2 = new WrongCat();
+    std::cout << "\n=== Cleaning Up ===" << std::endl;
+    delete animal;
+    delete dog;
+    delete cat;
 
-    std::cout << i2->getType() << " " << std::endl;
-    i2->makeSound();
-    meta2->makeSound();
+    std::cout << "\n=====================\n" << std::endl;
 
-    // Test du constructeur par copie et de l'assignation pour WrongAnimal
-    WrongAnimal copyWrongMeta(*meta2);
-    WrongAnimal copyWrongCat(*i2);
-    WrongAnimal assignWrongMeta = copyWrongMeta;
-    WrongAnimal assignWrongCat = copyWrongCat;
+    std::cout << "=== Testing WrongAnimal and WrongCat ===" << std::endl;
+    const WrongAnimal *wrongAnimal = new WrongAnimal();
+    const WrongAnimal *wrongCat = new WrongCat();
 
-    // Nettoyage
-    delete meta2;
-    delete i2;
+    std::cout << "\n=== Testing getType() Method ===" << std::endl;
+    std::cout << "WrongAnimal type: " << wrongAnimal->getType() << std::endl;
+    std::cout << "WrongCat type: " << wrongCat->getType() << std::endl;
+
+    std::cout << "\n=== Testing makeSound() Method ===" << std::endl;
+    wrongAnimal->makeSound();
+    wrongCat->makeSound();
+
+    std::cout << "\n=== Testing Copy Constructors and Assignment Operators ===" << std::endl;
+    WrongAnimal wrongAnimalCopy(*wrongAnimal);
+    WrongCat    wrongCatCopy(*static_cast<const WrongCat *>(wrongCat));
+
+    WrongAnimal wrongAnimalAssign;
+    wrongAnimalAssign = wrongAnimalCopy;
+    WrongCat wrongCatAssign;
+    wrongCatAssign = wrongCatCopy;
+
+    std::cout << "\n=== Cleaning Up ===" << std::endl;
+    delete wrongAnimal;
+    delete wrongCat;
 
     return 0;
 }

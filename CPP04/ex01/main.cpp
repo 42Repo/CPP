@@ -1,56 +1,39 @@
+#include "Animal.h"
 #include "Cat.h"
 #include "Dog.h"
-#include "WrongCat.h"
 
 int main() {
 
-    const Animal *one = new Dog();
-    const Animal *two = new Cat();
+    std::cout << "=== Testing Default Constructors ===" << std::endl;
+    const Animal *dog = new Dog();
+    const Animal *cat = new Cat();
 
-    delete one; // should not create a leak
-    delete two;
+    std::cout << "\n=== Testing getType() and makeSound() Methods ===" << std::endl;
+    std::cout << "Dog type: " << dog->getType() << std::endl;
+    std::cout << "Cat type: " << cat->getType() << std::endl;
+    dog->makeSound();
+    cat->makeSound();
 
-    const Animal      *meta = new Animal();
-    const Animal      *Doggo = new Dog();
-    const Animal      *Catos = new Cat();
-    const WrongAnimal *wrong = new WrongCat();
+    std::cout << "\n=== Testing Brain Functionality ===" << std::endl;
+    Cat *cat1 = new Cat();
+    Cat *cat2 = new Cat();
 
-    std::cout << std::endl;
-    std::cout << "Meta:" << std::endl;
-    meta->makeSound();
-    std::cout << std::endl;
-    std::cout << "Dog:" << std::endl;
-    Doggo->makeSound();
-    std::cout << std::endl;
-    std::cout << "Cat:" << std::endl;
-    Catos->makeSound();
-    std::cout << std::endl;
-    std::cout << "WrongCat:" << std::endl;
-    wrong->makeSound();
-    std::cout << std::endl;
+    cat1->getBrain()->setIdea(0, "Chase mice");
+    cat1->getBrain()->setIdea(1, "Climb trees");
 
-    // idea test
+    cat2->getBrain()->setIdea(0, "Scratch furniture");
+    cat2->getBrain()->setIdea(1, "Sleep all day");
 
-    const Cat *cat = new Cat();
-    const Cat *cat2 = new Cat();
-    cat->getBrain()->setIdea(0, "Idea 1");
-    cat->getBrain()->setIdea(1, "Idea 2");
+    std::cout << "Cat1's ideas:" << std::endl;
+    std::cout << "- " << cat1->getBrain()->getIdea(0) << std::endl;
+    std::cout << "- " << cat1->getBrain()->getIdea(1) << std::endl;
 
-    cat2->getBrain()->setIdea(0, "Idea 3");
-    cat2->getBrain()->setIdea(1, "Idea 4");
+    std::cout << "Cat2's ideas:" << std::endl;
+    std::cout << "- " << cat2->getBrain()->getIdea(0) << std::endl;
+    std::cout << "- " << cat2->getBrain()->getIdea(1) << std::endl;
 
-    std::cout << "Cat 1 Brain:" << std::endl;
-    std::cout << cat->getBrain()->getIdea(0) << std::endl;
-    std::cout << cat->getBrain()->getIdea(1) << std::endl;
-    std::cout << std::endl;
-
-    std::cout << "Cat 2 Brain:" << std::endl;
-    std::cout << cat2->getBrain()->getIdea(0) << std::endl;
-    std::cout << cat2->getBrain()->getIdea(1) << std::endl;
-
-    // Main test
-
-    const int size = 10;
+    std::cout << "\n=== Testing Array of Animals ===" << std::endl;
+    const int size = 4;
     Animal   *animals[size];
 
     for (int i = 0; i < size; i++) {
@@ -61,30 +44,30 @@ int main() {
         }
     }
 
-    Dog basic;
-    basic.getBrain()->setIdea(0, "Original Idea");
-
-    {
-        Dog tmp = basic;
-        tmp.getBrain()->setIdea(0, "Modified Idea");
-        // Verify that basic's brain idea is unchanged
-        std::cout << "Basic Dog Brain Idea: " << basic.getBrain()->getIdea(0) << std::endl;
-        std::cout << "Tmp Dog Brain Idea: " << tmp.getBrain()->getIdea(0) << std::endl;
-    }
-
-    // After tmp is destroyed, basic's brain should still be intact
-    std::cout << "After tmp is destroyed:" << std::endl;
-    std::cout << "Basic Dog Brain Idea: " << basic.getBrain()->getIdea(0) << std::endl;
-
+    std::cout << "\n=== Cleaning Up Array of Animals ===" << std::endl;
     for (int i = 0; i < size; i++) {
         delete animals[i];
     }
 
+    std::cout << "\n=== Testing Deep Copy ===" << std::endl;
+    Dog basicDog;
+    basicDog.getBrain()->setIdea(0, "Play fetch");
+
+    {
+        Dog tmpDog = basicDog;
+        std::cout << "tmpDog's idea before change: " << tmpDog.getBrain()->getIdea(0) << std::endl;
+        tmpDog.getBrain()->setIdea(0, "Chase tail");
+        std::cout << "tmpDog's idea after change: " << tmpDog.getBrain()->getIdea(0) << std::endl;
+    }
+
+    std::cout << "basicDog's idea should remain unchanged: " << basicDog.getBrain()->getIdea(0)
+              << std::endl;
+
+    std::cout << "\n=== Cleaning Up ===" << std::endl;
+    delete cat1;
     delete cat2;
     delete cat;
-    delete wrong;
-    delete Catos;
-    delete Doggo;
-    delete meta;
+    delete dog;
+
     return 0;
 }
