@@ -35,7 +35,7 @@ debug: CXXFLAGS += -gdwarf-4 -Wunused -Wconversion -Wfloat-equal -Wnon-virtual-d
                    -Wdisabled-optimization -Wformat=2 -Winit-self -Wmissing-declarations \
                    -Wmissing-include-dirs -Wold-style-cast -Woverloaded-virtual \
                    -Wredundant-decls -Wshadow -Wsign-conversion -Wsign-promo \
-                   -Wstrict-overflow=5 -Wswitch-default -Wundef
+                   -Wstrict-overflow=5 -Wswitch-default -Wundef -Wno-weak-vtables -Wno-unsafe-buffer-usage
 debug: CXXFLAGS += $(shell if $(CXX) --version 2>&1 | grep -q 'clang'; \
                           then echo "-Weverything -Wno-suggest-destructor-override -Wno-suggest-override"; \
                           else echo "-Wlogical-op -Wstrict-null-sentinel"; fi)
