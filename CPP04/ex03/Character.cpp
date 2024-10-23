@@ -61,7 +61,6 @@ void Character::unequip(int idx) {
     if (idx >= 0 && idx < 4) {
         std::cout << "Character unequipped " << _materias[idx]->getType() << std::endl;
         _materias[idx] = NULL;
-        return;
     }
     std::cout << "Invalid index" << std::endl;
 }
