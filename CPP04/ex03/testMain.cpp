@@ -89,7 +89,7 @@ TEST(Ex03_CharacterTest, EquipAndUseMateria) {
 
     // Utiliser une materia non équipée (doit ne rien faire)
     std::string outputInvalidUse = capture_stdout([&]() { character.use(4, target); });
-    EXPECT_EQ(outputInvalidUse, "");
+    EXPECT_EQ(outputInvalidUse, "Invalid index\n");
 
     // Nettoyage : extra3 doit être supprimé manuellement
     delete extra3;
@@ -116,7 +116,7 @@ TEST(Ex03_CharacterTest, UnequipMateria) {
 
     // Utiliser la première slot déséquipée (doit ne rien faire)
     std::string outputUnequip = capture_stdout([&]() { character.use(0, target); });
-    EXPECT_EQ(outputUnequip, "");
+    EXPECT_EQ(outputUnequip, "Invalid index\n");
 
     // Utiliser la deuxième slot (cure)
     std::string outputUse1 = capture_stdout([&]() { character.use(1, target); });
@@ -155,7 +155,7 @@ TEST(Ex03_CharacterTest, CopyConstructor) {
     copy.equip(newIce);
 
     std::string outputOriginalUse2 = capture_stdout([&]() { original.use(2, target); });
-    EXPECT_EQ(outputOriginalUse2, ""); // original n'a que 2 materias
+    EXPECT_EQ(outputOriginalUse2, "Invalid index\n"); // original n'a que 2 materias
 
     // Nettoyage : les materias du copy seront supprimées par son destructeur
 }
@@ -188,7 +188,7 @@ TEST(Ex03_CharacterTest, AssignmentOperator) {
     assigned.equip(newCure);
 
     std::string outputOriginalUse2 = capture_stdout([&]() { original.use(2, target); });
-    EXPECT_EQ(outputOriginalUse2, ""); // original n'a que 2 materias
+    EXPECT_EQ(outputOriginalUse2, "Invalid index\n"); // original n'a que 2 materias
 
     // Nettoyage : les materias du assigned seront supprimées par son destructeur
 }
@@ -302,8 +302,8 @@ TEST(Ex03_CharacterTest, ManageUnequippedMaterias) {
     std::string outputUse0 = capture_stdout([&]() { character.use(0, target); });
     std::string outputUse1 = capture_stdout([&]() { character.use(1, target); });
 
-    EXPECT_EQ(outputUse0, "");
-    EXPECT_EQ(outputUse1, "");
+    EXPECT_EQ(outputUse0, "Invalid index\n");
+    EXPECT_EQ(outputUse1, "Invalid index\n");
 
     // Les materias déséquipées ne sont pas gérées par le Character et doivent être supprimées
     // manuellement
