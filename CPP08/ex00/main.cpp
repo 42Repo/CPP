@@ -34,7 +34,7 @@ int main() {
     }
 
     std::list<int> l;
-    for (int i = 0; i < 10; i++)
+    for (int i = 9; i >= 0; i--)
         l.push_back(i);
     std::cout << "List: ";
     for (std::list<int>::iterator it = l.begin(); it != l.end(); it++)
