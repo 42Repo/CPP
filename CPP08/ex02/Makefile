@@ -15,13 +15,13 @@ FG_WHITE    := $(shell printf "\033[37m")
 # Project Settings
 TARGET       := ex02
 CXX          := c++
-CXXFLAGS     := -Wall -Werror -Wextra -std=c++98
+CXXFLAGS     := -Wall -Werror -Wextra -std=c++98 
 BUILD_DIR    := .build
 OBJ_DIR      := $(BUILD_DIR)/obj
 DEP_DIR      := $(BUILD_DIR)/dep
 
 # Source and Object Files
-SRCS         := main.cpp AAnimal.cpp Dog.cpp Cat.cpp WrongAnimal.cpp WrongCat.cpp Brain.cpp
+SRCS         := main.cpp
 OBJS         := $(addprefix $(OBJ_DIR)/,$(SRCS:.cpp=.o))
 DEPS         := $(addprefix $(DEP_DIR)/,$(SRCS:.cpp=.d))
 
