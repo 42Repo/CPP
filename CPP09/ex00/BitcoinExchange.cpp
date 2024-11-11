@@ -5,7 +5,7 @@
 
 BitcoinExchange::BitcoinExchange() {}
 
-BitcoinExchange::BitcoinExchange(const std::string &dbFile) { loadDatabase(dbFile); }
+BitcoinExchange::BitcoinExchange(const std::string &dbFile) { _loadDatabase(dbFile); }
 
 BitcoinExchange::BitcoinExchange(const BitcoinExchange &other)
     : exchangeRates(other.exchangeRates) {}
@@ -17,7 +17,7 @@ BitcoinExchange &BitcoinExchange::operator=(const BitcoinExchange &other) {
     return *this;
 }
 
-void BitcoinExchange::loadDatabase(const std::string &dbFile) {
+void BitcoinExchange::_loadDatabase(const std::string &dbFile) {
     std::ifstream file(dbFile.c_str());
     if (!file.is_open()) {
         throw std::runtime_error("Error: could not open file.");

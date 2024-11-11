@@ -16,5 +16,5 @@ class BitcoinExchange {
   private:
     BitcoinExchange();
     std::map<std::string, double> exchangeRates;
-    void                          loadDatabase(const std::string &dbFile);
+    void                          _loadDatabase(const std::string &dbFile);
 };
