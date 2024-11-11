@@ -55,8 +55,18 @@ void BitcoinExchange::isValidDate(const std::string &date) const {
     char               dash1 = 0;
     char               dash2 = 0;
     std::istringstream dateStream(date);
+
     dateStream >> year >> dash1 >> month >> dash2 >> day;
     if (dash1 != '-' || dash2 != '-' || month < 1 || month > 12 || day < 1 || day > 31) {
+        throw std::runtime_error("Error: bad date format.");
+    }
+    if (month == 2) {
+        bool isLeapYear = (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
+        if ((day > 29) || (!isLeapYear && day > 28)) {
+            throw std::runtime_error("Error: bad date format.");
+        }
+    }
+    if ((month == 4 || month == 6 || month == 9 || month == 11) && day > 30) {
         throw std::runtime_error("Error: bad date format.");
     }
 }
