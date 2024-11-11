@@ -84,7 +84,7 @@
 
 ### CPP09
 
-- [ ] Exercise 00
+- [x] Exercise 00
 - [ ] Exercise 01
 - [ ] Exercise 02
 

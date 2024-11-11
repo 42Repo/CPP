@@ -13,7 +13,7 @@ FG_CYAN     := $(shell printf "\033[36m")
 FG_WHITE    := $(shell printf "\033[37m")
 
 # Project Settings
-TARGET       := ex00
+TARGET       := btc
 CXX          := c++
 CXXFLAGS     := -Wall -Werror -Wextra -std=c++98
 BUILD_DIR    := .build
@@ -21,7 +21,7 @@ OBJ_DIR      := $(BUILD_DIR)/obj
 DEP_DIR      := $(BUILD_DIR)/dep
 
 # Source and Object Files
-SRCS         := main.cpp AAnimal.cpp Dog.cpp Cat.cpp WrongAnimal.cpp WrongCat.cpp Brain.cpp
+SRCS         := main.cpp BitcoinExchange.cpp
 OBJS         := $(addprefix $(OBJ_DIR)/,$(SRCS:.cpp=.o))
 DEPS         := $(addprefix $(DEP_DIR)/,$(SRCS:.cpp=.d))
 
@@ -37,8 +37,8 @@ debug: CXXFLAGS += -gdwarf-4 -Wunused -Wconversion -Wfloat-equal -Wnon-virtual-d
                    -Wredundant-decls -Wsign-conversion -Wsign-promo \
                    -Wstrict-overflow=5 -Wswitch-default -Wundef -Wshadow
 debug: CXXFLAGS += $(shell if $(CXX) --version 2>&1 | grep -q 'clang'; \
-                          then echo "-Weverything -Wno-suggest-destructor-override -Wno-suggest-override -Wno-shadow"; \
-                          else echo "-Wlogical-op -Wstrict-null-sentinel -Weffc++ \
+                          then echo "-Weverything -Wno-suggest-destructor-override -Wno-suggest-override -Wno-shadow -Wno-unsafe-buffer-usage"; \
+                          else echo "-Wlogical-op -Wstrict-null-sentinel -Weffc++ -Wno-effc++ \
                           -Wmissing-noreturn -Wuseless-cast -Wduplicated-branches \
                           -Wduplicated-cond -Wno-unknown-pragmas"; fi)
 debug: re
