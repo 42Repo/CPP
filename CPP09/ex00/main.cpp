@@ -3,6 +3,37 @@
 #include <iostream>
 #include <sstream>
 
+static std::string stripWhitespace(const std::string &str) {
+    std::string result;
+    for (std::string::const_iterator it = str.begin(); it != str.end(); ++it) {
+        if (isspace(*it) == 0) {
+            result += *it;
+        }
+    }
+    return result;
+}
+
+static bool isValidNumber(const std::string &str) {
+    std::istringstream iss(str);
+    double             number = 0;
+    char               charVal = '\0';
+
+    std::string strTemp = stripWhitespace(str);
+    for (std::string::const_iterator it = strTemp.begin(); it != strTemp.end(); ++it) {
+        if (isdigit(*it) == 0 && *it != '.') {
+            return false;
+        }
+    }
+    return (iss >> number) && !(iss >> charVal);
+}
+
+static double stringToDouble(const std::string &str) {
+    std::istringstream iss(str);
+    double             value = 0;
+    iss >> value;
+    return value;
+}
+
 int main(int argc, char *argv[]) {
     if (argc != 2) {
         std::cerr << "Usage: " << argv[0] << " <input_file>" << std::endl;
@@ -20,8 +51,12 @@ int main(int argc, char *argv[]) {
         while (std::getline(inputFile, line)) {
             std::istringstream iss(line);
             std::string        date;
+            std::string        valueStr;
             double             value = 0;
-            if (std::getline(iss, date, '|') && iss >> value) {
+            if (std::getline(iss, date, '|') && std::getline(iss, valueStr) &&
+                isValidNumber(valueStr)) {
+                date = stripWhitespace(date);
+                value = stringToDouble(valueStr);
                 try {
                     exchange.isValidDate(date);
                     exchange.isValidValue(value);

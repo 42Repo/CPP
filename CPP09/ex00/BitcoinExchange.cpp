@@ -46,7 +46,7 @@ double BitcoinExchange::getValueOnDate(const std::string &date, double value) co
 }
 
 void BitcoinExchange::isValidDate(const std::string &date) const {
-    if (date.size() != 11 || date[4] != '-' || date[7] != '-') {
+    if (date.size() != 10 || date[4] != '-' || date[7] != '-') {
         throw std::runtime_error("Error: bad date format.");
     }
     int                year = 0;
