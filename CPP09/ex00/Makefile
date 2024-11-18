@@ -1,7 +1,6 @@
 # Color Definitions
 RESET       := $(shell printf "\033[0m")
 BOLD        := $(shell printf "\033[1m")
-DIM         := $(shell printf "\033[2m")
 
 FG_BLACK    := $(shell printf "\033[30m")
 FG_RED      := $(shell printf "\033[31m")
