@@ -37,10 +37,10 @@ debug: CXXFLAGS += -gdwarf-4 -Wunused -Wconversion -Wfloat-equal -Wnon-virtual-d
                    -Wredundant-decls -Wsign-conversion -Wsign-promo \
                    -Wstrict-overflow=5 -Wswitch-default -Wundef -Wshadow
 debug: CXXFLAGS += $(shell if $(CXX) --version 2>&1 | grep -q 'clang'; \
-                          then echo "-Weverything -Wno-suggest-destructor-override -Wno-suggest-override -Wno-shadow -Wno-unsafe-buffer-usage"; \
-                          else echo "-Wlogical-op -Wstrict-null-sentinel -Weffc++ -Wno-effc++ \
+                          then echo "-Weverything -Wno-suggest-destructor-override -Wno-suggest-override -Wno-unsafe-buffer-usage"; \
+                          else echo "-Wlogical-op -Wstrict-null-sentinel -Weffc++ \
                           -Wmissing-noreturn -Wuseless-cast -Wduplicated-branches \
-                          -Wduplicated-cond -Wno-unknown-pragmas"; fi)
+                          -Wduplicated-cond"; fi)
 debug: re
 
 # Build Directories
