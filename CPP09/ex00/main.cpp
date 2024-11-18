@@ -14,17 +14,18 @@ static std::string stripWhitespace(const std::string &str) {
 }
 
 static bool isValidNumber(const std::string &str) {
-    std::istringstream iss(str);
-    double             number = 0;
-    char               charVal = '\0';
+    if (str.empty())
+        return false;
 
-    std::string strTemp = stripWhitespace(str);
-    for (std::string::const_iterator it = strTemp.begin(); it != strTemp.end(); ++it) {
-        if (isdigit(*it) == 0 && *it != '.') {
+    std::string stripped = stripWhitespace(str);
+    for (size_t i = 0; i < stripped.length(); ++i) {
+        if (isdigit(stripped[i]) == 0 && stripped[i] != '.')
             return false;
-        }
     }
-    return (iss >> number) && !(iss >> charVal);
+
+    std::istringstream iss(stripped);
+    double             value = 0;
+    return (iss >> value) && iss.eof();
 }
 
 static double stringToDouble(const std::string &str) {
@@ -36,43 +37,47 @@ static double stringToDouble(const std::string &str) {
 
 int main(int argc, char *argv[]) {
     if (argc != 2) {
-        std::cerr << "Usage: " << argv[0] << " <input_file>" << std::endl;
+        std::cerr << "Error: could not open file." << std::endl;
         return 1;
     }
 
-    try {
-        BitcoinExchange exchange("data.csv");
-        std::ifstream   inputFile(argv[1]);
-        if (!inputFile.is_open()) {
-            throw std::runtime_error("Error: could not open file.");
+    std::ifstream inputFile(argv[1]);
+    if (!inputFile.is_open()) {
+        std::cerr << "Error: could not open file." << std::endl;
+        return 1;
+    }
+
+    BitcoinExchange exchange("data.csv");
+    std::string     line;
+
+    while (std::getline(inputFile, line)) {
+        std::istringstream iss(line);
+        std::string        date;
+        std::string        valueStr;
+
+        if (!std::getline(iss, date, '|') || !std::getline(iss, valueStr)) {
+            std::cerr << "Error: bad input => " << line << std::endl;
+            continue;
         }
 
-        std::string line;
-        while (std::getline(inputFile, line)) {
-            std::istringstream iss(line);
-            std::string        date;
-            std::string        valueStr;
-            double             value = 0;
-            if (std::getline(iss, date, '|') && std::getline(iss, valueStr) &&
-                isValidNumber(valueStr)) {
-                date = stripWhitespace(date);
-                value = stringToDouble(valueStr);
-                try {
-                    exchange.isValidDate(date);
-                    exchange.isValidValue(value);
-                } catch (const std::exception &e) {
-                    std::cerr << e.what() << std::endl;
-                    continue;
-                }
-                double result = exchange.getValueOnDate(date, value);
-                std::cout << date << " => " << value << " = " << result << std::endl;
-            } else {
-                std::cerr << "Error: bad input => " << line << std::endl;
-            }
+        date = stripWhitespace(date);
+        valueStr = stripWhitespace(valueStr);
+
+        if (!isValidNumber(valueStr)) {
+            std::cerr << "Error: not a valid number." << std::endl;
+            continue;
         }
-    } catch (const std::exception &e) {
-        std::cerr << e.what() << std::endl;
-        return 1;
+
+        double value = stringToDouble(valueStr);
+
+        try {
+            exchange.isValidDate(date);
+            exchange.isValidValue(value);
+            double result = exchange.getValueOnDate(date, value);
+            std::cout << date << " => " << value << " = " << result << std::endl;
+        } catch (const std::exception &e) {
+            std::cerr << e.what() << std::endl;
+        }
     }
     return 0;
 }
