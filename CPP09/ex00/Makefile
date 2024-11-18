@@ -38,7 +38,7 @@ debug: CXXFLAGS += -gdwarf-4 -Wunused -Wconversion -Wfloat-equal -Wnon-virtual-d
                    -Wstrict-overflow=5 -Wswitch-default -Wundef -Wshadow
 debug: CXXFLAGS += $(shell if $(CXX) --version 2>&1 | grep -q 'clang'; \
                           then echo "-Weverything -Wno-suggest-destructor-override -Wno-suggest-override -Wno-unsafe-buffer-usage"; \
-                          else echo "-Wlogical-op -Wstrict-null-sentinel -Weffc++ \
+                          else echo "-Wlogical-op -Wstrict-null-sentinel \
                           -Wmissing-noreturn -Wuseless-cast -Wduplicated-branches \
                           -Wduplicated-cond"; fi)
 debug: re
