@@ -12,7 +12,7 @@ FG_CYAN     := $(shell printf "\033[36m")
 FG_WHITE    := $(shell printf "\033[37m")
 
 # Project Settings
-TARGET       := ex02
+TARGET       := PmergeMe
 CXX          := c++
 CXXFLAGS     := -Wall -Werror -Wextra -std=c++98
 BUILD_DIR    := .build
@@ -20,7 +20,7 @@ OBJ_DIR      := $(BUILD_DIR)/obj
 DEP_DIR      := $(BUILD_DIR)/dep
 
 # Source and Object Files
-SRCS         := main.cpp
+SRCS         := main.cpp PmergeMe.cpp
 OBJS         := $(addprefix $(OBJ_DIR)/,$(SRCS:.cpp=.o))
 DEPS         := $(addprefix $(DEP_DIR)/,$(SRCS:.cpp=.d))
 
