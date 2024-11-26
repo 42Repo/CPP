@@ -3,9 +3,6 @@
 #include "Dog.h"
 
 int main() {
-
-    std::cout << "=== Testing Abstract Class AAnimal ===" << std::endl;
-
     std::cout << "\n=== Creating Dog and Cat ===" << std::endl;
     const AAnimal *dog = new Dog();
     const AAnimal *cat = new Cat();

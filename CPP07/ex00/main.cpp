@@ -2,17 +2,17 @@
 #include <iostream>
 
 int main(void) {
-    int a = 2;
-    int b = 3;
-    ::swap(a, b);
-    std::cout << "a = " << a << ", b = " << b << std::endl;
-    std::cout << "min( a, b ) = " << ::min(a, b) << std::endl;
-    std::cout << "max( a, b ) = " << ::max(a, b) << std::endl;
-    std::string c = "chaine1";
-    std::string d = "chaine2";
-    ::swap(c, d);
-    std::cout << "c = " << c << ", d = " << d << std::endl;
-    std::cout << "min( c, d ) = " << ::min(c, d) << std::endl;
-    std::cout << "max( c, d ) = " << ::max(c, d) << std::endl;
+    int first = 2;
+    int second = 3;
+    ::swap(first, second);
+    std::cout << "a = " << first << ", b = " << second << std::endl;
+    std::cout << "min( a, b ) = " << ::min(first, second) << std::endl;
+    std::cout << "max( a, b ) = " << ::max(first, second) << std::endl;
+    std::string first_str = "chaine1";
+    std::string second_str = "chaine2";
+    ::swap(first_str, second_str);
+    std::cout << "c = " << first_str << ", d = " << second_str << std::endl;
+    std::cout << "min( c, d ) = " << ::min(first_str, second_str) << std::endl;
+    std::cout << "max( c, d ) = " << ::max(first_str, second_str) << std::endl;
     return 0;
 }

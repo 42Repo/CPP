@@ -1,2 +1,2 @@
-Checks: 'clang-analyzer-*,cppcoreguidelines-*,performance-*,readability-*,bugprone-*,hicpp-*,-hicpp-use-override,-cppcoreguidelines-explicit-virtual-functions,-hicpp-special-member-functions,-cppcoreguidelines-special-member-functions,-hicpp-use-nullptr,-hicpp-use-equals-default,-cppcoreguidelines-owning-memory'
+Checks: 'clang-analyzer-*,cppcoreguidelines-*,performance-*,readability-*,bugprone-*,hicpp-*,-hicpp-use-override,-cppcoreguidelines-explicit-virtual-functions,-hicpp-special-member-functions,-cppcoreguidelines-special-member-functions,-hicpp-use-nullptr,-hicpp-use-equals-default,-cppcoreguidelines-owning-memory,-readability-braces-around-statements,-hicpp-braces-around-statements'
 HeaderFilterRegex: '.*'

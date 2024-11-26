@@ -35,7 +35,9 @@ int main() {
     me->equip(src->createMateria("ice"));
     me->equip(src->createMateria("cure"));
     me->equip(src->createMateria("ice"));
-    me->equip(src->createMateria("cure"));
+    AMateria *tmp2 = src->createMateria("cure");
+    me->equip(tmp2);
+    delete tmp2;
 
     std::cout << "\n=== Using All Equipped Materias ===" << std::endl;
     for (int i = 0; i < 4; i++) {
@@ -43,6 +45,7 @@ int main() {
     }
 
     std::cout << "\n=== Cleaning Up ===" << std::endl;
+    delete tmp;
     delete bob;
     delete me;
     delete src;

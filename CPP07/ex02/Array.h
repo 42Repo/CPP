@@ -7,12 +7,12 @@ template <typename t> class Array {
 
   public:
     Array();
-    Array(unsigned int n);
+    explicit Array(unsigned int n);
     Array(Array const &src);
     Array &operator=(Array const &rhs);
     ~Array();
 
-    t           &operator[](unsigned int i);
+    t           &operator[](unsigned int index);
     unsigned int size() const;
     void         print() const;
 };

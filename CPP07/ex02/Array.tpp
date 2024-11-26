@@ -23,11 +23,11 @@ template <typename t> Array<t>::~Array() {
         delete[] _array;
 }
 
-template <typename t> t &Array<t>::operator[](unsigned int i) {
-    if (i >= _size) {
+template <typename t> t &Array<t>::operator[](unsigned int index) {
+    if (index >= _size) {
         throw std::exception();
     }
-    return _array[i];
+    return _array[index];
 }
 
 template <typename t> unsigned int Array<t>::size() const { return _size; }

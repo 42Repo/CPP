@@ -45,9 +45,9 @@
 - [x] Exercise 00
 - [x] Exercise 01
 - [x] Exercise 02
-- [ ] Exercise 03
+- [x] Exercise 03
 
-**Score:** N/A
+**Score:** 100/100 ✅
 
 ### CPP05
 
@@ -76,19 +76,17 @@
 
 ### CPP08
 
-- [ ] Exercise 00
-- [ ] Exercise 01
-- [ ] Exercise 02
-- [ ] Exercise 03
+- [x] Exercise 00
+- [x] Exercise 01
+- [x] Exercise 02
 
 **Score:** N/A
 
 ### CPP09
 
-- [ ] Exercise 00
+- [x] Exercise 00
 - [ ] Exercise 01
 - [ ] Exercise 02
-- [ ] Exercise 03
 
 **Score:** N/A
 

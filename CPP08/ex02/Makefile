@@ -15,13 +15,13 @@ FG_WHITE    := $(shell printf "\033[37m")
 # Project Settings
 TARGET       := ex02
 CXX          := c++
-CXXFLAGS     := -Wall -Werror -Wextra -std=c++98
+CXXFLAGS     := -Wall -Werror -Wextra -std=c++98 
 BUILD_DIR    := .build
 OBJ_DIR      := $(BUILD_DIR)/obj
 DEP_DIR      := $(BUILD_DIR)/dep
 
 # Source and Object Files
-SRCS         := main.cpp AAnimal.cpp Dog.cpp Cat.cpp WrongAnimal.cpp WrongCat.cpp Brain.cpp
+SRCS         := main.cpp
 OBJS         := $(addprefix $(OBJ_DIR)/,$(SRCS:.cpp=.o))
 DEPS         := $(addprefix $(DEP_DIR)/,$(SRCS:.cpp=.d))
 
@@ -34,11 +34,13 @@ debug: CXXFLAGS += -gdwarf-4 -Wunused -Wconversion -Wfloat-equal -Wnon-virtual-d
                    -Wnonnull -Wpedantic -Wcast-align -Wcast-qual -Wctor-dtor-privacy \
                    -Wdisabled-optimization -Wformat=2 -Winit-self -Wmissing-declarations \
                    -Wmissing-include-dirs -Wold-style-cast -Woverloaded-virtual \
-                   -Wredundant-decls -Wshadow -Wsign-conversion -Wsign-promo \
+                   -Wredundant-decls -Wsign-conversion -Wsign-promo \
                    -Wstrict-overflow=5 -Wswitch-default -Wundef
 debug: CXXFLAGS += $(shell if $(CXX) --version 2>&1 | grep -q 'clang'; \
-                          then echo "-Weverything -Wno-suggest-destructor-override -Wno-suggest-override"; \
-                          else echo "-Wlogical-op -Wstrict-null-sentinel"; fi)
+                          then echo "-Weverything -Wno-suggest-destructor-override -Wno-suggest-override -Wno-shadow"; \
+                          else echo "-Wlogical-op -Wstrict-null-sentinel -Weffc++ \
+                          -Wmissing-noreturn -Wuseless-cast -Wduplicated-branches \
+                          -Wduplicated-cond -Wno-unknown-pragmas"; fi)
 debug: re
 
 # Build Directories
