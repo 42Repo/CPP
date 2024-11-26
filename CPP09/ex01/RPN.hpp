@@ -8,5 +8,5 @@ class RPN {
     RPN(const RPN &other);
     RPN &operator=(const RPN &other);
     ~RPN();
-    int evaluate(const std::string &expression);
+    static int evaluate(const std::string &expression);
 };
