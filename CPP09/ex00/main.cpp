@@ -37,13 +37,13 @@ static double stringToDouble(const std::string &str) {
 
 int main(int argc, char *argv[]) {
     if (argc != 2) {
-        std::cerr << "Error: could not open file." << std::endl;
+        std::cerr << "Error: could not open file.\n";
         return 1;
     }
 
     std::ifstream inputFile(argv[1]);
     if (!inputFile.is_open()) {
-        std::cerr << "Error: could not open file." << std::endl;
+        std::cerr << "Error: could not open file.\n";
         return 1;
     }
 
@@ -56,7 +56,7 @@ int main(int argc, char *argv[]) {
         std::string        valueStr;
 
         if (!std::getline(iss, date, '|') || !std::getline(iss, valueStr)) {
-            std::cerr << "Error: bad input => " << line << std::endl;
+            std::cerr << "Error: bad input => " << line << "\n";
             continue;
         }
 
@@ -64,7 +64,7 @@ int main(int argc, char *argv[]) {
         valueStr = stripWhitespace(valueStr);
 
         if (!isValidNumber(valueStr)) {
-            std::cerr << "Error: not a valid number." << std::endl;
+            std::cerr << "Error: not a valid number.\n";
             continue;
         }
 
@@ -74,9 +74,9 @@ int main(int argc, char *argv[]) {
             exchange.isValidDate(date);
             exchange.isValidValue(value);
             double result = exchange.getValueOnDate(date, value);
-            std::cout << date << " => " << value << " = " << result << std::endl;
+            std::cout << date << " => " << value << " = " << result << "\n";
         } catch (const std::exception &e) {
-            std::cerr << e.what() << std::endl;
+            std::cerr << e.what() << "\n";
         }
     }
     return 0;
