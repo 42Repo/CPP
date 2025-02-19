@@ -1,5 +1,7 @@
 #include "AForm.h"
 
+AForm::AForm() : _name("DefaultAForm"), _isSigned(false), _gradeToSign(50), _gradeToExecute(100) {}
+
 AForm::AForm(const std::string &name, int16_t gradeToSign, int16_t gradeToExecute)
     : _name(name),
       _isSigned(false),

@@ -1,6 +1,6 @@
 #include "Form.h"
 
-void testBureaucratCreation() {
+static void testBureaucratCreation() {
     try {
         Bureaucrat b1("Bureaucrat1", 1);
         std::cout << b1 << std::endl;
@@ -28,7 +28,7 @@ void testBureaucratCreation() {
     }
 }
 
-void testFormCreation() {
+static void testFormCreation() {
     try {
         Form f1("Form1", 1, 1);
         std::cout << f1 << std::endl;
@@ -56,7 +56,7 @@ void testFormCreation() {
     }
 }
 
-void testFormSigning() {
+static void testFormSigning() {
     try {
         Bureaucrat b("Bureaucrat", 50);
         Form       f("Form", 100, 100);

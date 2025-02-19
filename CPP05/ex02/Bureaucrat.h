@@ -10,6 +10,8 @@ class AForm;
 
 class Bureaucrat {
   private:
+    Bureaucrat();
+    
     const std::string _name;
     int16_t           _grade;
 

@@ -1,6 +1,8 @@
 #include "Bureaucrat.h"
 #include "Form.h"
 
+Bureaucrat::Bureaucrat() : _name("DefaultBureaucrat"), _grade(75) {}
+
 Bureaucrat::Bureaucrat(std::string name, int16_t grade) : _name(name) {
     if (grade < MAX_GRADE)
         throw GradeTooHighException();

@@ -4,6 +4,8 @@
 
 class AForm {
   private:
+    AForm();
+
     std::string   _name;
     bool          _isSigned;
     const int16_t _gradeToSign;

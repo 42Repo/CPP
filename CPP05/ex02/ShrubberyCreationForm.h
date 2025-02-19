@@ -5,6 +5,8 @@
 
 class ShrubberyCreationForm : public AForm {
   private:
+    ShrubberyCreationForm();
+
     std::string _target;
     void        beExecuted() const;
 
