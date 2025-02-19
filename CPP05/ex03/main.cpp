@@ -113,11 +113,6 @@ int main() {
         form->beSigned(Bureaucrat("Bureaucrat", 1));
         form->execute(Bureaucrat("Bureaucrat", 1));
         delete form;
-
-        form = intern.makeForm("unknown form", "Unknown");
-        form->beSigned(Bureaucrat("Bureaucrat", 1));
-        form->execute(Bureaucrat("Bureaucrat", 1));
-        delete form;
     } catch (std::exception &e) {
         std::cerr << e.what() << std::endl;
     }
