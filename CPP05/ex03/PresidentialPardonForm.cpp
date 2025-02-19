@@ -1,5 +1,7 @@
 #include "PresidentialPardonForm.h"
 
+PresidentialPardonForm::PresidentialPardonForm() : AForm("Presidential Pardon", 25, 5) {}
+
 PresidentialPardonForm::PresidentialPardonForm(const std::string &target)
     : AForm("Presidential Pardon", 25, 5),
       _target(target) {}

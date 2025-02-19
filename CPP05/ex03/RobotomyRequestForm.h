@@ -6,6 +6,8 @@
 
 class RobotomyRequestForm : public AForm {
   private:
+    RobotomyRequestForm();
+
     std::string _target;
     void        beExecuted() const;
 
