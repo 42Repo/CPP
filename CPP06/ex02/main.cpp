@@ -41,7 +41,6 @@ void identify(Base &p) {
         (void)a;
         std::cout << "A" << '\n';
     } catch (...) {
-        std::cerr << "Error: could not cast to A" << '\n';
     }
 
     try {
@@ -49,7 +48,6 @@ void identify(Base &p) {
         (void)b;
         std::cout << "B" << '\n';
     } catch (...) {
-        std::cerr << "Error: could not cast to B" << '\n';
     }
 
     try {
@@ -57,7 +55,6 @@ void identify(Base &p) {
         (void)c;
         std::cout << "C" << '\n';
     } catch (...) {
-        std::cerr << "Error: could not cast to C" << '\n';
     }
 }
 
