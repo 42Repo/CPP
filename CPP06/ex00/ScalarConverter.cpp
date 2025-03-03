@@ -10,14 +10,6 @@ void ScalarConverter::convert(std::string const &input) {
     errno = 0;
     double d = std::strtod(input.c_str(), &endptr);
 
-    if (errno != 0 || (*endptr != '\0' && *endptr != 'f') ||
-        (*endptr == 'f' && *(endptr + 1) != '\0')) {
-        std::cout << "char: impossible" << '\n';
-        std::cout << "int: impossible" << '\n';
-        std::cout << "float: impossible" << '\n';
-        std::cout << "double: impossible" << '\n';
-        return;
-    }
 
     if (input.length() == 1 && (std::isprint(input[0]) != 0)) {
         std::cout << "char: '" << input[0] << "'" << '\n';
@@ -26,6 +18,15 @@ void ScalarConverter::convert(std::string const &input) {
                   << "f" << '\n';
         std::cout << "double: " << std::fixed << std::setprecision(1)
                   << static_cast<double>(input[0]) << '\n';
+        return;
+    }
+    
+    if (errno != 0 || (*endptr != '\0' && *endptr != 'f') ||
+        (*endptr == 'f' && *(endptr + 1) != '\0')) {
+        std::cout << "char: impossible" << '\n';
+        std::cout << "int: impossible" << '\n';
+        std::cout << "float: impossible" << '\n';
+        std::cout << "double: impossible" << '\n';
         return;
     }
 
