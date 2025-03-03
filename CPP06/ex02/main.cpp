@@ -1,10 +1,9 @@
 #include "A.h"
 #include "B.h"
 #include "C.h"
+#include <cstdlib>
+#include <ctime>
 #include <iostream>
-#include <stdint.h>
-#include <stdlib.h>
-#include <time.h>
 
 Base *generate(void);
 void  identify(Base *p);
@@ -26,13 +25,13 @@ Base *generate(void) {
 
 void identify(Base *p) {
     if (dynamic_cast<A *>(p) != NULL) {
-        std::cout << "A" << std::endl;
+        std::cout << "A" << '\n';
     } else if (dynamic_cast<B *>(p) != NULL) {
-        std::cout << "B" << std::endl;
+        std::cout << "B" << '\n';
     } else if (dynamic_cast<C *>(p) != NULL) {
-        std::cout << "C" << std::endl;
+        std::cout << "C" << '\n';
     } else {
-        std::cout << "Unknown" << std::endl;
+        std::cout << "Unknown" << '\n';
     }
 }
 
@@ -40,22 +39,25 @@ void identify(Base &p) {
     try {
         A &a = dynamic_cast<A &>(p);
         (void)a;
-        std::cout << "A" << std::endl;
+        std::cout << "A" << '\n';
     } catch (...) {
+        std::cerr << "Error: could not cast to A" << '\n';
     }
 
     try {
         B &b = dynamic_cast<B &>(p);
         (void)b;
-        std::cout << "B" << std::endl;
+        std::cout << "B" << '\n';
     } catch (...) {
+        std::cerr << "Error: could not cast to B" << '\n';
     }
 
     try {
         C &c = dynamic_cast<C &>(p);
         (void)c;
-        std::cout << "C" << std::endl;
+        std::cout << "C" << '\n';
     } catch (...) {
+        std::cerr << "Error: could not cast to C" << '\n';
     }
 }
 
@@ -64,7 +66,7 @@ int main() {
 
     Base *base = generate();
     if (base == NULL) {
-        std::cerr << "Error: could not generate a class" << std::endl;
+        std::cerr << "Error: could not generate a class" << '\n';
         return 1;
     }
     identify(base);
