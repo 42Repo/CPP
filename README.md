@@ -56,7 +56,7 @@
 - [x] Exercise 02
 - [x] Exercise 03
 
-**Score:** N/A
+**Score:** 100/100 ✅
 
 ### CPP06
 
@@ -64,7 +64,7 @@
 - [x] Exercise 01
 - [x] Exercise 02
 
-**Score:** N/A
+**Score:** 100/100 ✅
 
 ### CPP07
 
