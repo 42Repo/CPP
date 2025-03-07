@@ -32,8 +32,7 @@ int Span::shortestSpan() const {
     int shortest = std::numeric_limits<int>::max();
     for (size_t i = 0; i < sorted.size() - 1; ++i) {
         int span = sorted[i + 1] - sorted[i];
-        if (span < shortest)
-            shortest = span;
+        shortest = std::min(shortest, span);
     }
     return shortest;
 }
