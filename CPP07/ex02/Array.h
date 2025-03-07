@@ -13,6 +13,7 @@ template <typename t> class Array {
     ~Array();
 
     t           &operator[](unsigned int index);
+    const t     &operator[](unsigned int index) const;
     unsigned int size() const;
     void         print() const;
 };

@@ -13,7 +13,7 @@ template <typename t> Array<t> &Array<t>::operator=(Array const &rhs) {
         _size = rhs.size();
         _array = new t[_size];
         for (unsigned int i = 0; i < _size; i++)
-            _array[i] = rhs._array[i] ? rhs._array[i] : 0;
+            _array[i] = rhs._array[i];
     }
     return *this;
 }
@@ -24,6 +24,13 @@ template <typename t> Array<t>::~Array() {
 }
 
 template <typename t> t &Array<t>::operator[](unsigned int index) {
+    if (index >= _size) {
+        throw std::exception();
+    }
+    return _array[index];
+}
+
+template <typename t> const t &Array<t>::operator[](unsigned int index) const {
     if (index >= _size) {
         throw std::exception();
     }
