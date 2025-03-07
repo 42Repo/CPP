@@ -1,5 +1,4 @@
 #include "MutantStack.h"
-#include <algorithm>
 
 int main() {
     MutantStack<int> mstack;

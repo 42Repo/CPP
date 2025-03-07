@@ -18,19 +18,19 @@ int main() {
     try {
         std::cout << "easyfind(v, 10): " << easyfind(v, 10) << std::endl;
     } catch (std::exception &e) {
-        std::cout << "Exception: " << e.what() << std::endl;
+        std::cout << "Exception caught: " << e.what() << std::endl;
     }
 
     try {
         std::cout << "easyfind(v, 11): " << easyfind(v, 11) << std::endl;
     } catch (std::exception &e) {
-        std::cout << "Exception: " << e.what() << std::endl;
+        std::cout << "Exception caught: " << e.what() << std::endl;
     }
 
     try {
         std::cout << "easyfind(v, -1): " << easyfind(v, -1) << std::endl;
     } catch (std::exception &e) {
-        std::cout << "Exception: " << e.what() << std::endl;
+        std::cout << "Exception caught: " << e.what() << std::endl;
     }
 
     std::list<int> l;
@@ -43,21 +43,23 @@ int main() {
     std::cout << "easyfind(l, 5): " << easyfind(l, 5) << std::endl;
     std::cout << "easyfind(l, 0): " << easyfind(l, 0) << std::endl;
     std::cout << "easyfind(l, 9): " << easyfind(l, 9) << std::endl;
+
     try {
         std::cout << "easyfind(l, 10): " << easyfind(l, 10) << std::endl;
     } catch (std::exception &e) {
-        std::cout << "Exception: " << e.what() << std::endl;
+        std::cout << "Exception caught: " << e.what() << std::endl;
     }
+
     try {
         std::cout << "easyfind(l, 11): " << easyfind(l, 11) << std::endl;
-
     } catch (std::exception &e) {
-        std::cout << "Exception: " << e.what() << std::endl;
+        std::cout << "Exception caught: " << e.what() << std::endl;
     }
+
     try {
         std::cout << "easyfind(l, -1): " << easyfind(l, -1) << std::endl;
     } catch (std::exception &e) {
-        std::cout << "Exception: " << e.what() << std::endl;
+        std::cout << "Exception caught: " << e.what() << std::endl;
     }
 
     return 0;

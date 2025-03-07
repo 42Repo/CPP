@@ -1,4 +1,5 @@
 #include "Span.h"
+#include <algorithm>
 #include <limits>
 
 Span::Span(unsigned int n) : _maxSize(n) {}
