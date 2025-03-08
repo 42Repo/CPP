@@ -5,7 +5,7 @@
 
 class Span {
   public:
-    explicit Span(unsigned int n);
+    explicit Span(unsigned int n = 5);
     Span(const Span &other);
     Span &operator=(const Span &other);
     ~Span();

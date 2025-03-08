@@ -17,7 +17,7 @@ Span &Span::operator=(const Span &other) {
 Span::~Span() {}
 
 void Span::addNumber(int number) {
-    if (_data.size() >= _maxSize)
+    if (_data.size() > _maxSize)
         throw std::runtime_error("You are trying to add too many numbers");
     _data.push_back(number);
 }
