@@ -80,7 +80,7 @@
 - [x] Exercise 01
 - [x] Exercise 02
 
-**Score:** N/A
+**Score:** 100/100 ✅
 
 ### CPP09
 
