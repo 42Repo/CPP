@@ -1,4 +1,5 @@
 #include "PmergeMe.hpp"
+#include <set>
 #include <limits>
 #include <sstream>
 
@@ -75,20 +76,26 @@ std::vector<std::vector<size_t> > PmergeMe::_determineInsertionGroups(size_t n) 
     std::vector<int> jacob = _jacobsthalSequence(static_cast<int>(n));
 
     std::vector<int> insertionOrder;
+    std::set<int> addedPositions;
+
     for (size_t i = jacob.size() - 1; i >= 2; --i) {
         int current = jacob[i];
-        int prev = (i > 2) ? jacob[i - 1] : -1;
+        int prev = (i > 2) ? jacob[i - 1] : 0;
 
         if (current <= static_cast<int>(n)) {
             for (int j = current; j > prev; j--) {
-                if (j > 0 && j <= static_cast<int>(n))
+                if (j > 0 && j <= static_cast<int>(n) && addedPositions.find(j - 1) == addedPositions.end()) {
                     insertionOrder.push_back(j - 1);
+                    addedPositions.insert(j - 1);
+                }
             }
         }
     }
 
-    if (insertionOrder.empty() && n > 0) {
-        insertionOrder.push_back(0);
+    for (size_t i = 0; i < n; ++i) {
+        if (addedPositions.find(i) == addedPositions.end()) {
+            insertionOrder.push_back(i);
+        }
     }
 
     for (size_t k = 0; k < insertionOrder.size(); ++k) {
