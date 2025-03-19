@@ -6,6 +6,7 @@
 
 class PmergeMe {
   private:
+    PmergeMe();
     std::vector<int> _dataVector;
     std::deque<int>  _dataDeque;
 
@@ -22,7 +23,7 @@ class PmergeMe {
                             const std::vector<std::vector<size_t> > &groups);
 
   public:
-    PmergeMe(char **argv);
+    explicit PmergeMe(char **argv);
     PmergeMe(const PmergeMe &other);
     PmergeMe &operator=(const PmergeMe &other);
     ~PmergeMe();

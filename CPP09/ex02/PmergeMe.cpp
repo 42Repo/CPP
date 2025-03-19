@@ -249,6 +249,8 @@ void PmergeMe::sortAndDisplay() {
     _printTime("std::deque", duration_deque);
 }
 
+PmergeMe::PmergeMe() : _dataVector(), _dataDeque() {}
+
 PmergeMe::PmergeMe(char **argv) : _dataVector(), _dataDeque() { _parseInput(argv); }
 
 PmergeMe::PmergeMe(const PmergeMe &other)
