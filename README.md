@@ -86,7 +86,7 @@
 
 - [x] Exercise 00
 - [x] Exercise 01
-- [ ] Exercise 02
+- [x] Exercise 02
 
 **Score:** N/A
 
