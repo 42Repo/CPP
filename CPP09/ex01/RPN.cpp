@@ -23,10 +23,10 @@ static int stringToInt(const std::string &str) {
     int                num = 0;
     iss >> num;
     if (iss.fail()) {
-        throw std::runtime_error("Error");
+        throw std::runtime_error("Error: Invalid input");
     }
-    if (num < -9 || num >= 10)
-        throw std::runtime_error("Error");
+    if (num < 0 || num >= 10)
+        throw std::runtime_error("Error: Number out of range");
     return num;
 }
 
@@ -38,7 +38,7 @@ int RPN::evaluate(const std::string &expression) {
     while (iss >> token) {
         if (isOperator(token)) {
             if (stack.size() < 2)
-                throw std::runtime_error("Error");
+                throw std::runtime_error("Error: Not enough operands");
             int num2 = stack.top();
             stack.pop();
             int num1 = stack.top();
@@ -51,7 +51,7 @@ int RPN::evaluate(const std::string &expression) {
                 stack.push(num1 * num2);
             else if (token == "/") {
                 if (num2 == 0)
-                    throw std::runtime_error("Error");
+                    throw std::runtime_error("Error: Division by zero");
                 stack.push(num1 / num2);
             }
         } else {
@@ -60,6 +60,6 @@ int RPN::evaluate(const std::string &expression) {
     }
 
     if (stack.size() != 1)
-        throw std::runtime_error("Error");
+        throw std::runtime_error("Error: Too many operands");
     return stack.top();
 }
